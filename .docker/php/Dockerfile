@@ -1,5 +1,7 @@
 FROM php:7.4-fpm
 
+ARG APCU_VERSION=5.1.18
+
 RUN apt-get update \
     && apt-get install -y --no-install-recommends vim curl debconf subversion git apt-transport-https apt-utils \
     build-essential locales acl mailutils wget nodejs zip unzip \
@@ -12,11 +14,21 @@ RUN apt-get install -y \
     zip \
     && docker-php-ext-install zip
 
+RUN docker-php-ext-install opcache -j$(nproc)
+RUN docker-php-ext-configure opcache --enable-opcache
+
 RUN apt-get install -y zlib1g-dev libicu-dev g++ \
     && docker-php-ext-configure intl \
     && docker-php-ext-install intl
 
 RUN docker-php-ext-install pdo pdo_mysql zip
+
+#INSTALL APCU
+RUN pecl install apcu-${APCU_VERSION} && docker-php-ext-enable apcu
+RUN echo "extension=apcu.so" >> /usr/local/etc/php/php.ini
+RUN echo "apc.enable_cli=1" >> /usr/local/etc/php/php.ini
+RUN echo "apc.enable=1" >> /usr/local/etc/php/php.ini
+#APCU
 
 #COPY php.ini /usr/local/etc/php/php.ini
 #COPY php-fpm-pool.conf 	/usr/local/etc/php/pool.d/www.conf
