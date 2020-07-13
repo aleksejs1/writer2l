@@ -25,7 +25,7 @@
                 {% for scene in chapter.scenes %}
                     <div class="row">
                         <div class="col-md-12">
-                            <a href="{{ path('scene_edit', {'project': scene.chapter.project.id, 'chapter': scene.chapter.id, 'scene': scene.id}) }}">{{ scene.title ?: '[No title]' }}</a>
+                            <a href="{{ path('scene_edit', {'project': scene.chapter.project.id, 'chapter': scene.chapter.id, 'scene': scene.id}) }}">{{ scene.title ?: '[No title]' }}</a> ({{ scene.content|word_count }} real words) ({{ scene.content|split(' ')|length }} words) ({{ scene.content|length }} letters)
                         </div>
                     </div>
                 {% endfor %}
