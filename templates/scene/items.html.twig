@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Item list{% endblock %}
+
+{% block body %}
+    <div class="py-5 text-center">
+        <h1>Items</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 md-12">
+            <a href="{{ path('project_show_chapter', {"project": scene.chapter.project.id, "chapter": scene.chapter.id}) }}">back</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 md-6">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in itemsIn %}
+                    <tr>
+                        <td><a class="btn btn-primary" href="?remove={{ item.id }}">-</a> {{ item.title }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="10">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6 md-6">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in itemsOut %}
+                    <tr>
+                        <td><a class="btn btn-primary" href="?add={{ item.id }}">+</a> {{ item.title }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="10">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+{% endblock %}

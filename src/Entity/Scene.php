@@ -104,10 +104,16 @@ class Scene
      */
     private $locations;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Item::class, mappedBy="scenes")
+     */
+    private $items;
+
     public function __construct()
     {
         $this->characters = new ArrayCollection();
         $this->locations = new ArrayCollection();
+        $this->items = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -298,6 +304,34 @@ class Scene
         if ($this->locations->contains($location)) {
             $this->locations->removeElement($location);
             $location->removeScene($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Item[]
+     */
+    public function getItems(): Collection
+    {
+        return $this->items;
+    }
+
+    public function addItem(Item $item): self
+    {
+        if (!$this->items->contains($item)) {
+            $this->items[] = $item;
+            $item->addScene($this);
+        }
+
+        return $this;
+    }
+
+    public function removeItem(Item $item): self
+    {
+        if ($this->items->contains($item)) {
+            $this->items->removeElement($item);
+            $item->removeScene($this);
         }
 
         return $this;
