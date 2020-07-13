@@ -5,6 +5,7 @@
     "description": "A skeleton to start a new Symfony website",
     "require": {
         "php": "^7.4",
+        "ext-apcu": "^5.1",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "sensio/framework-extra-bundle": "^5.1",
@@ -22,6 +23,7 @@
         "symfony/monolog-bundle": "^3.1",
         "symfony/notifier": "*",
         "symfony/orm-pack": "*",
+        "symfony/polyfill-apcu": "^1.17",
         "symfony/process": "*",
         "symfony/security-bundle": "*",
         "symfony/serializer-pack": "*",
