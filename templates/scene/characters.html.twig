@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Character list{% endblock %}
+
+{% block body %}
+    <div class="py-5 text-center">
+        <h1>Characters</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 md-12">
+            <a href="{{ path('project_show_chapter', {"project": scene.chapter.project.id, "chapter": scene.chapter.id}) }}">back</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 md-6">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ShortName</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for character in charactersIn %}
+                    <tr>
+                        <td><a class="btn btn-primary" href="?remove={{ character.id }}">-</a> {{ character.shortName }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="10">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6 md-6">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ShortName</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for character in charactersOut %}
+                    <tr>
+                        <td><a class="btn btn-primary" href="?add={{ character.id }}">+</a> {{ character.shortName }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="10">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+{% endblock %}

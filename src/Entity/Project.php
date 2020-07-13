@@ -34,9 +34,15 @@ class Project
      */
     private $chapters;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Character::class, mappedBy="project", orphanRemoval=true)
+     */
+    private $characters;
+
     public function __construct()
     {
         $this->chapters = new ArrayCollection();
+        $this->characters = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -93,6 +99,37 @@ class Project
             // set the owning side to null (unless already changed)
             if ($chapter->getProject() === $this) {
                 $chapter->setProject(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Character[]
+     */
+    public function getCharacters(): Collection
+    {
+        return $this->characters;
+    }
+
+    public function addCharacter(Character $character): self
+    {
+        if (!$this->characters->contains($character)) {
+            $this->characters[] = $character;
+            $character->setProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCharacter(Character $character): self
+    {
+        if ($this->characters->contains($character)) {
+            $this->characters->removeElement($character);
+            // set the owning side to null (unless already changed)
+            if ($character->getProject() === $this) {
+                $character->setProject(null);
             }
         }
 
