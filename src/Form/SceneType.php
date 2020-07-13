@@ -15,7 +15,6 @@ class SceneType extends AbstractType
             ->add('title')
             ->add('content')
             ->add('description')
-            ->add('chapter')
         ;
     }
 

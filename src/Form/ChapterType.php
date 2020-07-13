@@ -14,7 +14,6 @@ class ChapterType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
-            ->add('project')
         ;
     }
 

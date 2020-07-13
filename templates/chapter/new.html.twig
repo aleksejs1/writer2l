@@ -7,5 +7,5 @@
 
     {{ include('chapter/_form.html.twig') }}
 
-    <a href="{{ path('chapter_index') }}">back to list</a>
+    <a href="{{ path('project_show', {"project": chapter.project.id}) }}">back</a>
 {% endblock %}

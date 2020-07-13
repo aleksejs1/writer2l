@@ -26,29 +26,6 @@ class ChapterController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="chapter_new", methods={"GET","POST"})
-     */
-    public function new(Request $request): Response
-    {
-        $chapter = new Chapter();
-        $form = $this->createForm(ChapterType::class, $chapter);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($chapter);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('chapter_index');
-        }
-
-        return $this->render('chapter/new.html.twig', [
-            'chapter' => $chapter,
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
      * @Route("/{id}", name="chapter_show", methods={"GET"})
      */
     public function show(Chapter $chapter): Response
