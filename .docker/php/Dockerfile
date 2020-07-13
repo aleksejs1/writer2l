@@ -29,12 +29,17 @@ RUN wget --no-check-certificate https://phar.phpunit.de/phpunit-6.5.3.phar && \
     chmod +x phpunit.phar && \
     mv phpunit.phar /usr/local/bin/phpunit
 
-RUN	echo "deb https://deb.nodesource.com/node_6.x jessie main" >> /etc/apt/sources.list.d/nodejs.list && \
+RUN	echo "deb https://deb.nodesource.com/node_12.x jessie main" >> /etc/apt/sources.list.d/nodejs.list && \
 	wget -nv -O -  https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
-	echo "deb-src https://deb.nodesource.com/node_6.x jessie main" >> /etc/apt/sources.list.d/nodejs.list && \
+	echo "deb-src https://deb.nodesource.com/node_12.x jessie main" >> /etc/apt/sources.list.d/nodejs.list && \
     apt-get update && \
 	apt-get install -y --force-yes nodejs && \
 	rm -f /etc/apt/sources.list.d/nodejs.list
+
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+    apt-get update && \
+    apt-get install -qq -y yarn
 
 RUN groupadd dev -g 999
 RUN useradd dev -g dev -d /home/dev -m

@@ -3,28 +3,44 @@
 {% block title %}Project{% endblock %}
 
 {% block body %}
-    <h1>Project</h1>
+    <div class="py-5 text-center">
+        <h1>{{ project.title }} (by {{ project.authorsName }})</h1>
+    </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ project.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ project.title }}</td>
-            </tr>
-            <tr>
-                <th>AuthorsName</th>
-                <td>{{ project.authorsName }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-md-3 md-3">
+            <h3>Chapters</h3>
+            {% for chapterInList in project.chapters %}
+                <div class="row">
+                    <div class="col-md-12">
+                        <a href="{{ path('project_show_chapter', {'project': project.id, 'chapter': chapterInList.id}) }}" class="btn{% if chapter is defined and chapter is not null and chapter.id == chapterInList.id %} btn-dark{% endif %}">{{ chapterInList.title }}</a>
+                    </div>
+                </div>
+            {% endfor %}
+            <a href="{{ path('chapter_new', {"project": project.id}) }}" class="btn btn-primary">Create new</a>
+        </div>
+        <div class="col-md-9">
+            {% if chapter is defined and chapter is not null %}
+                <h3>Scenes</h3>
+                {% for scene in chapter.scenes %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href="{{ path('scene_edit', {'project': scene.chapter.project.id, 'chapter': scene.chapter.id, 'scene': scene.id}) }}">{{ scene.title ?: '[No title]' }}</a>
+                        </div>
+                    </div>
+                {% endfor %}
+                <a href="{{ path('scene_new', {'project': project.id, 'chapter': chapter.id}) }}">Create new</a>
+            {% else %}
+                <p>Select chapter</p>
+            {% endif %}
+        </div>
+    </div>
 
-    <a href="{{ path('project_index') }}">back to list</a>
+    <div class="py-5 text-center">
+        <a href="{{ path('project_index') }}">back to list</a>
 
-    <a href="{{ path('project_edit', {'id': project.id}) }}">edit</a>
+        <a href="{{ path('project_edit', {'id': project.id}) }}">edit</a>
 
-    {{ include('project/_delete_form.html.twig') }}
+        {{ include('project/_delete_form.html.twig') }}
+    </div>
 {% endblock %}
