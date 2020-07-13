@@ -10,6 +10,7 @@
     <div class="row">
         <div class="col-md-3 md-3">
             <a class="btn btn-light" href="{{ path('character_list', {'project': project.id}) }}">Characters</a>
+            <a class="btn btn-light" href="{{ path('location_list', {'project': project.id}) }}">Locations</a>
             <h3>Chapters</h3>
             {% for chapterInList in project.chapters %}
                 <div class="row">
@@ -36,6 +37,7 @@
                         <th>Real words</th>
                         <th>Letters</th>
                         <th>Characters</th>
+                        <th>Locations</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -49,9 +51,16 @@
                             <td>{{ constant('App\\Entity\\Scene::GOAL_TITLES')[scene.goalType]|first }}</td>
                             <td>{{ scene.content|word_count }} real words</td>
                             <td>{{ scene.content|length }} letters</td>
-                            <td><a href="{{ path('scene_characters', {'project': scene.chapter.project.id, 'chapter': scene.chapter.id, 'scene': scene.id}) }}">
-                                    {% for character in scene.characters %}{{ character.shortname }}{% if not loop.last %}, {% endif %}{% else %}Chatacters{% endfor %}
-                                </a></td>
+                            <td>
+                                <a href="{{ path('scene_characters', {'project': scene.chapter.project.id, 'chapter': scene.chapter.id, 'scene': scene.id}) }}">
+                                    {% for character in scene.characters %}{{ character.shortname }}{% if not loop.last %}, {% endif %}{% else %}+{% endfor %}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ path('scene_locations', {'project': scene.chapter.project.id, 'chapter': scene.chapter.id, 'scene': scene.id}) }}">
+                                    {% for location in scene.locations %}{{ location.title }}{% if not loop.last %}, {% endif %}{% else %}+{% endfor %}
+                                </a>
+                            </td>
                         </tr>
                     {% else %}
                         <tr>

@@ -99,9 +99,15 @@ class Scene
      */
     private $outcome;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Location::class, mappedBy="scenes")
+     */
+    private $locations;
+
     public function __construct()
     {
         $this->characters = new ArrayCollection();
+        $this->locations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -265,6 +271,34 @@ class Scene
     public function setOutcome(?string $outcome): self
     {
         $this->outcome = $outcome;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Location[]
+     */
+    public function getLocations(): Collection
+    {
+        return $this->locations;
+    }
+
+    public function addLocation(Location $location): self
+    {
+        if (!$this->locations->contains($location)) {
+            $this->locations[] = $location;
+            $location->addScene($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLocation(Location $location): self
+    {
+        if ($this->locations->contains($location)) {
+            $this->locations->removeElement($location);
+            $location->removeScene($this);
+        }
 
         return $this;
     }
