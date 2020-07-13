@@ -11,6 +11,7 @@
         <div class="col-md-3 md-3">
             <a class="btn btn-light" href="{{ path('character_list', {'project': project.id}) }}">Characters</a>
             <a class="btn btn-light" href="{{ path('location_list', {'project': project.id}) }}">Locations</a>
+            <a class="btn btn-light" href="{{ path('item_list', {'project': project.id}) }}">Items</a>
             <h3>Chapters</h3>
             {% for chapterInList in project.chapters %}
                 <div class="row">
@@ -38,6 +39,7 @@
                         <th>Letters</th>
                         <th>Characters</th>
                         <th>Locations</th>
+                        <th>Items</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -59,6 +61,11 @@
                             <td>
                                 <a href="{{ path('scene_locations', {'project': scene.chapter.project.id, 'chapter': scene.chapter.id, 'scene': scene.id}) }}">
                                     {% for location in scene.locations %}{{ location.title }}{% if not loop.last %}, {% endif %}{% else %}+{% endfor %}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ path('scene_items', {'project': scene.chapter.project.id, 'chapter': scene.chapter.id, 'scene': scene.id}) }}">
+                                    {% for item in scene.items %}{{ item.title }}{% if not loop.last %}, {% endif %}{% else %}+{% endfor %}
                                 </a>
                             </td>
                         </tr>
