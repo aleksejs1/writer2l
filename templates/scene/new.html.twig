@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Scene{% endblock %}
+
+{% block body %}
+    <h1>Create new Scene</h1>
+
+    {{ include('scene/_form.html.twig') }}
+
+    <a href="{{ path('scene_index') }}">back to list</a>
+{% endblock %}
