@@ -1,0 +1,65 @@
+version: '3'
+services:
+    apache:
+        build: .docker/apache
+        container_name: writer2l_apache
+        ports:
+          - 80:80
+        volumes:
+          - /c/docks/writer2l/.docker/config/vhosts:/etc/apache2/sites-enabled
+          - /c/docks/writer2l/.:/home/wwwroot/writer2l
+        depends_on:
+          - php
+#        networks:
+#          - writer2l
+
+    mysql:
+        image: mysql
+        command: "--default-authentication-plugin=mysql_native_password --innodb_use_native_aio=0"
+        container_name: writer2l_mysql
+        volumes:
+            - /c/docks/writer2l/.docker/data/db:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: writer2l
+            MYSQL_USER: writer2l
+            MYSQL_PASSWORD: writer2l
+#        networks:
+#            - writer2l
+
+    php:
+        build: .docker/php
+        container_name: writer2l_php
+        volumes:
+          - /c/docks/writer2l/.:/home/wwwroot/writer2l
+        environment:
+          - maildev_host=writer2l_maildev
+        depends_on:
+          - maildev
+          - mysql
+        links:
+          - mysql
+#        networks:
+#          - writer2l
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: writer2l_phpmyadmin
+        environment:
+          PMA_HOST: mysql
+          PMA_PORT: 3306
+        ports:
+            - 8080:80
+        links:
+            - mysql
+#        networks:
+#            - writer2l
+
+    maildev:
+        image: djfarrelly/maildev
+        container_name: writer2l_maildev
+        ports:
+          - 8001:80
+
+#networks:
+#    writer2l:
