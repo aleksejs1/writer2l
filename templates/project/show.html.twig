@@ -9,6 +9,7 @@
 
     <div class="row">
         <div class="col-md-3 md-3">
+            <a class="btn btn-light" href="{{ path('character_list', {'project': project.id}) }}">Characters</a>
             <h3>Chapters</h3>
             {% for chapterInList in project.chapters %}
                 <div class="row">
@@ -22,14 +23,50 @@
         <div class="col-md-9">
             {% if chapter is defined and chapter is not null %}
                 <h3>Scenes</h3>
-                {% for scene in chapter.scenes %}
-                    <div class="row">
-                        <div class="col-md-12">
-                            <a href="{{ path('scene_edit', {'project': scene.chapter.project.id, 'chapter': scene.chapter.id, 'scene': scene.id}) }}">{{ scene.title ?: '[No title]' }}</a> ({{ scene.content|word_count }} real words) ({{ scene.content|split(' ')|length }} words) ({{ scene.content|length }} letters)
-                        </div>
-                    </div>
-                {% endfor %}
-                <a href="{{ path('scene_new', {'project': project.id, 'chapter': chapter.id}) }}">Create new</a>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>Viewpoint</th>
+                        <th>Words</th>
+                        <th>Scene</th>
+                        <th>Status</th>
+                        <th>A/R</th>
+                        <th>Real words</th>
+                        <th>Letters</th>
+                        <th>Characters</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for scene in chapter.scenes %}
+                        <tr>
+                            <td>{{ scene.note ? 'N' : 'Sc' }}</td>
+                            <td>{{ scene.viewpoint ? scene.viewpoint.shortName : 'N/A' }}</td>
+                            <td>{{ scene.content|split(' ')|length }} words</td>
+                            <td><a href="{{ path('scene_edit', {'project': scene.chapter.project.id, 'chapter': scene.chapter.id, 'scene': scene.id}) }}">{{ scene.title ?: '[No title]' }}</a></td>
+                            <td>{{ constant('App\\Entity\\Scene::STATUS_TITLES')[scene.status] }}</td>
+                            <td>{{ constant('App\\Entity\\Scene::GOAL_TITLES')[scene.goalType]|first }}</td>
+                            <td>{{ scene.content|word_count }} real words</td>
+                            <td>{{ scene.content|length }} letters</td>
+                            <td><a href="{{ path('scene_characters', {'project': scene.chapter.project.id, 'chapter': scene.chapter.id, 'scene': scene.id}) }}">
+                                    {% for character in scene.characters %}{{ character.shortname }}{% if not loop.last %}, {% endif %}{% else %}Chatacters{% endfor %}
+                                </a></td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="9">no records found</td>
+                        </tr>
+                    {% endfor %}
+                        <tr>
+                            <td colspan="9" class="text-center">
+                                <a href="{{ path('scene_new', {'project': project.id, 'chapter': chapter.id}) }}">Create new</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
             {% else %}
                 <p>Select chapter</p>
             {% endif %}

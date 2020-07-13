@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Character{% endblock %}
+
+{% block body %}
+    <h1>Edit Character</h1>
+
+    {{ include('character/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('character_list', {'project': project.id}) }}">back to list</a>
+
+    {{ include('character/_delete_form.html.twig') }}
+{% endblock %}

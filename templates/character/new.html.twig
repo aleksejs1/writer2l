@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Character{% endblock %}
+
+{% block body %}
+    <h1>Create new Character</h1>
+
+    {{ include('character/_form.html.twig') }}
+
+    <a href="{{ path('character_list', {'project': project.id}) }}">back to list</a>
+{% endblock %}

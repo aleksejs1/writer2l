@@ -2,8 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\Character;
 use App\Entity\Scene;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,6 +18,22 @@ class SceneType extends AbstractType
             ->add('title')
             ->add('content')
             ->add('description')
+            ->add('viewpoint', EntityType::class, [
+                'placeholder' => 'None',
+                'required' => false,
+                'class' => Character::class,
+                'choice_label' => 'shortname',
+            ])
+            ->add('status', ChoiceType::class, [
+                'choices' => array_flip(Scene::STATUS_TITLES),
+            ])
+            ->add('note')
+            ->add('goalType', ChoiceType::class, [
+                'choices' => array_flip(Scene::GOAL_TITLES),
+            ])
+            ->add('goal')
+            ->add('conflict')
+            ->add('outcome')
         ;
     }
 
