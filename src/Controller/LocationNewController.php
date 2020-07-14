@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Location;
 use App\Entity\Project;
 use App\Form\LocationType;
-use App\Repository\LocationRepository;
+use App\Security\Voter\ProjectVoter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,9 +18,13 @@ class LocationNewController extends AbstractController
 {
     /**
      * @Route("/new", name="location_new", methods={"GET","POST"})
+     * @param Request $request
+     * @param Project $project
+     * @return Response
      */
     public function new(Request $request, Project $project): Response
     {
+        $this->denyAccessUnlessGranted(ProjectVoter::PROJECT_EDIT, $project);
         $location = new Location();
         $location
             ->setProject($project)

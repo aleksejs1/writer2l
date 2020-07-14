@@ -1,14 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Chapter{% endblock %}
-{% block pageTitle %}Edit {{ chapter.title ? 'chapter' }}{% endblock %}
+{% set label = 'Create' %}
+{% if new is not defined or new != true %}
+    {% set label = 'Update' %}
+{% endif %}
+{% block title %}{{ label }} Chapter{% endblock %}
+{% block pageTitle %}{{ label }} {{ chapter.title ? 'chapter' }}{% endblock %}
 
 {% block body %}
     <div class="card card-custom">
         <div class="card-body">
             <div class="tab-content">
-                {{ include('chapter/_form.html.twig', {'button_label': 'Update'}) }}
-                <a href="{{ path('project_show_chapter', {'project': project.id, 'chapter': chapter.id}) }}">back to list</a>
+                {{ include('chapter/_form.html.twig', {'button_label': label}) }}
+                {% if new is defined and new %}
+                    <a href="{{ path('project_show', {'project': project.id}) }}">back to list</a>
+                {% else %}
+                    <a href="{{ path('project_show_chapter', {'project': project.id, 'chapter': chapter.id}) }}">back to list</a>
+                {% endif %}
                 {{ include('chapter/_delete_form.html.twig') }}
             </div>
         </div>

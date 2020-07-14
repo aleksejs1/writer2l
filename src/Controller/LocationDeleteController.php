@@ -3,9 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Location;
-use App\Entity\Project;
-use App\Form\LocationType;
-use App\Repository\LocationRepository;
+use App\Security\Voter\ProjectVoter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,9 +16,14 @@ class LocationDeleteController extends AbstractController
 {
     /**
      * @Route("/{location}/delete", name="location_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Location $location
+     * @return Response
      */
-    public function delete(Request $request, Project $project, Location $location): Response
+    public function delete(Request $request, Location $location): Response
     {
+        $this->denyAccessUnlessGranted(ProjectVoter::PROJECT_EDIT, $location->getProject());
+        $project = $location->getProject();
         if ($this->isCsrfTokenValid('delete'.$location->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($location);

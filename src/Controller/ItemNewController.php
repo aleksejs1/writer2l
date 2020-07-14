@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Item;
 use App\Entity\Project;
 use App\Form\ItemType;
-use App\Repository\ItemRepository;
+use App\Security\Voter\ProjectVoter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,9 +18,13 @@ class ItemNewController extends AbstractController
 {
     /**
      * @Route("/new", name="item_new", methods={"GET","POST"})
+     * @param Request $request
+     * @param Project $project
+     * @return Response
      */
     public function new(Request $request, Project $project): Response
     {
+        $this->denyAccessUnlessGranted(ProjectVoter::PROJECT_EDIT, $project);
         $item = new Item();
         $item
             ->setProject($project)

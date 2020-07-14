@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Character;
 use App\Entity\Project;
 use App\Form\CharacterType;
-use App\Repository\CharacterRepository;
+use App\Security\Voter\ProjectVoter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,9 +18,13 @@ class CharacterNewController extends AbstractController
 {
     /**
      * @Route("/new", name="character_new", methods={"GET","POST"})
+     * @param Request $request
+     * @param Project $project
+     * @return Response
      */
     public function new(Request $request, Project $project): Response
     {
+        $this->denyAccessUnlessGranted(ProjectVoter::PROJECT_EDIT, $project);
         $character = new Character();
         $character
             ->setProject($project)

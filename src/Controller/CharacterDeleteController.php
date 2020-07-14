@@ -3,9 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Character;
-use App\Entity\Project;
-use App\Form\CharacterType;
-use App\Repository\CharacterRepository;
+use App\Security\Voter\ProjectVoter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,8 +17,10 @@ class CharacterDeleteController extends AbstractController
     /**
      * @Route("/{character}/delete", name="character_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Project $project, Character $character): Response
+    public function delete(Request $request, Character $character): Response
     {
+        $this->denyAccessUnlessGranted(ProjectVoter::PROJECT_EDIT, $character->getProject());
+        $project = $character->getProject();
         if ($this->isCsrfTokenValid('delete'.$character->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($character);
