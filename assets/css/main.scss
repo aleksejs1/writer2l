@@ -1,0 +1,87 @@
+body {
+  background: #EEF0F8;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 100% 350px;
+}
+
+h1 {
+  color: $light-color;
+  font-size: 1.7rem;
+}
+
+.subheader {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.card-header {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 0;
+  background-color: inherit;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link, a.nav-link:hover, a.nav-link:focus {
+  color: $active-tab-color;
+  background-color: #fff;
+  border-color: transparent;
+  border-bottom-color: $active-tab-color;
+  padding-bottom: 20px;
+}
+
+.nav-tabs {
+  border-bottom: 1px solid transparent;
+}
+
+a.nav-link {
+  color: $tab-color;
+  text-decoration: none;
+  background-color: transparent;
+}
+.nav-tabs .nav-link:hover, a.nav-link:hover, a.nav-link:focus {
+  color: $active-tab-color;
+  text-decoration: none;
+  border-color: transparent transparent transparent;
+  border-bottom-color: $active-tab-color;
+}
+
+.card-header-tabs-line {
+  padding-bottom: 0;
+}
+
+td {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.hidden-overflow {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.card-table th {
+  border-top-style: none;
+}
+
+.navi-link {
+  display: block;
+  width: 100%;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #3F4254;
+}
+.navi-link.active, a.navi-link:hover, a.navi-link:focus {
+  text-decoration: none;
+  color: #6993FF;
+  background-color: #F3F6F9;
+}
+
+.btn-act {
+  margin-left: 8px;
+}

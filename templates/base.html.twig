@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
             <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,500i,600,600i&display=swap" rel="stylesheet" />
@@ -9,10 +10,35 @@
         {% endblock %}
 
     </head>
-    <body>
-        <div class="container">
-            {% block body %}{% endblock %}
-        </div>
+    <body style="background-image: url(/assets/img/w2l_bg.png)">
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="{{ path('project_index') }}">Writer2l</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                {% if app.user %}
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+        </nav>
+        <main role="main">
+            <div class="container">
+                <div class="row subheader">
+                    <div class="col-md-6">
+                        <h1>{% block pageTitle %}Welcome!{% endblock %}</h1>
+                    </div>
+                    <div class="col-md-6"></div>
+                </div>
+                {% block body %}{% endblock %}
+            </div>
+        </main>
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}

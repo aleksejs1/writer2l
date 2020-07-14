@@ -50,6 +50,7 @@ class SceneLocationsController extends AbstractController
 
         return $this->render('scene/locations.html.twig', [
             'scene' => $scene,
+            'project' => $scene->getChapter()->getProject(),
             'locationsIn' => $scene->getLocations(),
             'locationsOut' => $locationsOut,
         ]);

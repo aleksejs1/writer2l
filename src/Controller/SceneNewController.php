@@ -44,7 +44,9 @@ class SceneNewController extends AbstractController
 
         return $this->render('scene/new.html.twig', [
             'scene' => $scene,
+            'project' => $chapter->getProject(),
             'form' => $form->createView(),
+            'new' => true,
         ]);
     }
 }

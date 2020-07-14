@@ -35,6 +35,7 @@ class SceneEditController extends AbstractController
 
         return $this->render('scene/edit.html.twig', [
             'scene' => $scene,
+            'project' => $chapter->getProject(),
             'form' => $form->createView(),
         ]);
     }

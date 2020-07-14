@@ -43,6 +43,7 @@ class ChapterNewController extends AbstractController
 
         return $this->render('chapter/new.html.twig', [
             'chapter' => $chapter,
+            'new' => true,
             'form' => $form->createView(),
         ]);
     }
