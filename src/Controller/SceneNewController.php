@@ -3,10 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Chapter;
-use App\Entity\Project;
 use App\Entity\Scene;
 use App\Form\SceneType;
-use App\Repository\SceneRepository;
+use App\Security\Voter\ProjectVoter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,9 +18,13 @@ class SceneNewController extends AbstractController
 {
     /**
      * @Route("/new", name="scene_new", methods={"GET","POST"})
+     * @param Request $request
+     * @param Chapter $chapter
+     * @return Response
      */
     public function new(Request $request, Chapter $chapter): Response
     {
+        $this->denyAccessUnlessGranted(ProjectVoter::PROJECT_EDIT, $chapter->getProject());
         $scene = new Scene();
         $scene
             ->setChapter($chapter)

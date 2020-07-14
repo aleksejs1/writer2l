@@ -1,13 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Item{% endblock %}
-{% block pageTitle %}Edit {{ item.title ? 'item' }}{% endblock %}
+{% set label = 'Create' %}
+{% if new is not defined or new != true %}
+    {% set label = 'Update' %}
+{% endif %}
+{% block title %}{{ label }} Item{% endblock %}
+{% block pageTitle %}{{ label }} {{ item.title ? 'item' }}{% endblock %}
 
 {% block body %}
     <div class="card card-custom">
         <div class="card-body">
             <div class="tab-content">
-                {{ include('item/_form.html.twig', {'button_label': 'Update'}) }}
+                {{ include('item/_form.html.twig', {'button_label': label}) }}
                 <a href="{{ path('item_list', {'project': project.id}) }}">back to list</a>
                 {{ include('item/_delete_form.html.twig') }}
             </div>

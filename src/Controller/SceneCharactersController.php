@@ -2,12 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Chapter;
 use App\Entity\Scene;
-use App\Form\SceneType;
-use App\Repository\ChapterRepository;
 use App\Repository\CharacterRepository;
-use App\Repository\SceneRepository;
+use App\Security\Voter\ProjectVoter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,9 +17,14 @@ class SceneCharactersController extends AbstractController
 {
     /**
      * @Route("/scene/{scene}/characters", name="scene_characters", methods={"GET","POST"})
+     * @param Request $request
+     * @param CharacterRepository $chapterRepository
+     * @param Scene $scene
+     * @return Response
      */
     public function characters(Request $request, CharacterRepository $chapterRepository, Scene $scene): Response
     {
+        $this->denyAccessUnlessGranted(ProjectVoter::PROJECT_EDIT, $scene->getChapter()->getProject());
         $add = $request->get('add');
         if ($add) {
             $addCharacter = $chapterRepository->find($add);

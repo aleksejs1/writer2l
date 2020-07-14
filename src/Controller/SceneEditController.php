@@ -2,10 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Chapter;
 use App\Entity\Scene;
 use App\Form\SceneType;
-use App\Repository\SceneRepository;
+use App\Security\Voter\ProjectVoter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,9 +17,13 @@ class SceneEditController extends AbstractController
 {
     /**
      * @Route("/scene/{scene}/edit", name="scene_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Scene $scene
+     * @return Response
      */
-    public function edit(Request $request, Chapter $chapter, Scene $scene): Response
+    public function edit(Request $request, Scene $scene): Response
     {
+        $this->denyAccessUnlessGranted(ProjectVoter::PROJECT_EDIT, $scene->getChapter()->getProject());
         $form = $this->createForm(SceneType::class, $scene);
         $form->handleRequest($request);
 
@@ -28,14 +31,14 @@ class SceneEditController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('project_show_chapter', [
-                'project' => $chapter->getProject()->getId(),
-                'chapter' => $chapter->getId()
+                'project' => $scene->getChapter()->getProject()->getId(),
+                'chapter' => $scene->getChapter()->getId()
             ]);
         }
 
         return $this->render('scene/edit.html.twig', [
             'scene' => $scene,
-            'project' => $chapter->getProject(),
+            'project' => $scene->getChapter()->getProject(),
             'form' => $form->createView(),
         ]);
     }

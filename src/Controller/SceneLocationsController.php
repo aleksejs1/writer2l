@@ -2,13 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Chapter;
 use App\Entity\Scene;
-use App\Form\SceneType;
-use App\Repository\ChapterRepository;
-use App\Repository\CharacterRepository;
 use App\Repository\LocationRepository;
-use App\Repository\SceneRepository;
+use App\Security\Voter\ProjectVoter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,9 +17,14 @@ class SceneLocationsController extends AbstractController
 {
     /**
      * @Route("/scene/{scene}/locations", name="scene_locations", methods={"GET","POST"})
+     * @param Request $request
+     * @param LocationRepository $locationRepository
+     * @param Scene $scene
+     * @return Response
      */
     public function characters(Request $request, LocationRepository $locationRepository, Scene $scene): Response
     {
+        $this->denyAccessUnlessGranted(ProjectVoter::PROJECT_EDIT, $scene->getChapter()->getProject());
         $add = $request->get('add');
         if ($add) {
             $addLocation = $locationRepository->find($add);
