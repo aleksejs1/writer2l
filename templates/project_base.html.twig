@@ -63,6 +63,12 @@
                                     </a>
                                 </li>
                             {% endif %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('project_preview', {'project': project.id}) }}" target="_blank">
+                                    <span class="nav-icon"><i class="far fa-eye"></i></span>
+                                    <span class="nav-text">Preview</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
