@@ -22,7 +22,7 @@ class ChapterEditController extends AbstractController
      * @param Chapter $chapter
      * @return Response
      */
-    public function edit(Request $request, Chapter $chapter, ChapterRepository $chapterRepository): Response
+    public function edit(Request $request, Chapter $chapter): Response
     {
         $this->denyAccessUnlessGranted(ProjectVoter::PROJECT_EDIT, $chapter->getProject());
         $form = $this->createForm(ChapterType::class, $chapter);
