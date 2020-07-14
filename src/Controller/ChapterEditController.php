@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Chapter;
 use App\Form\ChapterType;
+use App\Repository\ChapterRepository;
 use App\Security\Voter\ProjectVoter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,7 +29,7 @@ class ChapterEditController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $this->getDoctrine()->getRepository(Chapter::class)->save($chapter);
 
             return $this->redirectToRoute('project_show_chapter', [
                 'project' => $chapter->getProject()->getId(),
