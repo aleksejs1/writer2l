@@ -18,7 +18,7 @@
 .idea/
 *~
 .env
-.docker/data/
+/.docker/data/db/
 
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
