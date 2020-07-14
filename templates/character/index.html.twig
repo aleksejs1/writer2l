@@ -10,34 +10,38 @@
             <th>ShortName</th>
             <th>FullName</th>
             <th>Alternates</th>
-            <th>Role</th>
-            <th>Goals</th>
+            <th>VP Scenes</th>
+            <th>Scenes</th>
+            <th>Words</th>
             <th>actions</th>
         </tr>
         </thead>
         <tbody>
         {% for character in characters %}
             <tr>
-                <td>{{ character.shortName }}</td>
-                <td>{{ character.fullName }}</td>
-                <td>{{ character.alternates }}</td>
-                <td>{{ constant('App\\Entity\\Character::ROLE_LABELS')[character.role] }}</td>
                 <td>
-                    <div class="hidden-overflow" style="max-width: 100px;">
-                        {{ character.goals }}
-                    </div>
+                    {{ character.shortName }}
                 </td>
+                <td>
+                    {{ character.fullName }}
+                </td>
+                <td>
+                    {{ character.alternates }}
+                </td>
+                <td>{{ metadata[character.id] ? metadata[character.id].vpScenes : '?' }}</td>
+                <td>{{ metadata[character.id] ? metadata[character.id].scenes : '?' }}</td>
+                <td>{{ metadata[character.id] ? metadata[character.id].words : '?' }}</td>
                 <td>
                     <a href="{{ path('character_edit', {'character': character.id, 'project': project.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="7">no records found</td>
             </tr>
         {% endfor %}
             <tr>
-                <td colspan="6"><a href="{{ path('character_new', {'project': project.id}) }}"><i class="fas fa-plus-circle"></i></a></td>
+                <td colspan="7"><a href="{{ path('character_new', {'project': project.id}) }}"><i class="fas fa-plus-circle"></i></a></td>
             </tr>
         </tbody>
     </table>

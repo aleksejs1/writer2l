@@ -9,7 +9,7 @@
         <thead>
         <tr>
             <th>Title</th>
-            <th>Aka</th>
+            <th>Scenes</th>
             <th>Description</th>
             <th>actions</th>
         </tr>
@@ -18,7 +18,7 @@
         {% for location in locations %}
             <tr>
                 <td>{{ location.title }}</td>
-                <td>{{ location.aka }}</td>
+                <td>{{ location.scenes|length }}</td>
                 <td>{{ location.description }}</td>
                 <td>
                     <a href="{{ path('location_edit', {'location': location.id, 'project': project.id}) }}">edit</a>

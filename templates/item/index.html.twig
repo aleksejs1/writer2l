@@ -8,7 +8,7 @@
         <thead>
         <tr>
             <th>Title</th>
-            <th>Aka</th>
+            <th>Scenes</th>
             <th>Description</th>
             <th>actions</th>
         </tr>
@@ -17,7 +17,7 @@
         {% for item in items %}
             <tr>
                 <td>{{ item.title }}</td>
-                <td>{{ item.aka }}</td>
+                <td>{{ item.scenes|length }}</td>
                 <td>{{ item.description }}</td>
                 <td>
                     <a href="{{ path('item_edit', {'item': item.id, 'project': project.id}) }}">edit</a>
