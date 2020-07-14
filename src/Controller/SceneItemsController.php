@@ -45,6 +45,7 @@ class SceneItemsController extends AbstractController
 
         return $this->render('scene/items.html.twig', [
             'scene' => $scene,
+            'project' => $scene->getChapter()->getProject(),
             'itemsIn' => $scene->getItems(),
             'itemsOut' => $itemsOut,
         ]);

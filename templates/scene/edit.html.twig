@@ -2,12 +2,75 @@
 
 {% block title %}Edit Scene{% endblock %}
 
+{% block pageTitle %}{{ project.title }} (by {{ project.authorsName }}){% endblock %}
+
 {% block body %}
-    <h1>Edit Scene</h1>
-
-    {{ include('scene/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('project_show_chapter', {"project": scene.chapter.project.id, "chapter": scene.chapter.id}) }}">back</a>
-
-    {{ include('scene/_delete_form.html.twig') }}
+    <div class="card card-custom">
+        {{ form_start(form) }}
+        <div class="card-header card-header-tabs-line">
+            <div class="card-toolbar">
+                <div class="row">
+                    <div class="col-md-8">
+                        <ul class="nav nav-tabs nav-bold nav-tabs-line">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#tab_content">
+                                    <span class="nav-icon"><i class="flaticon2-chat-1"></i></span>
+                                    <span class="nav-text">Content</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tab_details">
+                                    <span class="nav-icon"><i class="flaticon2-drop"></i></span>
+                                    <span class="nav-text">Description</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tab_notes">
+                                    <span class="nav-icon"><i class="flaticon2-drop"></i></span>
+                                    <span class="nav-text">Notes</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tab_goal">
+                                    <span class="nav-icon"><i class="flaticon2-drop"></i></span>
+                                    <span class="nav-text">Goals</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-primary float-md-right btn-act">{{ button_label|default('Save') }}</button>
+                        <a class="btn btn-light float-md-right btn-act" href="{{ path('project_show_chapter', {'project': project.id, 'chapter': scene.chapter.id}) }}">Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="tab_content" role="tabpanel" aria-labelledby="tab_content">
+                    {{ form_widget(form.content) }}
+                </div>
+                <div class="tab-pane fade show" id="tab_notes" role="tabpanel" aria-labelledby="tab_notes">
+                    {{ form_widget(form.note) }}
+                </div>
+                <div class="tab-pane fade show" id="tab_goal" role="tabpanel" aria-labelledby="tab_goal">
+                    {{ form_row(form.goalType) }}
+                    {{ form_row(form.goal) }}
+                    {{ form_row(form.conflict) }}
+                    {{ form_row(form.outcome) }}
+                </div>
+                <div class="tab-pane fade" id="tab_details" role="tabpanel" aria-labelledby="tab_details">
+                    {{ form_row(form.title) }}
+                    {{ form_row(form.viewpoint) }}
+                    {{ form_row(form.description) }}
+                    {{ form_row(form.status) }}
+                    {{ form_widget(form) }}
+                    <button class="btn">{{ button_label|default('Save') }}</button>
+                    <a href="{{ path('project_show_chapter', {"project": scene.chapter.project.id, "chapter": scene.chapter.id}) }}">back</a>
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+        {{ include('scene/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

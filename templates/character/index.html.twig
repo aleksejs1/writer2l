@@ -1,55 +1,50 @@
-{% extends 'base.html.twig' %}
+{% extends 'project_base.html.twig' %}
 
 {% block title %}Character list{% endblock %}
 
-{% block body %}
-    <div class="py-5 text-center">
-        <h1>Character index</h1>
-    </div>
-    <div class="row">
-        <div class="col-md-12 md-12">
-            <a class="btn btn-light" href="{{ path('project_show', {'project': project.id}) }}">Project</a>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>ShortName</th>
-                    <th>FullName</th>
-                    <th>Alternates</th>
-                    <th>Description</th>
-                    <th>Role</th>
-                    <th>Bio</th>
-                    <th>Notes</th>
-                    <th>Goals</th>
-                    <th>actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for character in characters %}
-                    <tr>
-                        <td>{{ character.id }}</td>
-                        <td>{{ character.shortName }}</td>
-                        <td>{{ character.fullName }}</td>
-                        <td>{{ character.alternates }}</td>
-                        <td>{{ character.description }}</td>
-                        <td>{{ character.role }}</td>
-                        <td>{{ character.bio }}</td>
-                        <td>{{ character.notes }}</td>
-                        <td>{{ character.goals }}</td>
-                        <td>
-                            <a href="{{ path('character_edit', {'character': character.id, 'project': project.id}) }}">edit</a>
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="10">no records found</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-            <a href="{{ path('character_new', {'project': project.id}) }}">Create new</a>
-        </div>
-    </div>
+{% block content %}
+<div class="table-responsive">
+    <table class="table card-table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>ShortName</th>
+            <th>FullName</th>
+            <th>Alternates</th>
+            <th>Description</th>
+            <th>Role</th>
+            <th>Bio</th>
+            <th>Notes</th>
+            <th>Goals</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for character in characters %}
+            <tr>
+                <td>{{ character.id }}</td>
+                <td>{{ character.shortName }}</td>
+                <td>{{ character.fullName }}</td>
+                <td>{{ character.alternates }}</td>
+                <td>{{ character.description }}</td>
+                <td>{{ character.role }}</td>
+                <td>{{ character.bio }}</td>
+                <td>{{ character.notes }}</td>
+                <td>{{ character.goals }}</td>
+                <td>
+                    <a href="{{ path('character_edit', {'character': character.id, 'project': project.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+            <tr>
+                <td colspan="10"><a href="{{ path('character_new', {'project': project.id}) }}"><i class="fas fa-plus-circle"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
 
-
+</div>
 {% endblock %}

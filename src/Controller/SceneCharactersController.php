@@ -49,6 +49,7 @@ class SceneCharactersController extends AbstractController
 
         return $this->render('scene/characters.html.twig', [
             'scene' => $scene,
+            'project' => $scene->getChapter()->getProject(),
             'charactersIn' => $scene->getCharacters(),
             'charactersOut' => $charactersOut,
         ]);

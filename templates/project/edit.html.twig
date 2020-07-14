@@ -1,13 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Edit Project{% endblock %}
+{% block pageTitle %}Edit Project{% endblock %}
 
 {% block body %}
-    <h1>Edit Project</h1>
+    <div class="card card-custom">
+        <div class="card-body">
+            <div class="tab-content">
+                <div class="row">
+                    <div class="col-md-12 md-12">
+                        {% set label = 'Create' %}
+                        {% if new is not defined or new != true %}
+                            {% set label = 'Update' %}
+                        {% endif %}
+                        {{ include('project/_form.html.twig', {'button_label': label}) }}
 
-    {{ include('project/_form.html.twig', {'button_label': 'Update'}) }}
+                        <a href="{{ path('project_index') }}">back to list</a>
 
-    <a href="{{ path('project_index') }}">back to list</a>
-
-    {{ include('project/_delete_form.html.twig') }}
+                        {{ include('project/_delete_form.html.twig') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

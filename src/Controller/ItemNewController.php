@@ -39,6 +39,7 @@ class ItemNewController extends AbstractController
 
         return $this->render('item/new.html.twig', [
             'item' => $item,
+            'new' => true,
             'form' => $form->createView(),
             'project' => $project,
         ]);

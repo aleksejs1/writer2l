@@ -1,59 +1,64 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Location list{% endblock %}
+{% block pageTitle %}{{ project.title }} (by {{ project.authorsName }}){% endblock %}
 
 {% block body %}
-    <div class="py-5 text-center">
-        <h1>Locations</h1>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12 md-12">
-            <a href="{{ path('project_show_chapter', {"project": scene.chapter.project.id, "chapter": scene.chapter.id}) }}">back</a>
+    <div class="card card-custom">
+        <div class="card-header card-header-tabs-line">
+            <div class="card-toolbar">
+                <div class="row">
+                    <div class="col-md-12 md-12">
+                        <a href="{{ path('project_show_chapter', {"project": scene.chapter.project.id, "chapter": scene.chapter.id}) }}">back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="tab-content">
+                <div class="row">
+                    <div class="col-md-6 md-6">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Title</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for location in locationsIn %}
+                                <tr>
+                                    <td><a class="btn btn-primary" href="?remove={{ location.id }}">-</a> {{ location.title }}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="10">no records found</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6 md-6">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Title</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for location in locationsOut %}
+                                <tr>
+                                    <td><a class="btn btn-primary" href="?add={{ location.id }}">+</a> {{ location.title }}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="10">no records found</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-6 md-6">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Title</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for location in locationsIn %}
-                    <tr>
-                        <td><a class="btn btn-primary" href="?remove={{ location.id }}">-</a> {{ location.title }}</td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="10">no records found</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <div class="col-md-6 md-6">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Title</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for location in locationsOut %}
-                    <tr>
-                        <td><a class="btn btn-primary" href="?add={{ location.id }}">+</a> {{ location.title }}</td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="10">no records found</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-
 {% endblock %}

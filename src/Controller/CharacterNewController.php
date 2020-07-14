@@ -40,6 +40,7 @@ class CharacterNewController extends AbstractController
         return $this->render('character/new.html.twig', [
             'character' => $character,
             'project' => $project,
+            'new' => true,
             'form' => $form->createView(),
         ]);
     }

@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block pageTitle %}{{ project.title }} (by {{ project.authorsName }}){% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-3 md-3">
+            <div class="card card-custom">
+                <div class="card-header card-header-tabs-line">
+                    <h3>Chapters</h3>
+                </div>
+                <div class="card-body">
+                    {% for chapterInList in project.chapters %}
+                        <div class="navi navi-bold navi-hover navi-active navi-link-rounded">
+                            <div class="navi-item mb-2">
+                                <a href="{{ path('project_show_chapter', {'project': project.id, 'chapter': chapterInList.id}) }}" class="navi-link {% if chapter is defined and chapter is not null and chapter.id == chapterInList.id %}active{% endif %} hidden-overflow">
+                                    <span class="nav-icon"><i class="fas fa-book"></i></span>
+                                    <span class="navi-text font-size-lg">
+                                        {{ chapterInList.title }}
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <a href="{{ path('chapter_new', {"project": project.id}) }}" class="btn btn-primary"><i class="fas fa-plus-circle"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card card-custom">
+                <div class="card-header card-header-tabs-line">
+                    <div class="card-toolbar">
+                        <ul class="nav nav-tabs nav-bold nav-tabs-line">
+                            <li class="nav-item">
+                                <a class="nav-link {% if app.request.attributes.get('_route') == 'project_show' or app.request.attributes.get('_route') == 'project_show_chapter' %}active{% endif %}" href="{{ path('project_show', {'project': project.id}) }}">
+                                    <span class="nav-icon"></i><i class="fas fa-file"></i></span>
+                                    <span class="nav-text">Scenes</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {% if app.request.attributes.get('_route') == 'character_list' %}active{% endif %}" href="{{ path('character_list', {'project': project.id}) }}">
+                                    <span class="nav-icon"><i class="fas fa-users"></i></span>
+                                    <span class="nav-text">Characters</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {% if app.request.attributes.get('_route') == 'location_list' %}active{% endif %}" href="{{ path('location_list', {'project': project.id}) }}">
+                                    <span class="nav-icon"><i class="fas fa-map-marker-alt"></i></span>
+                                    <span class="nav-text">Locations</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {% if app.request.attributes.get('_route') == 'item_list' %}active{% endif %}" href="{{ path('item_list', {'project': project.id}) }}">
+                                    <span class="nav-icon"><i class="fas fa-box"></i></span>
+                                    <span class="nav-text">Items</span>
+                                </a>
+                            </li>
+                            {% if chapter is defined and chapter is not null %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('chapter_edit', {'chapter': chapter.id, 'project': project.id}) }}">
+                                        <span class="nav-icon"><i class="fas fa-edit"></i></span>
+                                        <span class="nav-text">Edit chapter</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="kt_tab_pane_1_4">
+                            {% block content %}{% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

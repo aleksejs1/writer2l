@@ -1,47 +1,46 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Project index{% endblock %}
+{% block pageTitle %}Project index{% endblock %}
 
 {% block body %}
-    <div class="py-5 text-center">
-        <h1>Project index</h1>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4 md-4">
-
+    <div class="card card-custom">
+        <div class="card-body">
+            <div class="tab-content">
+                <div class="row">
+                    <div class="col-md-12 md-12">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Title</th>
+                                <th>AuthorsName</th>
+                                <th>actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for project in projects %}
+                                <tr>
+                                    <td>{{ project.id }}</td>
+                                    <td><a href="{{ path('project_show', {'project': project.id}) }}">{{ project.title }}</a></td>
+                                    <td>{{ project.authorsName }}</td>
+                                    <td>
+                                        <a href="{{ path('project_edit', {'id': project.id}) }}">edit</a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="4">no records found</td>
+                                </tr>
+                            {% endfor %}
+                            <tr>
+                                <td colspan="4"><a href="{{ path('project_new') }}">Create new</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-8">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Title</th>
-                    <th>AuthorsName</th>
-                    <th>actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for project in projects %}
-                    <tr>
-                        <td>{{ project.id }}</td>
-                        <td>{{ project.title }}</td>
-                        <td>{{ project.authorsName }}</td>
-                        <td>
-                            <a href="{{ path('project_show', {'project': project.id}) }}">show</a>
-                            <a href="{{ path('project_edit', {'id': project.id}) }}">edit</a>
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="4">no records found</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
     </div>
-
-
-    <a href="{{ path('project_new') }}">Create new</a>
 {% endblock %}
