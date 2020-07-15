@@ -9,35 +9,37 @@
             <div class="tab-content">
                 <div class="row">
                     <div class="col-md-12 md-12">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Title</th>
-                                <th>AuthorsName</th>
-                                <th>actions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for project in projects %}
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
                                 <tr>
-                                    <td>{{ project.id }}</td>
-                                    <td><a href="{{ path('project_show', {'project': project.id}) }}">{{ project.title }}</a></td>
-                                    <td>{{ project.authorsName }}</td>
-                                    <td>
-                                        <a href="{{ path('project_edit', {'id': project.id}) }}">edit</a>
-                                    </td>
+                                    <th>Id</th>
+                                    <th>Title</th>
+                                    <th>AuthorsName</th>
+                                    <th>actions</th>
                                 </tr>
-                            {% else %}
+                                </thead>
+                                <tbody>
+                                {% for project in projects %}
+                                    <tr>
+                                        <td>{{ project.id }}</td>
+                                        <td><a href="{{ path('project_show', {'project': project.id}) }}">{{ project.title }}</a></td>
+                                        <td>{{ project.authorsName }}</td>
+                                        <td>
+                                            <a href="{{ path('project_edit', {'id': project.id}) }}">edit</a>
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="4">no records found</td>
+                                    </tr>
+                                {% endfor %}
                                 <tr>
-                                    <td colspan="4">no records found</td>
+                                    <td colspan="4"><a href="{{ path('project_new') }}">Create new</a></td>
                                 </tr>
-                            {% endfor %}
-                            <tr>
-                                <td colspan="4"><a href="{{ path('project_new') }}">Create new</a></td>
-                            </tr>
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
