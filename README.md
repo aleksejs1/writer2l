@@ -21,7 +21,8 @@ php bin/console doctrine:migrations:migrate
 php bin/console w2l:user:create admin qwerty
 
 # Build assets
-yarn encor run dev
+yarn install
+yarn run dev
 ```
 ### Docker
 ``` bash
