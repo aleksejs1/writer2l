@@ -115,11 +115,18 @@ class Scene implements SortableInterface
      */
     private $position;
 
+    /**
+     * @ORM\OneToMany(targetEntity=SceneRevision::class, mappedBy="scene", orphanRemoval=true, cascade={"persist"})
+     * @ORM\OrderBy({"version" = "desc"})
+     */
+    private $sceneRevisions;
+
     public function __construct()
     {
         $this->characters = new ArrayCollection();
         $this->locations = new ArrayCollection();
         $this->items = new ArrayCollection();
+        $this->sceneRevisions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -351,6 +358,37 @@ class Scene implements SortableInterface
     public function setPosition(int $position): self
     {
         $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SceneRevision[]
+     */
+    public function getSceneRevisions(): Collection
+    {
+        return $this->sceneRevisions;
+    }
+
+    public function addSceneRevision(SceneRevision $sceneRevision): self
+    {
+        if (!$this->sceneRevisions->contains($sceneRevision)) {
+            $this->sceneRevisions[] = $sceneRevision;
+            $sceneRevision->setScene($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSceneRevision(SceneRevision $sceneRevision): self
+    {
+        if ($this->sceneRevisions->contains($sceneRevision)) {
+            $this->sceneRevisions->removeElement($sceneRevision);
+            // set the owning side to null (unless already changed)
+            if ($sceneRevision->getScene() === $this) {
+                $sceneRevision->setScene(null);
+            }
+        }
 
         return $this;
     }
