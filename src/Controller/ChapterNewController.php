@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Chapter;
 use App\Entity\Project;
 use App\Form\ChapterType;
+use App\Repository\ChapterRepository;
 use App\Security\Voter\ProjectVoter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,9 +21,10 @@ class ChapterNewController extends AbstractController
      * @Route("/new", name="chapter_new", methods={"GET","POST"})
      * @param Request $request
      * @param Project $project
+     * @param ChapterRepository $chapterRepository
      * @return Response
      */
-    public function new(Request $request, Project $project): Response
+    public function new(Request $request, Project $project, ChapterRepository $chapterRepository): Response
     {
         $this->denyAccessUnlessGranted(ProjectVoter::PROJECT_EDIT, $project);
         $newChapterSequence = $project->getChapters()->count() + 1;
@@ -30,14 +32,13 @@ class ChapterNewController extends AbstractController
         $chapter
             ->setProject($project)
             ->setTitle('Chapter ' . $newChapterSequence)
+            ->setPosition($newChapterSequence)
         ;
         $form = $this->createForm(ChapterType::class, $chapter);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($chapter);
-            $entityManager->flush();
+            $chapterRepository->save($chapter);
 
             return $this->redirectToRoute('project_show', ['project' => $project->getId()]);
         }

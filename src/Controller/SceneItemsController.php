@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Scene;
 use App\Repository\ItemRepository;
+use App\Repository\SceneRepository;
 use App\Security\Voter\ProjectVoter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,12 +18,13 @@ class SceneItemsController extends AbstractController
 {
     /**
      * @Route("/scene/{scene}/items", name="scene_items", methods={"GET","POST"})
+     * @param SceneRepository $sceneRepository
      * @param Request $request
      * @param ItemRepository $itemRepository
      * @param Scene $scene
      * @return Response
      */
-    public function characters(Request $request, ItemRepository $itemRepository, Scene $scene): Response
+    public function characters(SceneRepository $sceneRepository, Request $request, ItemRepository $itemRepository, Scene $scene): Response
     {
         $this->denyAccessUnlessGranted(ProjectVoter::PROJECT_EDIT, $scene->getChapter()->getProject());
         $add = $request->get('add');
@@ -30,7 +32,7 @@ class SceneItemsController extends AbstractController
             $addItem = $itemRepository->find($add);
             if (!$scene->getItems()->contains($addItem)) {
                 $scene->addItem($addItem);
-                $this->getDoctrine()->getManager()->flush();
+                $sceneRepository->save($scene);
             }
         }
         $remove = $request->get('remove');
@@ -38,7 +40,7 @@ class SceneItemsController extends AbstractController
             $removeItem = $itemRepository->find($remove);
             if ($scene->getItems()->contains($removeItem)) {
                 $scene->removeItem($removeItem);
-                $this->getDoctrine()->getManager()->flush();
+                $sceneRepository->save($scene);
             }
         }
 

@@ -9,5 +9,13 @@
 import '../css/app.scss';
 import 'bootstrap';
 import bsCustomFileInput from 'bs-custom-file-input';
+import $ from 'jquery';
 
 bsCustomFileInput.init();
+
+function toggleSortButtons() {
+    $(".sort-buttons").toggle();
+    $(".sortable-menu").toggleClass("sortable-menu-active");
+}
+
+$(".toggle-sort").on('click', toggleSortButtons);

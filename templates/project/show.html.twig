@@ -10,6 +10,7 @@
         <table class="table card-table">
             <thead>
             <tr>
+                <th class="sort-buttons"></th>
                 <th></th>
                 <th>Viewpoint</th>
                 <th>Words</th>
@@ -25,6 +26,10 @@
             <tbody>
             {% for scene in chapter.scenes %}
                 <tr>
+                    <td class="sort-buttons">
+                        <a class="sort-buttons" href="{{ path('scene_position', {'scene': scene.id, 'newPosition': scene.position - 1, 'project': project.id, 'chapter': scene.chapter.id}) }}"><i class="fas fa-chevron-up"></i></a>
+                        <a class="sort-buttons" href="{{ path('scene_position', {'scene': scene.id, 'newPosition': scene.position + 1, 'project': project.id, 'chapter': scene.chapter.id}) }}"><i class="fas fa-chevron-down"></i></a>
+                    </td>
                     <td>{{ scene.note ? 'N' : 'Sc' }}</td>
                     <td>
                         <div class="hidden-overflow" style="max-width: 100px;">

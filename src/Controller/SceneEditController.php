@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Scene;
 use App\Form\SceneType;
+use App\Repository\SceneRepository;
 use App\Security\Voter\ProjectVoter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,18 +18,19 @@ class SceneEditController extends AbstractController
 {
     /**
      * @Route("/scene/{scene}/edit", name="scene_edit", methods={"GET","POST"})
+     * @param SceneRepository $sceneRepository
      * @param Request $request
      * @param Scene $scene
      * @return Response
      */
-    public function edit(Request $request, Scene $scene): Response
+    public function edit(SceneRepository $sceneRepository, Request $request, Scene $scene): Response
     {
         $this->denyAccessUnlessGranted(ProjectVoter::PROJECT_EDIT, $scene->getChapter()->getProject());
         $form = $this->createForm(SceneType::class, $scene);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $sceneRepository->save($scene);
 
             return $this->redirectToRoute('project_show_chapter', [
                 'project' => $scene->getChapter()->getProject()->getId(),

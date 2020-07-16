@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ChapterRepository;
+use App\Service\SortableInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=ChapterRepository::class)
  */
-class Chapter
+class Chapter implements SortableInterface
 {
     /**
      * @ORM\Id()
@@ -37,8 +38,14 @@ class Chapter
 
     /**
      * @ORM\OneToMany(targetEntity=Scene::class, mappedBy="chapter", orphanRemoval=true)
+     * @ORM\OrderBy({"position" = "asc"})
      */
     private $scenes;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $position;
 
     public function __construct()
     {
@@ -113,6 +120,18 @@ class Chapter
                 $scene->setChapter(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPosition(): ?int
+    {
+        return $this->position;
+    }
+
+    public function setPosition(int $position): self
+    {
+        $this->position = $position;
 
         return $this;
     }

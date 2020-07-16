@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Scene;
 use App\Repository\LocationRepository;
+use App\Repository\SceneRepository;
 use App\Security\Voter\ProjectVoter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,12 +18,13 @@ class SceneLocationsController extends AbstractController
 {
     /**
      * @Route("/scene/{scene}/locations", name="scene_locations", methods={"GET","POST"})
+     * @param SceneRepository $sceneRepository
      * @param Request $request
      * @param LocationRepository $locationRepository
      * @param Scene $scene
      * @return Response
      */
-    public function characters(Request $request, LocationRepository $locationRepository, Scene $scene): Response
+    public function characters(SceneRepository $sceneRepository, Request $request, LocationRepository $locationRepository, Scene $scene): Response
     {
         $this->denyAccessUnlessGranted(ProjectVoter::PROJECT_EDIT, $scene->getChapter()->getProject());
         $add = $request->get('add');
@@ -30,7 +32,7 @@ class SceneLocationsController extends AbstractController
             $addLocation = $locationRepository->find($add);
             if (!$scene->getLocations()->contains($addLocation)) {
                 $scene->addLocation($addLocation);
-                $this->getDoctrine()->getManager()->flush();
+                $sceneRepository->save($scene);
             }
         }
         $remove = $request->get('remove');
@@ -38,7 +40,7 @@ class SceneLocationsController extends AbstractController
             $removeLocation = $locationRepository->find($remove);
             if ($scene->getLocations()->contains($removeLocation)) {
                 $scene->removeLocation($removeLocation);
-                $this->getDoctrine()->getManager()->flush();
+                $sceneRepository->save($scene);
             }
         }
 
