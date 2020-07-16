@@ -40,6 +40,7 @@ class Project
 
     /**
      * @ORM\OneToMany(targetEntity=Chapter::class, mappedBy="project", orphanRemoval=true)
+     * @ORM\OrderBy({"position" = "asc"})
      */
     private $chapters;
 
