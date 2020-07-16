@@ -7,11 +7,14 @@
     <div class="card card-custom">
         <div class="card-header card-header-tabs-line">
             <div class="card-toolbar">
-                <div class="row">
-                    <div class="col-md-12 md-12">
-                        <a href="{{ path('project_show_chapter', {"project": scene.chapter.project.id, "chapter": scene.chapter.id}) }}">back</a>
-                    </div>
-                </div>
+                <ul class="nav nav-tabs nav-bold nav-tabs-line">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('scene_show', {"project": scene.chapter.project.id, "chapter": scene.chapter.id, 'scene': scene.id}) }}">
+                            <span class="nav-icon"><i class="fas fa-arrow-circle-left"></i></span>
+                            <span class="nav-text">Back</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="card-body">

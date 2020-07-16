@@ -3,6 +3,18 @@ body {
   background-repeat: no-repeat;
   background-position: center top;
   background-size: 100% 350px;
+  height: 100%;
+  min-height: 100%;
+}
+
+html {
+  height: 100%;
+  min-height: 100%;
+}
+
+main {
+  min-height: 90%;
+  padding-bottom: 5rem;
 }
 
 h1 {
@@ -149,4 +161,21 @@ td {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+}
+
+.gutter-b {
+  margin-bottom: 25px;
+}
+
+.card.card-custom > .card-header .card-title, .card.card-custom > .card-header .card-title .card-label {
+  font-weight: 500;
+  font-size: 1.275rem;
+  color: #181C32;
+}
+
+.footer {
+  clear: both;
+  position: relative;
+  height: 4rem;
+  margin-top: -4rem;
 }
