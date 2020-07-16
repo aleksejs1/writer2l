@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\SceneRepository;
+use App\Service\SortableInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=SceneRepository::class)
  */
-class Scene
+class Scene implements SortableInterface
 {
     public const STATUS_OUTLINE = 1;
     public const STATUS_DRAFT = 2;
@@ -108,6 +109,11 @@ class Scene
      * @ORM\ManyToMany(targetEntity=Item::class, mappedBy="scenes")
      */
     private $items;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $position;
 
     public function __construct()
     {
@@ -333,6 +339,18 @@ class Scene
             $this->items->removeElement($item);
             $item->removeScene($this);
         }
+
+        return $this;
+    }
+
+    public function getPosition(): ?int
+    {
+        return $this->position;
+    }
+
+    public function setPosition(int $position): self
+    {
+        $this->position = $position;
 
         return $this;
     }

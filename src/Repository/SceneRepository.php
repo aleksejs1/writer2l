@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Scene;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -12,10 +11,12 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Scene[]    findAll()
  * @method Scene[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class SceneRepository extends ServiceEntityRepository
+class SceneRepository extends Repository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Scene::class);
+        $this->entityClass = Scene::class;
+
+        parent::__construct($registry);
     }
 }

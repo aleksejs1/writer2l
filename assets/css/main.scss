@@ -67,7 +67,6 @@ td {
 
 .navi-link {
   display: block;
-  width: 100%;
   padding-bottom: 8px;
   padding-top: 8px;
   padding-left: 16px;
@@ -104,4 +103,51 @@ td {
 }
 .export h3 {
   padding-bottom: 30px;
+}
+
+.sort-up {
+  position: absolute;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  left: 8px;
+}
+
+.sort-down {
+  position: absolute;
+  //right: 8px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  left: 36px;
+}
+
+.sort-buttons {
+  display: none;
+}
+
+.card.card-custom > .card-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.sortable-menu-active {
+  margin-left: 40px;
+}
+
+.card-toolbar {
+  margin-bottom: 0.75rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }

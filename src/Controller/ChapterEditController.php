@@ -20,16 +20,17 @@ class ChapterEditController extends AbstractController
      * @Route("/{chapter}/edit", name="chapter_edit", methods={"GET","POST"})
      * @param Request $request
      * @param Chapter $chapter
+     * @param ChapterRepository $chapterRepository
      * @return Response
      */
-    public function edit(Request $request, Chapter $chapter): Response
+    public function edit(Request $request, Chapter $chapter, ChapterRepository $chapterRepository): Response
     {
         $this->denyAccessUnlessGranted(ProjectVoter::PROJECT_EDIT, $chapter->getProject());
         $form = $this->createForm(ChapterType::class, $chapter);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $chapterRepository->save($chapter);
 
             return $this->redirectToRoute('project_show_chapter', [
                 'project' => $chapter->getProject()->getId(),

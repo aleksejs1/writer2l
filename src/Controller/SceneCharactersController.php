@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Scene;
 use App\Repository\CharacterRepository;
+use App\Repository\SceneRepository;
 use App\Security\Voter\ProjectVoter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,12 +18,13 @@ class SceneCharactersController extends AbstractController
 {
     /**
      * @Route("/scene/{scene}/characters", name="scene_characters", methods={"GET","POST"})
+     * @param SceneRepository $sceneRepository
      * @param Request $request
      * @param CharacterRepository $chapterRepository
      * @param Scene $scene
      * @return Response
      */
-    public function characters(Request $request, CharacterRepository $chapterRepository, Scene $scene): Response
+    public function characters(SceneRepository $sceneRepository, Request $request, CharacterRepository $chapterRepository, Scene $scene): Response
     {
         $this->denyAccessUnlessGranted(ProjectVoter::PROJECT_EDIT, $scene->getChapter()->getProject());
         $add = $request->get('add');
@@ -30,7 +32,7 @@ class SceneCharactersController extends AbstractController
             $addCharacter = $chapterRepository->find($add);
             if (!$scene->getCharacters()->contains($addCharacter)) {
                 $scene->addCharacter($addCharacter);
-                $this->getDoctrine()->getManager()->flush();
+                $sceneRepository->save($scene);
             }
         }
         $remove = $request->get('remove');
@@ -38,7 +40,7 @@ class SceneCharactersController extends AbstractController
             $removeCharacter = $chapterRepository->find($remove);
             if ($scene->getCharacters()->contains($removeCharacter)) {
                 $scene->removeCharacter($removeCharacter);
-                $this->getDoctrine()->getManager()->flush();
+                $sceneRepository->save($scene);
             }
         }
 
