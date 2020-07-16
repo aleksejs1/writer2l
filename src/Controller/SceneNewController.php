@@ -31,6 +31,7 @@ class SceneNewController extends AbstractController
         $scene
             ->setChapter($chapter)
             ->setTitle('New Scene')
+            ->setPosition($chapter->getScenes()->count())
         ;
 
         $form = $this->createForm(SceneType::class, $scene);
