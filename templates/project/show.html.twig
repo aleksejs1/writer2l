@@ -21,6 +21,7 @@
                 <th>Characters</th>
                 <th>Locations</th>
                 <th>Items</th>
+                <th>Revisions</th>
             </tr>
             </thead>
             <tbody>
@@ -66,14 +67,15 @@
                             </a>
                         </div>
                     </td>
+                    <td><a href="{{ path('scene_revision_index', {'project': project.id, 'scene': scene.id}) }}"><i class="fas fa-history"></i></a></td>
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="8">no records found</td>
+                    <td colspan="11">no records found</td>
                 </tr>
             {% endfor %}
             <tr>
-                <td colspan="8">
+                <td colspan="11">
                     <a href="{{ path('scene_new', {'project': project.id, 'chapter': chapter.id}) }}"><i class="fas fa-plus-circle"></i></a>
                 </td>
             </tr>

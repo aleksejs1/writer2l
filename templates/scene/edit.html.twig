@@ -9,8 +9,9 @@
         {{ form_start(form) }}
         <div class="card-header card-header-tabs-line">
             <div class="card-toolbar">
+
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <ul class="nav nav-tabs nav-bold nav-tabs-line">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#tab_content">
@@ -38,7 +39,9 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-md-4">
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
                         <button class="btn btn-primary float-md-right btn-act">{{ button_label|default('Save') }}</button>
                         <a class="btn btn-light float-md-right btn-act" href="{{ path('project_show_chapter', {'project': project.id, 'chapter': scene.chapter.id}) }}">Back</a>
                     </div>

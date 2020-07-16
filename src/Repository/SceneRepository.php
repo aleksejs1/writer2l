@@ -19,4 +19,15 @@ class SceneRepository extends Repository
 
         parent::__construct($registry);
     }
+
+    public function save($entity): void
+    {
+        throw new \BadMethodCallException('Use SaveSceneService');
+    }
+
+    public function saveScene(Scene $scene)
+    {
+        $this->_em->persist($scene);
+        $this->_em->flush();
+    }
 }
