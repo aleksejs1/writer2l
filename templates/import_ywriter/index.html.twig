@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Import{% endblock %}
+{% block pageTitle %}Import{% endblock %}
+
+{% block body %}
+    <div class="card card-custom">
+        <div class="card-body">
+            <div class="tab-content">
+                <div class="container export">
+                    {% if error %}
+                        {{ error }}
+                    {% endif %}
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    {{ form_end(form) }}
+                    <a href="{{ path('project_index') }}">back to list</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

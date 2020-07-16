@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0ebfb0a37a9074a8b6dfa9bb745f78b2",
+    "content-hash": "b5a1c3e3f614058fb7fea90238fe3fed",
     "packages": [
         {
             "name": "api-platform/api-pack",
@@ -1571,6 +1571,46 @@
                 "rest"
             ],
             "time": "2020-04-27T06:40:36+00:00"
+        },
+        {
+            "name": "henck/rtf-to-html",
+            "version": "1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/henck/rtf-html-php.git",
+                "reference": "331fe7f4967689cc1dab8f06fe7f91b6f1e895f9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/henck/rtf-html-php/zipball/331fe7f4967689cc1dab8f06fe7f91b6f1e895f9",
+                "reference": "331fe7f4967689cc1dab8f06fe7f91b6f1e895f9",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "RtfHtmlPhp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander van Oostenrijk",
+                    "email": "alex.vanoostenrijk@gmail.com"
+                }
+            ],
+            "description": "RTF to HTML converter in PHP",
+            "keywords": [
+                "converter",
+                "rtf"
+            ],
+            "time": "2019-10-02T10:16:43+00:00"
         },
         {
             "name": "laminas/laminas-code",
@@ -7708,7 +7748,8 @@
         "php": "^7.4",
         "ext-apcu": "^5.1",
         "ext-ctype": "*",
-        "ext-iconv": "*"
+        "ext-iconv": "*",
+        "ext-zip": "*"
     },
     "platform-dev": []
 }
