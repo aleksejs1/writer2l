@@ -116,6 +116,12 @@
     "monolog/monolog": {
         "version": "2.1.0"
     },
+    "mpdf/mpdf": {
+        "version": "v8.0.7"
+    },
+    "myclabs/deep-copy": {
+        "version": "1.10.1"
+    },
     "nelmio/cors-bundle": {
         "version": "1.5",
         "recipe": {
@@ -172,6 +178,9 @@
         "files": [
             "config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "setasign/fpdi": {
+        "version": "v2.3.3"
     },
     "symfony/asset": {
         "version": "v5.1.2"
