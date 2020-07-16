@@ -8,7 +8,7 @@
             <div class="card card-custom">
                 <div class="card-header card-header-tabs-line">
                     <div class="card-title">
-                        <h3>Chapters</h3>
+                        <h3 class="card-label">Chapters</h3>
                     </div>
                     <div class="card-toolbar">
                         <div class="toggle-sort"><i class="fas fa-sort"></i></div>
@@ -20,7 +20,7 @@
                             <div class="navi-item mb-2">
                                 <a class="sort-up sort-buttons" href="{{ path('chapter_position', {'chapter': chapterInList.id, 'newPosition': chapterInList.position - 1, 'project': project.id}) }}"><i class="fas fa-chevron-up"></i></a>
                                 <a class="sort-down sort-buttons" href="{{ path('chapter_position', {'chapter': chapterInList.id, 'newPosition': chapterInList.position + 1, 'project': project.id}) }}"><i class="fas fa-chevron-down"></i></a>
-                                <a href="{{ path('project_show_chapter', {'project': project.id, 'chapter': chapterInList.id}) }}" class="navi-link sortable-menu {% if chapter is defined and chapter is not null and chapter.id == chapterInList.id %}active{% endif %} hidden-overflow">
+                                <a href="{{ path('project_show_chapter', {'project': project.id, 'chapter': chapterInList.id}) }}" class="navi-link sortable-menu {% if chapter is defined and chapter is not null and chapter.id == chapterInList.id %}active{% endif %} hidden-overflow" title="{{ chapterInList.title }}">
                                     <span class="nav-icon"><i class="fas fa-book"></i></span>
                                     <span class="navi-text font-size-lg">
                                         {{ chapterInList.title }}
@@ -32,6 +32,22 @@
                     <a href="{{ path('chapter_new', {"project": project.id}) }}" class="btn btn-primary"><i class="fas fa-plus-circle"></i></a>
                 </div>
             </div>
+            {% if chapter is defined and chapter is not null %}
+                <div class="gutter-b">
+                </div>
+                <div class="card card-custom">
+                    <div class="card-header card-header-tabs-line">
+                        <div class="card-title">
+                            <h3 class="card-label">Chapter description</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        {% for part in chapter.description | split('\n') %}
+                            <p>{{ part }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
         </div>
         <div class="col-md-9">
             <div class="card card-custom">
@@ -39,10 +55,17 @@
                     <div class="card-toolbar">
                         <ul class="nav nav-tabs nav-bold nav-tabs-line">
                             <li class="nav-item">
-                                <a class="nav-link {% if app.request.attributes.get('_route') == 'project_show' or app.request.attributes.get('_route') == 'project_show_chapter' %}active{% endif %}" href="{{ path('project_show', {'project': project.id}) }}">
-                                    <span class="nav-icon"></i><i class="fas fa-file"></i></span>
-                                    <span class="nav-text">Scenes</span>
+                                {% if chapter is defined and chapter is not null %}
+                                <a class="nav-link" href="{{ path('scene_new', {'project': project.id, 'chapter': chapter.id}) }}">
+                                    <span class="nav-icon"></i><i class="fas fa-plus-circle"></i></i></span>
+                                    <span class="nav-text">Add scenes</span>
                                 </a>
+                                {% else %}
+                                    <a class="nav-link disabledg" title="First select chapter!">
+                                        <span class="nav-icon"></i><i class="fas fa-plus-circle"></i></i></span>
+                                        <span class="nav-text" title="Select chapter">Add scenes</span>
+                                    </a>
+                                {% endif %}
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link {% if app.request.attributes.get('_route') == 'character_list' %}active{% endif %}" href="{{ path('character_list', {'project': project.id}) }}">
@@ -81,12 +104,14 @@
                 </div>
                 <div class="card-body">
                     <div class="tab-content">
-                        <div class="tab-pane fade show active" id="kt_tab_pane_1_4">
+                        <div class="tab-pane fade show active">
                             {% block content %}{% endblock %}
                         </div>
                     </div>
                 </div>
             </div>
+
+            {% block after_content %}{% endblock %}
         </div>
     </div>
 {% endblock %}

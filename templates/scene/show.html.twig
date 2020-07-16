@@ -1,0 +1,100 @@
+{% extends 'project/show.html.twig' %}
+
+{% block title %}Project{% endblock %}
+
+{% block pageTitle %}{{ project.title }} (by {{ project.authorsName }}){% endblock %}
+
+{% block after_content %}
+    <div class="gutter-b">
+    </div>
+    <div class="card card-custom">
+        <div class="card-header card-header-tabs-line">
+            <div class="card-toolbar">
+                <ul class="nav nav-tabs nav-bold nav-tabs-line">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#tab_scene_content">
+                            <span class="nav-icon"><i class="flaticon2-chat-1"></i></span>
+                            <span class="nav-text">Content</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tab_scene_description">
+                            <span class="nav-icon"><i class="flaticon2-chat-1"></i></span>
+                            <span class="nav-text">Description</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tab_scene_notes">
+                            <span class="nav-icon"><i class="flaticon2-chat-1"></i></span>
+                            <span class="nav-text">Notes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tab_scene_characters">
+                            <span class="nav-icon"><i class="flaticon2-chat-1"></i></span>
+                            <span class="nav-text">Characters</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tab_scene_locations">
+                            <span class="nav-icon"><i class="flaticon2-chat-1"></i></span>
+                            <span class="nav-text">Locations</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tab_scene_items">
+                            <span class="nav-icon"><i class="flaticon2-chat-1"></i></span>
+                            <span class="nav-text">Items</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('scene_edit', {'chapter': chapter.id, 'project': project.id, 'scene': scene.id}) }}">
+                            <span class="nav-icon"><i class="fas fa-edit"></i></span>
+                            <span class="nav-text">Edit chapter</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="tab_scene_content" role="tabpanel" aria-labelledby="tab_scene_content">
+                    {% for part in scene.content | split('\n') %}
+                        <p>{{ part }}</p>
+                    {% endfor %}
+                </div>
+                <div class="tab-pane fade show" id="tab_scene_description" role="tabpanel" aria-labelledby="tab_scene_description">
+                    {% for part in scene.description | split('\n') %}
+                        <p>{{ part }}</p>
+                    {% endfor %}
+                </div>
+                <div class="tab-pane fade show" id="tab_scene_characters" role="tabpanel" aria-labelledby="tab_scene_characters">
+                    <ul>
+                    {% for character in scene.characters %}
+                        <li>{{ character.shortname ?: '[No name]' }} {% if character.shortname %}({{ character.shortname }}){% endif %}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                <div class="tab-pane fade show" id="tab_scene_locations" role="tabpanel" aria-labelledby="tab_scene_locations">
+                    <ul>
+                    {% for location in scene.locations %}
+                        <li>{{ location.title ?: '[No title]' }} {% if location.aka %}({{ location.aka }}){% endif %}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                <div class="tab-pane fade show" id="tab_scene_items" role="tabpanel" aria-labelledby="tab_scene_items">
+                    <ul>
+                    {% for item in scene.items %}
+                        <li>{{ item.title ?: '[No title]' }} {% if item.aka %}({{ item.aka }}){% endif %}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                <div class="tab-pane fade show" id="tab_scene_notes" role="tabpanel" aria-labelledby="tab_scene_notes">
+                    {% for part in scene.note | split('\n') %}
+                        <p>{{ part }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
