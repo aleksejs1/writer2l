@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Chapter;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -12,10 +11,13 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Chapter[]    findAll()
  * @method Chapter[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ChapterRepository extends ServiceEntityRepository
+class ChapterRepository extends Repository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Chapter::class);
+        $this->entityClass = Chapter::class;
+
+        parent::__construct($registry);
     }
+
 }

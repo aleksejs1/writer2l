@@ -7,13 +7,20 @@
         <div class="col-md-3 md-3">
             <div class="card card-custom">
                 <div class="card-header card-header-tabs-line">
-                    <h3>Chapters</h3>
+                    <div class="card-title">
+                        <h3>Chapters</h3>
+                    </div>
+                    <div class="card-toolbar">
+                        <div class="toggle-sort"><i class="fas fa-sort"></i></div>
+                    </div>
                 </div>
                 <div class="card-body">
                     {% for chapterInList in project.chapters %}
                         <div class="navi navi-bold navi-hover navi-active navi-link-rounded">
                             <div class="navi-item mb-2">
-                                <a href="{{ path('project_show_chapter', {'project': project.id, 'chapter': chapterInList.id}) }}" class="navi-link {% if chapter is defined and chapter is not null and chapter.id == chapterInList.id %}active{% endif %} hidden-overflow">
+                                <a class="sort-up sort-buttons" href="{{ path('chapter_position', {'chapter': chapterInList.id, 'newPosition': chapterInList.position - 1, 'project': project.id}) }}"><i class="fas fa-chevron-up"></i></a>
+                                <a class="sort-down sort-buttons" href="{{ path('chapter_position', {'chapter': chapterInList.id, 'newPosition': chapterInList.position + 1, 'project': project.id}) }}"><i class="fas fa-chevron-down"></i></a>
+                                <a href="{{ path('project_show_chapter', {'project': project.id, 'chapter': chapterInList.id}) }}" class="navi-link sortable-menu {% if chapter is defined and chapter is not null and chapter.id == chapterInList.id %}active{% endif %} hidden-overflow">
                                     <span class="nav-icon"><i class="fas fa-book"></i></span>
                                     <span class="navi-text font-size-lg">
                                         {{ chapterInList.title }}
