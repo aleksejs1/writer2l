@@ -5,20 +5,22 @@
 
 {% block body %}
     <div class="card card-custom">
+        <div class="card-header card-header-tabs-line">
+            <div class="card-toolbar">
+                <ul class="nav nav-tabs nav-bold nav-tabs-line">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('project_export', {'project': project.id}) }}">
+                            <span class="nav-icon"></i><i class="fas fa-file-export"></i></span>
+                            <span class="nav-text">Export</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <div class="card-body">
             <div class="tab-content">
                 <div class="container export">
-                    <h1>{{ project.title }}</h1>
-                    <i>by {{ project.authorsName }}</i>
-                    {% for chapter in project.chapters %}
-                        <h2>{{ chapter.title }}</h2>
-                        {% for scene in chapter.scenes %}
-                            {% if scene.title %}<h3>{{ scene.title }}</h3>{% endif %}
-                            {% for part in scene.content | split('\n') %}
-                                <p>{{ part }}</p>
-                            {% endfor %}
-                        {% endfor %}
-                    {% endfor %}
+                    {{ include('project/export.html.twig') }}
                 </div>
             </div>
         </div>
