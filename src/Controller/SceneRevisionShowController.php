@@ -15,11 +15,11 @@ class SceneRevisionShowController extends AbstractController
     /**
      * @Route("/{revision}", name="scene_revision_show", methods={"GET"})
      */
-    public function show(SceneRevision $sceneRevision): Response
+    public function show(SceneRevision $revision): Response
     {
         return $this->render('scene_revision/show.html.twig', [
-            'sceneRevision' => $sceneRevision,
-            'project' => $sceneRevision->getScene()->getChapter()->getProject(),
+            'sceneRevision' => $revision,
+            'project' => $revision->getScene()->getChapter()->getProject(),
         ]);
     }
 }
