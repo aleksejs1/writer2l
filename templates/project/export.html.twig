@@ -4,8 +4,6 @@
     <h2>{{ chapter.title }}</h2>
     {% for scene in chapter.scenes %}
         {% if scene.title %}<h3>{{ scene.title }}</h3>{% endif %}
-        {% for part in scene.content | split('\n') %}
-            <p>{{ part }}</p>
-        {% endfor %}
+        {{ scene.content|striptags('<br><p><i><b><u>')|raw }}
     {% endfor %}
 {% endfor %}

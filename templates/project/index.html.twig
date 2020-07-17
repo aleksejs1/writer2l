@@ -46,7 +46,7 @@
                                             {% set words = 0 %}
                                             {% for chapter in project.chapters %}
                                                 {% for scene in chapter.scenes %}
-                                                    {% set words = words + scene.content|split(' ')|length %}
+                                                    {% set words = words + scene.content|striptags()|split(' ')|length %}
                                                 {% endfor %}
                                             {% endfor %}
                                             {{ words }}
