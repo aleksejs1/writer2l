@@ -59,9 +59,7 @@
         <div class="card-body">
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="tab_scene_content" role="tabpanel" aria-labelledby="tab_scene_content">
-                    {% for part in scene.content | split('\n') %}
-                        <p>{{ part }}</p>
-                    {% endfor %}
+                    {{ scene.content|striptags('<br><p><i><b><u>')|raw }}
                 </div>
                 <div class="tab-pane fade show" id="tab_scene_description" role="tabpanel" aria-labelledby="tab_scene_description">
                     <textarea id="scene_description_ajax" name="scene[description]" rows="10" class="form-control" data-scene="{{ scene.id }}">{{ scene.description }}</textarea>
