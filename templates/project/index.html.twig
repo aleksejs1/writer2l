@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Project index{% endblock %}
-{% block pageTitle %}Project index{% endblock %}
+{% block title %}{{ 'Project index'|trans }}{% endblock %}
+{% block pageTitle %}{{ 'Project index'|trans }}{% endblock %}
 
 {% block body %}
     <div class="card card-custom">
@@ -11,13 +11,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('project_new') }}">
                             <span class="nav-icon"></i><i class="fas fa-book-open"></i></span>
-                            <span class="nav-text">Create new</span>
+                            <span class="nav-text">{{ 'Create new'|trans }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('import_ywriter') }}">
                             <span class="nav-icon"></i><i class="fas fa-file-import"></i></span>
-                            <span class="nav-text">Import from yWrite 5 backup</span>
+                            <span class="nav-text">{{ 'Import from yWrite 5 backup'|trans }}</span>
                         </a>
                     </li>
                 </ul>
@@ -31,10 +31,10 @@
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th>Title</th>
-                                    <th>AuthorsName</th>
-                                    <th>Words</th>
-                                    <th>actions</th>
+                                    <th>{{ 'Title'|trans }}</th>
+                                    <th>{{ 'Authors Name'|trans }}</th>
+                                    <th>{{ 'Words'|trans }}</th>
+                                    <th>{{ 'actions'|trans }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -57,7 +57,7 @@
                                     </tr>
                                 {% else %}
                                     <tr>
-                                        <td colspan="4">no records found</td>
+                                        <td colspan="4">{{ 'no records found'|trans }}</td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>

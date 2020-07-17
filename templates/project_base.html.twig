@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block pageTitle %}{{ project.title }} (by {{ project.authorsName }}){% endblock %}
+{% block pageTitle %}{{ project.title }} ({{ 'by'|trans }}{{ project.authorsName }}){% endblock %}
 
 {% block body %}
     <div class="row">
@@ -8,7 +8,7 @@
             <div class="card card-custom">
                 <div class="card-header card-header-tabs-line">
                     <div class="card-title">
-                        <h3 class="card-label">Chapters</h3>
+                        <h3 class="card-label">{{ 'Chapters'|trans }}</h3>
                     </div>
                     <div class="card-toolbar">
                         <div class="toggle-sort"><i class="fas fa-sort"></i></div>
@@ -38,7 +38,7 @@
                 <div class="card card-custom">
                     <div class="card-header card-header-tabs-line">
                         <div class="card-title">
-                            <h3 class="card-label">Chapter description</h3>
+                            <h3 class="card-label">{{ 'Chapter description'|trans }}</h3>
                         </div>
                     </div>
                     <div class="card-body">
@@ -58,45 +58,45 @@
                                 {% if chapter is defined and chapter is not null %}
                                 <a class="nav-link" href="{{ path('scene_new', {'project': project.id, 'chapter': chapter.id}) }}">
                                     <span class="nav-icon"></i><i class="fas fa-plus-circle"></i></i></span>
-                                    <span class="nav-text">Add scenes</span>
+                                    <span class="nav-text">{{ 'Add scenes'|trans }}</span>
                                 </a>
                                 {% else %}
                                     <a class="nav-link disabledg" title="First select chapter!">
                                         <span class="nav-icon"></i><i class="fas fa-plus-circle"></i></i></span>
-                                        <span class="nav-text" title="Select chapter">Add scenes</span>
+                                        <span class="nav-text" title="Select chapter">{{ 'Add scenes'|trans }}</span>
                                     </a>
                                 {% endif %}
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link {% if app.request.attributes.get('_route') == 'character_list' %}active{% endif %}" href="{{ path('character_list', {'project': project.id}) }}">
                                     <span class="nav-icon"><i class="fas fa-users"></i></span>
-                                    <span class="nav-text">Characters</span>
+                                    <span class="nav-text">{{ 'Characters'|trans }}</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link {% if app.request.attributes.get('_route') == 'location_list' %}active{% endif %}" href="{{ path('location_list', {'project': project.id}) }}">
                                     <span class="nav-icon"><i class="fas fa-map-marker-alt"></i></span>
-                                    <span class="nav-text">Locations</span>
+                                    <span class="nav-text">{{ 'Locations'|trans }}</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link {% if app.request.attributes.get('_route') == 'item_list' %}active{% endif %}" href="{{ path('item_list', {'project': project.id}) }}">
                                     <span class="nav-icon"><i class="fas fa-box"></i></span>
-                                    <span class="nav-text">Items</span>
+                                    <span class="nav-text">{{ 'Items'|trans }}</span>
                                 </a>
                             </li>
                             {% if chapter is defined and chapter is not null %}
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ path('chapter_edit', {'chapter': chapter.id, 'project': project.id}) }}">
                                         <span class="nav-icon"><i class="fas fa-edit"></i></span>
-                                        <span class="nav-text">Edit chapter</span>
+                                        <span class="nav-text">{{ 'Edit chapter'|trans }}</span>
                                     </a>
                                 </li>
                             {% endif %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('project_preview', {'project': project.id}) }}" target="_blank">
                                     <span class="nav-icon"><i class="far fa-eye"></i></span>
-                                    <span class="nav-text">Preview</span>
+                                    <span class="nav-text">{{ 'Preview'|trans }}</span>
                                 </a>
                             </li>
                         </ul>

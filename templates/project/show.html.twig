@@ -1,6 +1,6 @@
 {% extends 'project_base.html.twig' %}
 
-{% block title %}Project{% endblock %}
+{% block title %}{{ 'Project'|trans }}{% endblock %}
 
 {% block pageTitle %}{{ project.title }} (by {{ project.authorsName }}){% endblock %}
 
@@ -12,16 +12,16 @@
             <tr>
                 <th class="sort-buttons"></th>
                 <th></th>
-                <th>Viewpoint</th>
-                <th>Words</th>
-                <th>Scene</th>
-                <th>Status</th>
-                <th>A/R</th>
-                <th>Letters</th>
-                <th>Characters</th>
-                <th>Locations</th>
-                <th>Items</th>
-                <th>Revisions</th>
+                <th>{{ 'Viewpoint'|trans }}</th>
+                <th>{{ 'Words'|trans }}</th>
+                <th>{{ 'Scene'|trans }}</th>
+                <th>{{ 'Status'|trans }}</th>
+                <th>{{ 'A/R'|trans }}</th>
+                <th>{{ 'Letters'|trans }}</th>
+                <th>{{ 'Characters'|trans }}</th>
+                <th>{{ 'Locations'|trans }}</th>
+                <th>{{ 'Items'|trans }}</th>
+                <th>{{ 'Revisions'|trans }}</th>
             </tr>
             </thead>
             <tbody>
@@ -43,7 +43,7 @@
                             <a href="{{ path('scene_show', {'project': sceneInList.chapter.project.id, 'chapter': sceneInList.chapter.id, 'scene': sceneInList.id}) }}" title="{{ sceneInList.title ?: '[No title]' }}">{{ sceneInList.title ?: '[No title]' }}</a>
                         </div>
                     </td>
-                    <td>{{ constant('App\\Entity\\Scene::STATUS_TITLES')[sceneInList.status] }}</td>
+                    <td>{{ constant('App\\Entity\\Scene::STATUS_TITLES')[sceneInList.status]|trans }}</td>
                     <td>{{ constant('App\\Entity\\Scene::GOAL_TITLES')[sceneInList.goalType]|first }}</td>
                     <td>{{ sceneInList.content|striptags()|length }}</td>
                     <td>

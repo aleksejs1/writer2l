@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% set label = 'Create' %}
+{% set label = 'Create'|trans %}
 {% if new is not defined or new != true %}
-    {% set label = 'Update' %}
+    {% set label = 'Update'|trans %}
 {% endif %}
-{% block title %}{{ label }} Chapter{% endblock %}
+{% block title %}{{ label }} {{ 'Chapter'|trans }}{% endblock %}
 {% block pageTitle %}{{ label }} {{ chapter.title ? 'chapter' }}{% endblock %}
 
 {% block body %}
@@ -13,9 +13,9 @@
             <div class="tab-content">
                 {{ include('chapter/_form.html.twig', {'button_label': label}) }}
                 {% if new is defined and new %}
-                    <a href="{{ path('project_show', {'project': project.id}) }}">back to list</a>
+                    <a href="{{ path('project_show', {'project': project.id}) }}">{{ 'back to list'|trans }}</a>
                 {% else %}
-                    <a href="{{ path('project_show_chapter', {'project': project.id, 'chapter': chapter.id}) }}">back to list</a>
+                    <a href="{{ path('project_show_chapter', {'project': project.id, 'chapter': chapter.id}) }}">{{ 'back to list'|trans }}</a>
                 {% endif %}
                 {{ include('chapter/_delete_form.html.twig') }}
             </div>

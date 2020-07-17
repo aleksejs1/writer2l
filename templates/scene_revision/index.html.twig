@@ -1,18 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ scene.title ?: '[No title]' }} scene revisions{% endblock %}
-{% block pageTitle %}{{ project.title }} (by {{ project.authorsName }}){% endblock %}
+{% block pageTitle %}{{ project.title }} ({{ 'by'|trans }} {{ project.authorsName }}){% endblock %}
 
 {% block body %}
     <div class="card card-custom">
         <div class="card-header card-header-tabs-line">
             <div class="card-title">
-                <h3>{{ scene.title ?: '[No title]' }} scene revisions</h3>
+                <h3>{{ scene.title ?: '[No title]' }} {{ 'scene revisions'|trans }}</h3>
             </div>
         </div>
         <div class="card-body">
             <div class="tab-content">
-                <a class="btn btn-primary" href="{{ path('project_show_chapter', {'chapter': scene.chapter.id, 'project': project.id}) }}">Back</a>
+                <a class="btn btn-primary" href="{{ path('project_show_chapter', {'chapter': scene.chapter.id, 'project': project.id}) }}">{{ 'Back'|trans }}</a>
                 {% for sceneRevision in sceneRevisions %}
                     <p><a href="{{ path('scene_revision_show', {'project': project.id, 'revision': sceneRevision.id, 'scene': sceneRevision.scene.id}) }}">{{ sceneRevision.version | date('H:i:s d.m.Y') }}</a></p>
                 {% endfor %}
