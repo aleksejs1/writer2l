@@ -3,6 +3,7 @@ controllers:
     type: annotation
     prefix:
         en: 'en'
+        lv: 'lv'
         ru: 'ru'
 
 kernel:
