@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Scene{% endblock %}
+{% block title %}{{ 'Edit Scene'|trans }}{% endblock %}
 
-{% block pageTitle %}{{ project.title }} (by {{ project.authorsName }}){% endblock %}
+{% block pageTitle %}{{ project.title }} ({{ 'by'|trans }} {{ project.authorsName }}){% endblock %}
 
 {% block body %}
     <div class="card card-custom">
@@ -16,25 +16,25 @@
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#tab_content">
                                     <span class="nav-icon"><i class="flaticon2-chat-1"></i></span>
-                                    <span class="nav-text">Content</span>
+                                    <span class="nav-text">{{ 'Content'|trans }}</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tab_details">
                                     <span class="nav-icon"><i class="flaticon2-drop"></i></span>
-                                    <span class="nav-text">Description</span>
+                                    <span class="nav-text">{{ 'Description'|trans }}</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tab_notes">
                                     <span class="nav-icon"><i class="flaticon2-drop"></i></span>
-                                    <span class="nav-text">Notes</span>
+                                    <span class="nav-text">{{ 'Notes'|trans }}</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tab_goal">
                                     <span class="nav-icon"><i class="flaticon2-drop"></i></span>
-                                    <span class="nav-text">Goals</span>
+                                    <span class="nav-text">{{ 'Goals'|trans }}</span>
                                 </a>
                             </li>
                         </ul>
@@ -42,11 +42,11 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <button class="btn btn-primary float-md-right btn-act">{{ button_label|default('Save') }}</button>
+                        <button class="btn btn-primary float-md-right btn-act">{{ button_label|default('Save'|trans) }}</button>
                         {% if new is defined and new %}
-                            <a class="btn btn-light float-md-right btn-act" href="{{ path('project_show_chapter', {"project": scene.chapter.project.id, "chapter": scene.chapter.id}) }}">Back</a>
+                            <a class="btn btn-light float-md-right btn-act" href="{{ path('project_show_chapter', {"project": scene.chapter.project.id, "chapter": scene.chapter.id}) }}">{{ 'Back'|trans }}</a>
                         {% else %}
-                            <a class="btn btn-light float-md-right btn-act" href="{{ path('scene_show', {"project": scene.chapter.project.id, "chapter": scene.chapter.id, 'scene': scene.id}) }}">Back</a>
+                            <a class="btn btn-light float-md-right btn-act" href="{{ path('scene_show', {"project": scene.chapter.project.id, "chapter": scene.chapter.id, 'scene': scene.id}) }}">{{ 'Back'|trans }}</a>
                         {% endif %}
                     </div>
                 </div>

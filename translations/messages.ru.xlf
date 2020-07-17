@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="ru" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="N3jK31e" resname="Viewpoint">
+        <source>Viewpoint</source>
+        <target>Точка зрения</target>
+      </trans-unit>
+      <trans-unit id="D08Wlvj" resname="Goal type">
+        <source>Goal type</source>
+        <target>Тип</target>
+      </trans-unit>
+      <trans-unit id="ZM.xMZ0" resname="Action">
+        <source>Action</source>
+        <target>Действие</target>
+      </trans-unit>
+      <trans-unit id="2L5yi.0" resname="Reaction">
+        <source>Reaction</source>
+        <target>Реакция</target>
+      </trans-unit>
+      <trans-unit id="zb9pdei" resname="Goal">
+        <source>Goal</source>
+        <target>Цель</target>
+      </trans-unit>
+      <trans-unit id="AUZZq52" resname="Conflict">
+        <source>Conflict</source>
+        <target>Конфликт</target>
+      </trans-unit>
+      <trans-unit id="ToCrtbF" resname="Outcome">
+        <source>Outcome</source>
+        <target>Итог</target>
+      </trans-unit>
+      <trans-unit id="3JN7WYk" resname="None">
+        <source>None</source>
+        <target>Нет</target>
+      </trans-unit>
+      <trans-unit id="kg5BPH1" resname="Status">
+        <source>Status</source>
+        <target>Готовность</target>
+      </trans-unit>
+      <trans-unit id="6rvzq6_" resname="Outline">
+        <source>Outline</source>
+        <target>Описание</target>
+      </trans-unit>
+      <trans-unit id="6.Eu9Hz" resname="Draft">
+        <source>Draft</source>
+        <target>Черновик</target>
+      </trans-unit>
+      <trans-unit id="pvJrKyw" resname="1st edition">
+        <source>1st edition</source>
+        <target>1-я редакция</target>
+      </trans-unit>
+      <trans-unit id="1xo16qA" resname="2nd edition">
+        <source>2nd edition</source>
+        <target>2-я редакция</target>
+      </trans-unit>
+      <trans-unit id="EaZ2fVZ" resname="Done">
+        <source>Done</source>
+        <target>Завершено</target>
+      </trans-unit>
+      <trans-unit id="TZcYkxV" resname="Project index">
+        <source>Project index</source>
+        <target>Список проектов</target>
+      </trans-unit>
+      <trans-unit id="nz33U6Q" resname="Create new">
+        <source>Create new</source>
+        <target>Создать</target>
+      </trans-unit>
+      <trans-unit id="0mO9VqX" resname="Import from yWrite 5 backup">
+        <source>Import from yWrite 5 backup</source>
+        <target>Импорт из бэкапа yWrite 5</target>
+      </trans-unit>
+      <trans-unit id="fozSBW2" resname="Title">
+        <source>Title</source>
+        <target>Название</target>
+      </trans-unit>
+      <trans-unit id="fbrORbZ" resname="Authors Name">
+        <source>Authors Name</source>
+        <target>Автор</target>
+      </trans-unit>
+      <trans-unit id="CovomlK" resname="Words">
+        <source>Words</source>
+        <target>Слов</target>
+      </trans-unit>
+      <trans-unit id="Kw3N1AA" resname="actions">
+        <source>actions</source>
+        <target>действия</target>
+      </trans-unit>
+      <trans-unit id="D5lam8." resname="no records found">
+        <source>no records found</source>
+        <target>записи не найдены</target>
+      </trans-unit>
+      <trans-unit id="mFlZeFM" resname="Project">
+        <source>Project</source>
+        <target>Проект</target>
+      </trans-unit>
+      <trans-unit id="p_LSbo0" resname="by">
+        <source>by</source>
+        <target>автор</target>
+      </trans-unit>
+      <trans-unit id="mDE3W8Z" resname="Chapters">
+        <source>Chapters</source>
+        <target>Главы</target>
+      </trans-unit>
+      <trans-unit id="8MarG0L" resname="Chapter description">
+        <source>Chapter description</source>
+        <target>Описание Главы</target>
+      </trans-unit>
+      <trans-unit id="HyDCz8O" resname="Add scenes">
+        <source>Add scenes</source>
+        <target>Добавить сцену</target>
+      </trans-unit>
+      <trans-unit id="b6w54oR" resname="Characters">
+        <source>Characters</source>
+        <target>Персонажи</target>
+      </trans-unit>
+      <trans-unit id="lcYRcDG" resname="Locations">
+        <source>Locations</source>
+        <target>Места</target>
+      </trans-unit>
+      <trans-unit id="_456Gjy" resname="Items">
+        <source>Items</source>
+        <target>Предметы</target>
+      </trans-unit>
+      <trans-unit id="gy2Gauw" resname="Edit chapter">
+        <source>Edit chapter</source>
+        <target>Редактировать Главу</target>
+      </trans-unit>
+      <trans-unit id="MksTT1f" resname="Preview">
+        <source>Preview</source>
+        <target>Предварительный просмотр</target>
+      </trans-unit>
+      <trans-unit id="R70pB1_" resname="Content">
+        <source>Content</source>
+        <target>Текст</target>
+      </trans-unit>
+      <trans-unit id="Um4Ah8w" resname="Description">
+        <source>Description</source>
+        <target>Описание</target>
+      </trans-unit>
+      <trans-unit id="inUlsUk" resname="Notes">
+        <source>Notes</source>
+        <target>Заметки</target>
+      </trans-unit>
+      <trans-unit id="ElN7W4F" resname="Edit scene">
+        <source>Edit scene</source>
+        <target>Редактировать сцену</target>
+      </trans-unit>
+      <trans-unit id="9HQ05MK" resname="Edit Project">
+        <source>Edit Project</source>
+        <target>Редактировать проект</target>
+      </trans-unit>
+      <trans-unit id="NmSJVXn" resname="Export">
+        <source>Export</source>
+        <target>Экспортировать</target>
+      </trans-unit>
+      <trans-unit id="qvB7NXC" resname="Edit Scene">
+        <source>Edit Scene</source>
+        <target>Редактировать сцену</target>
+      </trans-unit>
+      <trans-unit id="EWzTmCq" resname="Goals">
+        <source>Goals</source>
+        <target>Цели</target>
+      </trans-unit>
+      <trans-unit id="REE8PZe" resname="Are you sure you want to delete this item?">
+        <source>Are you sure you want to delete this item?</source>
+        <target>Вы уверены, что хотите это удалить?</target>
+      </trans-unit>
+      <trans-unit id="4tClSWj" resname="Delete">
+        <source>Delete</source>
+        <target>Удалить</target>
+      </trans-unit>
+      <trans-unit id="0FJ_Sz1" resname="Logout">
+        <source>Logout</source>
+        <target>Выйти</target>
+      </trans-unit>
+      <trans-unit id="zI.Z63_" resname="Welcome!">
+        <source>Welcome!</source>
+        <target>Добро пожаловать!</target>
+      </trans-unit>
+      <trans-unit id="R1lJisK" resname="Create">
+        <source>Create</source>
+        <target>Создать</target>
+      </trans-unit>
+      <trans-unit id="wcEAnT8" resname="Update">
+        <source>Update</source>
+        <target>Обновить</target>
+      </trans-unit>
+      <trans-unit id="VIwx9zH" resname="Chapter">
+        <source>Chapter</source>
+        <target>Глава</target>
+      </trans-unit>
+      <trans-unit id="FAWmPop" resname="Character">
+        <source>Character</source>
+        <target>Персонаж</target>
+      </trans-unit>
+      <trans-unit id="i0u8_gl" resname="Short Name">
+        <source>Short Name</source>
+        <target>Имя</target>
+      </trans-unit>
+      <trans-unit id="jgDN9x_" resname="Full Name">
+        <source>Full Name</source>
+        <target>Полное имя</target>
+      </trans-unit>
+      <trans-unit id="FIGUuny" resname="Alternates">
+        <source>Alternates</source>
+        <target>Прозвища</target>
+      </trans-unit>
+      <trans-unit id="rpSSZgy" resname="VP">
+        <source>VP</source>
+        <target>Точка зрения</target>
+      </trans-unit>
+      <trans-unit id="FgwFNeX" resname="Scenes">
+        <source>Scenes</source>
+        <target>Сцены</target>
+      </trans-unit>
+      <trans-unit id="JiEhxTc" resname="edit">
+        <source>edit</source>
+        <target>изменить</target>
+      </trans-unit>
+      <trans-unit id="FQn1YfJ" resname="Save">
+        <source>Save</source>
+        <target>Сохранить</target>
+      </trans-unit>
+      <trans-unit id="Z44vEu_" resname="Character list">
+        <source>Character list</source>
+        <target>Список персонажей</target>
+      </trans-unit>
+      <trans-unit id="dpAPG.0" resname="Back">
+        <source>Back</source>
+        <target>Назад</target>
+      </trans-unit>
+      <trans-unit id="4rIRPMT" resname="Item list">
+        <source>Item list</source>
+        <target>Список предметов</target>
+      </trans-unit>
+      <trans-unit id="Wp4uq6H" resname="Location list">
+        <source>Location list</source>
+        <target>Список мест</target>
+      </trans-unit>
+      <trans-unit id="qm9ZscT" resname="scene revisions">
+        <source>scene revisions</source>
+        <target>ревизии сцены</target>
+      </trans-unit>
+      <trans-unit id="LP_bqr9" resname="Import">
+        <source>Import</source>
+        <target>Импорт</target>
+      </trans-unit>
+      <trans-unit id="RkxP.QG" resname="Edit">
+        <source>Edit</source>
+        <target>Изменить</target>
+      </trans-unit>
+      <trans-unit id="R35a8v1" resname="Scene">
+        <source>Scene</source>
+        <target>Сцена</target>
+      </trans-unit>
+      <trans-unit id="7BUWi39" resname="A/R">
+        <source>A/R</source>
+        <target>А/Р</target>
+      </trans-unit>
+      <trans-unit id="C0OMirt" resname="Letters">
+        <source>Letters</source>
+        <target>Букв</target>
+      </trans-unit>
+      <trans-unit id="2oCx1XQ" resname="Revisions">
+        <source>Revisions</source>
+        <target>Ревизии</target>
+      </trans-unit>
+      <trans-unit id="U0M9PNE" resname="back to list">
+        <source>back to list</source>
+        <target>назад к списку</target>
+      </trans-unit>
+      <trans-unit id="wYmEDPf" resname="Log in">
+        <source>Log in</source>
+        <target>Войти</target>
+      </trans-unit>
+      <trans-unit id="dDUw20Q" resname="Please sign in">
+        <source>Please sign in</source>
+        <target>Пожелуйста, войдите</target>
+      </trans-unit>
+      <trans-unit id="acVpEs4" resname="You are logged in as">
+        <source>You are logged in as</source>
+        <target>Вы вошли как</target>
+      </trans-unit>
+      <trans-unit id="47ienTP" resname="Username">
+        <source>Username</source>
+        <target>Имя пользователя</target>
+      </trans-unit>
+      <trans-unit id="588_9PF" resname="Password">
+        <source>Password</source>
+        <target>Пароль</target>
+      </trans-unit>
+      <trans-unit id="v9QCsvb" resname="Sign in">
+        <source>Sign in</source>
+        <target>Войти</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ sceneRevision.scene.title ? sceneRevision.scene.title : '[No title]' }} scene revisions{% endblock %}
-{% block pageTitle %}{{ project.title }} (by {{ project.authorsName }}){% endblock %}
+{% block title %}{{ sceneRevision.scene.title ? sceneRevision.scene.title : '[No title]' }} {{ 'scene revisions'|trans }}{% endblock %}
+{% block pageTitle %}{{ project.title }} ({{ 'by'|trans }} {{ project.authorsName }}){% endblock %}
 
 {% block body %}
     <div class="card card-custom">
@@ -12,7 +12,7 @@
         </div>
         <div class="card-body">
             <div class="tab-content">
-                <a class="btn btn-primary" href="{{ path('scene_revision_index', {'scene': sceneRevision.scene.id, 'project': project.id}) }}">Back</a>
+                <a class="btn btn-primary" href="{{ path('scene_revision_index', {'scene': sceneRevision.scene.id, 'project': project.id}) }}">{{ 'Back'|trans }}</a>
                 {{ sceneRevision.content|striptags('<br><p><i><b><u>')|raw }}
             </div>
         </div>

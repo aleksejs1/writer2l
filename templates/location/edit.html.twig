@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% set label = 'Create' %}
+{% set label = 'Create'|trans %}
 {% if new is not defined or new != true %}
-    {% set label = 'Update' %}
+    {% set label = 'Update'|trans %}
 {% endif %}
 {% block title %}{{ label }} Location{% endblock %}
 {% block pageTitle %}{{ label }} {{ location.title ? 'location' }}{% endblock %}
@@ -12,7 +12,7 @@
         <div class="card-body">
             <div class="tab-content">
                 {{ include('location/_form.html.twig', {'button_label': label}) }}
-                <a href="{{ path('location_list', {'project': project.id}) }}">back to list</a>
+                <a href="{{ path('location_list', {'project': project.id}) }}">{{ 'back to list'|trans }}</a>
                 {{ include('location/_delete_form.html.twig') }}
             </div>
         </div>

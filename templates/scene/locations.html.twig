@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Location list{% endblock %}
-{% block pageTitle %}{{ project.title }} (by {{ project.authorsName }}){% endblock %}
+{% block title %}{{ 'Location list'|trans }}{% endblock %}
+{% block pageTitle %}{{ project.title }} ({{ 'by'|trans }} {{ project.authorsName }}){% endblock %}
 
 {% block body %}
     <div class="card card-custom">
@@ -11,7 +11,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('scene_show', {"project": scene.chapter.project.id, "chapter": scene.chapter.id, 'scene': scene.id}) }}">
                             <span class="nav-icon"><i class="fas fa-arrow-circle-left"></i></span>
-                            <span class="nav-text">Back</span>
+                            <span class="nav-text">{{ 'Back'|trans }}</span>
                         </a>
                     </li>
                 </ul>
@@ -24,7 +24,7 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>Title</th>
+                                <th>{{ 'Title'|trans }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -34,7 +34,7 @@
                                 </tr>
                             {% else %}
                                 <tr>
-                                    <td colspan="10">no records found</td>
+                                    <td>{{ 'no records found'|trans }}</td>
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -44,7 +44,7 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>Title</th>
+                                <th>{{ 'Title'|trans }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -54,7 +54,7 @@
                                 </tr>
                             {% else %}
                                 <tr>
-                                    <td colspan="10">no records found</td>
+                                    <td>{{ 'no records found'|trans }}</td>
                                 </tr>
                             {% endfor %}
                             </tbody>

@@ -17,22 +17,29 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                {% if app.user %}
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav mr-auto">
+                        {% if app.user %}
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+                            <a class="nav-link" href="{{ path('app_logout') }}">{{ 'Logout'|trans }}</a>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="">{{ app.request.locale }}</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown01">
+                                <a class="dropdown-item" href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'en'})) }}">en</a>
+                                <a class="dropdown-item" href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'ru'})) }}">ru</a>
+                            </div>
                         </li>
                     </ul>
                 </div>
-                {% endif %}
             </div>
         </nav>
         <main role="main">
             <div class="container-fluid">
                 <div class="row subheader">
                     <div class="col-md-12">
-                        <h1>{% block pageTitle %}Welcome!{% endblock %}</h1>
+                        <h1>{% block pageTitle %}{{ 'Welcome!'|trans }}{% endblock %}</h1>
                         <div class="d-flex align-items-center font-weight-bold my-2">
                             {% if chapter is defined and chapter is not null %}
                                 {% set project = chapter.project %}
@@ -76,7 +83,7 @@
                             {% endif %}
                             {% if form is defined and form is not null %}
                                 <span class="text-white label label-dot label-sm opacity-75 mx-3"><i class="fas fa-caret-right"></i></span>
-                                <div class="text-white text-hover-white opacity-75"><i class="fas fa-edit"></i> {% if new is defined and new %}New{% elseif import is defined and import %}Import{% else %}Edit{% endif %}</div>
+                                <div class="text-white text-hover-white opacity-75"><i class="fas fa-edit"></i> {% if new is defined and new %}New{% elseif import is defined and import %}{{ 'Import'|trans }}{% else %}{{ 'Edit'|trans }}{% endif %}</div>
                             {% endif %}
                         </div>
                     </div>

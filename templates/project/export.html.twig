@@ -1,5 +1,5 @@
 <h1>{{ project.title }}</h1>
-<i>by {{ project.authorsName }}</i>
+<i>{{ 'by'|trans }} {{ project.authorsName }}</i>
 {% for chapter in project.chapters %}
     <h2>{{ chapter.title }}</h2>
     {% for scene in chapter.scenes %}
