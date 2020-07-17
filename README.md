@@ -1,5 +1,7 @@
 # Writer2l (Writer tool)
 
+![Showcase](https://writer2l.com/screen_2020_07_17.png)
+
 A platform for writing novels. Details for Writer2l can be found on the official website at https://writer2l.com/.
 
 ## Installation
