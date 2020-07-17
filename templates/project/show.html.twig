@@ -2,7 +2,7 @@
 
 {% block title %}{{ 'Project'|trans }}{% endblock %}
 
-{% block pageTitle %}{{ project.title }} (by {{ project.authorsName }}){% endblock %}
+{% block pageTitle %}{{ project.title }} ({{ 'by'|trans }} {{ project.authorsName }}){% endblock %}
 
 {% block content %}
     {% if chapter is defined and chapter is not null %}
