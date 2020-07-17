@@ -43,7 +43,11 @@
                 <div class="row">
                     <div class="col-md-12">
                         <button class="btn btn-primary float-md-right btn-act">{{ button_label|default('Save') }}</button>
-                        <a class="btn btn-light float-md-right btn-act" href="{{ path('scene_show', {"project": scene.chapter.project.id, "chapter": scene.chapter.id, 'scene': scene.id}) }}">Back</a>
+                        {% if new is defined and new %}
+                            <a class="btn btn-light float-md-right btn-act" href="{{ path('project_show_chapter', {"project": scene.chapter.project.id, "chapter": scene.chapter.id}) }}">Back</a>
+                        {% else %}
+                            <a class="btn btn-light float-md-right btn-act" href="{{ path('scene_show', {"project": scene.chapter.project.id, "chapter": scene.chapter.id, 'scene': scene.id}) }}">Back</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -69,7 +73,6 @@
                     {{ form_row(form.status) }}
                     {{ form_widget(form) }}
                     <button class="btn">{{ button_label|default('Save') }}</button>
-                    <a href="{{ path('scene_show', {"project": scene.chapter.project.id, "chapter": scene.chapter.id, 'scene': scene.id}) }}">back</a>
                 </div>
             </div>
         </div>

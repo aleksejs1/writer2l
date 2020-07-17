@@ -2,13 +2,29 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ChapterRepository;
 use App\Service\SortableInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
+ * @ApiResource(
+ *     collectionOperations={},
+ *     itemOperations={
+ *       "get"={
+ *         "security" = "is_granted('CHAPTER_VIEW', object)"
+ *       },
+ *       "patch"={
+ *         "security" = "is_granted('CHAPTER_EDIT', object)",
+ *         "input_formats"={"json"={"application/merge-patch+json"}}
+ *       }
+ *     },
+ *     normalizationContext={"groups"={"chapter:read"}},
+ *     denormalizationContext={"groups"={"chapter:write"}}
+ * )
  * @ORM\Entity(repositoryClass=ChapterRepository::class)
  */
 class Chapter implements SortableInterface
@@ -17,22 +33,26 @@ class Chapter implements SortableInterface
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"chapter:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"chapter:write", "chapter:read"})
      */
     private $title;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Groups({"chapter:write", "chapter:read"})
      */
     private $description;
 
     /**
      * @ORM\ManyToOne(targetEntity=Project::class, inversedBy="chapters")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"chapter:read"})
      */
     private $project;
 
@@ -44,6 +64,7 @@ class Chapter implements SortableInterface
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"chapter:read"})
      */
     private $position;
 
