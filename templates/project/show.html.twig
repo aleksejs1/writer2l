@@ -37,7 +37,7 @@
                             {{ sceneInList.viewpoint ? sceneInList.viewpoint.shortName : 'N/A' }}
                         </div>
                     </td>
-                    <td>{{ sceneInList.content|split(' ')|length }}</td>
+                    <td>{{ sceneInList.content|striptags()|split(' ')|length }}</td>
                     <td>
                         <div class="hidden-overflow" style="max-width: 100px;">
                             <a href="{{ path('scene_show', {'project': sceneInList.chapter.project.id, 'chapter': sceneInList.chapter.id, 'scene': sceneInList.id}) }}" title="{{ sceneInList.title ?: '[No title]' }}">{{ sceneInList.title ?: '[No title]' }}</a>
@@ -45,7 +45,7 @@
                     </td>
                     <td>{{ constant('App\\Entity\\Scene::STATUS_TITLES')[sceneInList.status] }}</td>
                     <td>{{ constant('App\\Entity\\Scene::GOAL_TITLES')[sceneInList.goalType]|first }}</td>
-                    <td>{{ sceneInList.content|length }}</td>
+                    <td>{{ sceneInList.content|striptags()|length }}</td>
                     <td>
                         <div class="hidden-overflow" style="max-width: 100px;">
                             <a href="{{ path('scene_characters', {'project': sceneInList.chapter.project.id, 'chapter': sceneInList.chapter.id, 'scene': sceneInList.id}) }}" title="{% for character in sceneInList.characters %}{{ character.shortname }}{% if not loop.last %}, {% endif %}{% else %}+{% endfor %}">

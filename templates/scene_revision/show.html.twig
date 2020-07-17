@@ -13,9 +13,7 @@
         <div class="card-body">
             <div class="tab-content">
                 <a class="btn btn-primary" href="{{ path('scene_revision_index', {'scene': sceneRevision.scene.id, 'project': project.id}) }}">Back</a>
-                {% for part in sceneRevision.content | split('\n') %}
-                    <p>{{ part }}</p>
-                {% endfor %}
+                {{ sceneRevision.content|striptags('<br><p><i><b><u>')|raw }}
             </div>
         </div>
     </div>
