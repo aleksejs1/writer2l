@@ -31,10 +31,40 @@
         <main role="main">
             <div class="container-fluid">
                 <div class="row subheader">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <h1>{% block pageTitle %}Welcome!{% endblock %}</h1>
+                        <div class="d-flex align-items-center font-weight-bold my-2">
+                            {% if chapter is defined and chapter is not null %}
+                                {% set project = chapter.project %}
+                            {% endif %}
+                            {% if scene is defined and scene is not null %}
+                                {% set chapter = scene.chapter %}
+                                {% set project = chapter.project %}
+                            {% endif %}
+
+                            {% if (project is defined and project is not null and project.id is not null) or form is defined %}
+                                <a href="{{ path('project_index') }}" class="opacity-75 hover-opacity-100">
+                                    <i class="fas fa-home text-white"></i>
+                                </a>
+                            {% endif %}
+                            {% if project is defined and project is not null and project.id is not null %}
+                                <span class="text-white label label-dot label-sm opacity-75 mx-3"><i class="fas fa-caret-right"></i></span>
+                                <a href="{{ path('project_show', {'project': project.id}) }}" class="text-white text-hover-white opacity-75 hover-opacity-100"><i class="fas fa-book-open"></i> {{ project.title }}</a>
+                            {% endif %}
+                            {% if chapter is defined and chapter is not null and chapter.id is not null %}
+                                <span class="text-white label label-dot label-sm opacity-75 mx-3"><i class="fas fa-caret-right"></i></span>
+                                <a href="{{ path('project_show_chapter', {'project': project.id, 'chapter': chapter.id}) }}" class="text-white text-hover-white opacity-75 hover-opacity-100"><i class="fas fa-book"></i> {{ chapter.title ?: '[chapter with no title]' }}</a>
+                            {% endif %}
+                            {% if scene is defined and scene is not null and scene.id is not null %}
+                                <span class="text-white label label-dot label-sm opacity-75 mx-3"><i class="fas fa-caret-right"></i></span>
+                                <a href="{{ path('scene_show', {'project': project.id, 'chapter': chapter.id, 'scene': scene.id}) }}" class="text-white text-hover-white opacity-75 hover-opacity-100"><i class="fas fa-file"></i> {{ scene.title ?: '[scene with no title]' }}</a>
+                            {% endif %}
+                            {% if form is defined and form is not null %}
+                                <span class="text-white label label-dot label-sm opacity-75 mx-3"><i class="fas fa-caret-right"></i></span>
+                                <div class="text-white text-hover-white opacity-75"><i class="fas fa-edit"></i> {% if new is defined and new %}New{% elseif import is defined and import %}Import{% else %}Edit{% endif %}</div>
+                            {% endif %}
+                        </div>
                     </div>
-                    <div class="col-md-6"></div>
                 </div>
                 {% block body %}{% endblock %}
             </div>
