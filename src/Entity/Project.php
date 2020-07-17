@@ -11,8 +11,17 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
- *     collectionOperations={"get"={"normalization_context"={"groups":"project:list"}}},
- *     itemOperations={"get"={"normalization_context"={"groups":"project:list"}}}
+ *     collectionOperations={
+ *       "get"={
+ *         "normalization_context"={"groups":"project:list"}
+ *       }
+ *     },
+ *     itemOperations={
+ *       "get"={
+ *         "normalization_context"={"groups":"project:list"},
+ *         "security" = "is_granted('PROJECT_EDIT', object)"
+ *       }
+ *     }
  * )
  * @ORM\Entity(repositoryClass=ProjectRepository::class)
  */
