@@ -64,9 +64,7 @@
                     {% endfor %}
                 </div>
                 <div class="tab-pane fade show" id="tab_scene_description" role="tabpanel" aria-labelledby="tab_scene_description">
-                    {% for part in scene.description | split('\n') %}
-                        <p>{{ part }}</p>
-                    {% endfor %}
+                    <textarea id="scene_description_ajax" name="scene[description]" rows="10" class="form-control" data-scene="{{ scene.id }}">{{ scene.description }}</textarea>
                 </div>
                 <div class="tab-pane fade show" id="tab_scene_characters" role="tabpanel" aria-labelledby="tab_scene_characters">
                     <ul>
@@ -90,9 +88,7 @@
                     </ul>
                 </div>
                 <div class="tab-pane fade show" id="tab_scene_notes" role="tabpanel" aria-labelledby="tab_scene_notes">
-                    {% for part in scene.note | split('\n') %}
-                        <p>{{ part }}</p>
-                    {% endfor %}
+                    <textarea id="scene_note_ajax" name="scene[note]" rows="10" class="form-control" data-scene="{{ scene.id }}">{{ scene.note }}</textarea>
                 </div>
             </div>
         </div>
