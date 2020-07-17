@@ -2,13 +2,29 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\SceneRepository;
 use App\Service\SortableInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
+ * @ApiResource(
+ *     collectionOperations={},
+ *     itemOperations={
+ *       "get"={
+ *         "security" = "is_granted('SCENE_VIEW', object)"
+ *       },
+ *       "patch"={
+ *         "security" = "is_granted('SCENE_EDIT', object)",
+ *         "input_formats"={"json"={"application/merge-patch+json"}}
+ *       }
+ *     },
+ *     normalizationContext={"groups"={"scene:read"}},
+ *     denormalizationContext={"groups"={"scene:write"}}
+ * )
  * @ORM\Entity(repositoryClass=SceneRepository::class)
  */
 class Scene implements SortableInterface
@@ -36,27 +52,32 @@ class Scene implements SortableInterface
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"scene:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"scene:write", "scene:read"})
      */
     private $title;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Groups({"scene:write", "scene:read"})
      */
     private $content;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Groups({"scene:write", "scene:read"})
      */
     private $description;
 
     /**
      * @ORM\ManyToOne(targetEntity=Chapter::class, inversedBy="scenes")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"scene:read"})
      */
     private $chapter;
 
@@ -72,31 +93,37 @@ class Scene implements SortableInterface
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"scene:read"})
      */
     private $status;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Groups({"scene:write", "scene:read"})
      */
     private $note;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"scene:read"})
      */
     private $goalType;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"scene:write", "scene:read"})
      */
     private $goal;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"scene:write", "scene:read"})
      */
     private $conflict;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"scene:write", "scene:read"})
      */
     private $outcome;
 
@@ -112,6 +139,7 @@ class Scene implements SortableInterface
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"scene:read"})
      */
     private $position;
 
