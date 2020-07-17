@@ -2,7 +2,7 @@
 
 {% block title %}Project{% endblock %}
 
-{% block pageTitle %}{{ project.title }} (by {{ project.authorsName }}){% endblock %}
+{% block pageTitle %}{{ project.title }} ({{ 'by'|trans }} {{ project.authorsName }}){% endblock %}
 
 {% block after_content %}
     <div class="gutter-b">
@@ -14,43 +14,43 @@
                     <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#tab_scene_content">
                             <span class="nav-icon"><i class="flaticon2-chat-1"></i></span>
-                            <span class="nav-text">Content</span>
+                            <span class="nav-text">{{ 'Content'|trans }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#tab_scene_description">
                             <span class="nav-icon"><i class="flaticon2-chat-1"></i></span>
-                            <span class="nav-text">Description</span>
+                            <span class="nav-text">{{ 'Description'|trans }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#tab_scene_notes">
                             <span class="nav-icon"><i class="flaticon2-chat-1"></i></span>
-                            <span class="nav-text">Notes</span>
+                            <span class="nav-text">{{ 'Notes'|trans }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#tab_scene_characters">
                             <span class="nav-icon"><i class="flaticon2-chat-1"></i></span>
-                            <span class="nav-text">Characters</span>
+                            <span class="nav-text">{{ 'Characters'|trans }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#tab_scene_locations">
                             <span class="nav-icon"><i class="flaticon2-chat-1"></i></span>
-                            <span class="nav-text">Locations</span>
+                            <span class="nav-text">{{ 'Locations'|trans }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#tab_scene_items">
                             <span class="nav-icon"><i class="flaticon2-chat-1"></i></span>
-                            <span class="nav-text">Items</span>
+                            <span class="nav-text">{{ 'Items'|trans }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('scene_edit', {'chapter': chapter.id, 'project': project.id, 'scene': scene.id}) }}">
                             <span class="nav-icon"><i class="fas fa-edit"></i></span>
-                            <span class="nav-text">Edit scene</span>
+                            <span class="nav-text">{{ 'Edit scene'|trans }}</span>
                         </a>
                     </li>
                 </ul>
