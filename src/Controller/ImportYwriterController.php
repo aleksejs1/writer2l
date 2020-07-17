@@ -55,6 +55,7 @@ class ImportYwriterController extends AbstractController
         return $this->render('import_ywriter/index.html.twig', [
             'error' => $error,
             'form' => $form->createView(),
+            'import' => true,
         ]);
     }
 

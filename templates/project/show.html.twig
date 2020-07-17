@@ -31,7 +31,7 @@
                         <a class="sort-buttons" href="{{ path('scene_position', {'scene': sceneInList.id, 'newPosition': sceneInList.position - 1, 'project': project.id, 'chapter': sceneInList.chapter.id}) }}"><i class="fas fa-chevron-up"></i></a>
                         <a class="sort-buttons" href="{{ path('scene_position', {'scene': sceneInList.id, 'newPosition': sceneInList.position + 1, 'project': project.id, 'chapter': sceneInList.chapter.id}) }}"><i class="fas fa-chevron-down"></i></a>
                     </td>
-                    <td>{{ sceneInList.note ? 'N' : 'Sc' }}</td>
+                    <td><a href="{{ path('scene_edit', {'chapter': chapter.id, 'project': project.id, 'scene': sceneInList.id}) }}"><i class="fas fa-edit"></i></a> {{ sceneInList.note ? 'N' : 'Sc' }}</td>
                     <td>
                         <div class="hidden-overflow" style="max-width: 100px;" title="{{ sceneInList.viewpoint ? sceneInList.viewpoint.shortName : 'N/A' }}">
                             {{ sceneInList.viewpoint ? sceneInList.viewpoint.shortName : 'N/A' }}
