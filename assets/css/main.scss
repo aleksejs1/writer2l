@@ -179,3 +179,13 @@ td {
   height: 4rem;
   margin-top: -4rem;
 }
+
+.opacity-75 {
+  opacity: 0.75 !important;
+}
+
+.hover-opacity-100.active, .hover-opacity-100:hover {
+  -webkit-transition: all 0.15s ease;
+  transition: all 0.15s ease;
+  opacity: 1 !important;
+}
