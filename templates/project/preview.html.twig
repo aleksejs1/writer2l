@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Project index{% endblock %}
-{% block pageTitle %}{{ project.title }} (by {{ project.authorsName }}){% endblock %}
+{% block title %}{{ 'Preview'|trans }}{% endblock %}
+{% block pageTitle %}{{ project.title }} ({{ 'by'|trans }} {{ project.authorsName }}){% endblock %}
 
 {% block body %}
     <div class="card card-custom">
@@ -11,7 +11,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('project_export', {'project': project.id}) }}">
                             <span class="nav-icon"></i><i class="fas fa-file-export"></i></span>
-                            <span class="nav-text">Export</span>
+                            <span class="nav-text">{{ 'Export'|trans }}</span>
                         </a>
                     </li>
                 </ul>

@@ -8,10 +8,10 @@
     <table class="table">
         <thead>
         <tr>
-            <th>Title</th>
-            <th>Scenes</th>
-            <th>Description</th>
-            <th>actions</th>
+            <th>{{ 'Title'|trans }}</th>
+            <th>{{ 'Scenes'|trans }}</th>
+            <th>{{ 'Description'|trans }}</th>
+            <th>{{ 'actions'|trans }}</th>
         </tr>
         </thead>
         <tbody>
@@ -21,12 +21,12 @@
                 <td>{{ location.scenes|length }}</td>
                 <td>{{ location.description }}</td>
                 <td>
-                    <a href="{{ path('location_edit', {'location': location.id, 'project': project.id}) }}">edit</a>
+                    <a href="{{ path('location_edit', {'location': location.id, 'project': project.id}) }}">{{ 'edit'|trans }}</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">{{ 'no records found'|trans }}</td>
             </tr>
         {% endfor %}
         <tr>

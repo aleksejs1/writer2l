@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% set label = 'Create' %}
+{% set label = 'Create'|trans %}
 {% if new is not defined or new != true %}
-    {% set label = 'Update' %}
+    {% set label = 'Update'|trans %}
 {% endif %}
-{% block title %}{{ label }} Character{% endblock %}
+{% block title %}{{ label }} {{ 'Character'|trans }}{% endblock %}
 {% block pageTitle %}{{ label }} {{ character.shortName ? 'character' }}{% endblock %}
 
 {% block body %}
@@ -12,7 +12,7 @@
         <div class="card-body">
             <div class="tab-content">
                 {{ include('character/_form.html.twig', {'button_label': label}) }}
-                <a href="{{ path('character_list', {'project': project.id}) }}">back to list</a>
+                <a href="{{ path('character_list', {'project': project.id}) }}">{{ 'back to list'|trans }}</a>
                 {{ include('character/_delete_form.html.twig') }}
             </div>
         </div>

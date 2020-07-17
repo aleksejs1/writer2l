@@ -7,13 +7,13 @@
     <table class="table card-table">
         <thead>
         <tr>
-            <th>ShortName</th>
-            <th>FullName</th>
-            <th>Alternates</th>
-            <th>VP Scenes</th>
-            <th>Scenes</th>
-            <th>Words</th>
-            <th>actions</th>
+            <th>{{ 'Short Name'|trans }}</th>
+            <th>{{ 'Full Name'|trans }}</th>
+            <th>{{ 'Alternates'|trans }}</th>
+            <th>{{ 'VP'|trans }} Scenes</th>
+            <th>{{ 'Scenes'|trans }}</th>
+            <th>{{ 'Words'|trans }}</th>
+            <th>{{ 'actions'|trans }}</th>
         </tr>
         </thead>
         <tbody>
@@ -32,12 +32,12 @@
                 <td>{{ metadata[character.id] ? metadata[character.id].scenes : '?' }}</td>
                 <td>{{ metadata[character.id] ? metadata[character.id].words : '?' }}</td>
                 <td>
-                    <a href="{{ path('character_edit', {'character': character.id, 'project': project.id}) }}">edit</a>
+                    <a href="{{ path('character_edit', {'character': character.id, 'project': project.id}) }}">{{ 'edit'|trans }}</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">{{ 'no records found'|trans }}</td>
             </tr>
         {% endfor %}
             <tr>
