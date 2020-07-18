@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/project/{project}/location")
@@ -20,15 +21,16 @@ class LocationNewController extends AbstractController
      * @Route("/new", name="location_new", methods={"GET","POST"})
      * @param Request $request
      * @param Project $project
+     * @param TranslatorInterface $translator
      * @return Response
      */
-    public function new(Request $request, Project $project): Response
+    public function new(Request $request, Project $project, TranslatorInterface $translator): Response
     {
         $this->denyAccessUnlessGranted(ProjectVoter::PROJECT_EDIT, $project);
         $location = new Location();
         $location
             ->setProject($project)
-            ->setTitle('New Location')
+            ->setTitle($translator->trans('New Location'))
         ;
         $form = $this->createForm(LocationType::class, $location);
         $form->handleRequest($request);

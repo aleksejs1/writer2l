@@ -61,6 +61,30 @@
         <source>Done</source>
         <target>Завершено</target>
       </trans-unit>
+      <trans-unit id="T.gDXCR" resname="Short name">
+        <source>Short name</source>
+        <target>Имя</target>
+      </trans-unit>
+      <trans-unit id="8Tpkui." resname="Full name">
+        <source>Full name</source>
+        <target>Полное имя</target>
+      </trans-unit>
+      <trans-unit id="FHNqLrn" resname="Role">
+        <source>Role</source>
+        <target>Роль</target>
+      </trans-unit>
+      <trans-unit id="ZVimoze" resname="major">
+        <source>major</source>
+        <target>Важный</target>
+      </trans-unit>
+      <trans-unit id="yr14asU" resname="minor">
+        <source>minor</source>
+        <target>Обычный</target>
+      </trans-unit>
+      <trans-unit id="OTOxgCF" resname="Bio">
+        <source>Bio</source>
+        <target>Биография</target>
+      </trans-unit>
       <trans-unit id="TZcYkxV" resname="Project index">
         <source>Project index</source>
         <target>Список проектов</target>
@@ -300,6 +324,22 @@
       <trans-unit id="GXZu1sy" resname="Cancel">
         <source>Cancel</source>
         <target>Отмена</target>
+      </trans-unit>
+      <trans-unit id="UhbKk5s" resname="New Character">
+        <source>New Character</source>
+        <target>Новый Персонаж</target>
+      </trans-unit>
+      <trans-unit id="awlyjTR" resname="New Item">
+        <source>New Item</source>
+        <target>Новый Предмет</target>
+      </trans-unit>
+      <trans-unit id="qaYhJOT" resname="New Location">
+        <source>New Location</source>
+        <target>Новое Место</target>
+      </trans-unit>
+      <trans-unit id="eRmvKFV" resname="New Scene">
+        <source>New Scene</source>
+        <target>Новая Сцена</target>
       </trans-unit>
     </body>
   </file>
