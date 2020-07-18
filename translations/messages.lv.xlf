@@ -341,6 +341,22 @@
         <source>New Scene</source>
         <target>Jaunā Aina</target>
       </trans-unit>
+      <trans-unit id="S87z3nb" resname="character">
+        <source>character</source>
+        <target>tēls</target>
+      </trans-unit>
+      <trans-unit id="SjPqzV_" resname="item">
+        <source>item</source>
+        <target>priekšmets</target>
+      </trans-unit>
+      <trans-unit id="5urqGOi" resname="location">
+        <source>location</source>
+        <target>vieta</target>
+      </trans-unit>
+      <trans-unit id="GP3VSbL" resname="New">
+        <source>New</source>
+        <target>Izveidot</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
