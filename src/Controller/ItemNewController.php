@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/project/{project}/item")
@@ -20,15 +21,16 @@ class ItemNewController extends AbstractController
      * @Route("/new", name="item_new", methods={"GET","POST"})
      * @param Request $request
      * @param Project $project
+     * @param TranslatorInterface $translator
      * @return Response
      */
-    public function new(Request $request, Project $project): Response
+    public function new(Request $request, Project $project, TranslatorInterface $translator): Response
     {
         $this->denyAccessUnlessGranted(ProjectVoter::PROJECT_EDIT, $project);
         $item = new Item();
         $item
             ->setProject($project)
-            ->setTitle('New Item')
+            ->setTitle($translator->trans('New Item'))
         ;
         $form = $this->createForm(ItemType::class, $item);
         $form->handleRequest($request);
