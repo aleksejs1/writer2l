@@ -40,7 +40,7 @@ class SceneCharactersController extends AbstractController
             $removeCharacter = $chapterRepository->find($remove);
             if ($scene->getCharacters()->contains($removeCharacter)) {
                 $scene->removeCharacter($removeCharacter);
-                $sceneRepository->save($scene);
+                $sceneSaveService->save($scene);
             }
         }
 
