@@ -85,6 +85,10 @@
         <source>Bio</source>
         <target>Биография</target>
       </trans-unit>
+      <trans-unit id="O4qfqrG" resname="Aka">
+        <source>Aka</source>
+        <target>Ака</target>
+      </trans-unit>
       <trans-unit id="TZcYkxV" resname="Project index">
         <source>Project index</source>
         <target>Список проектов</target>
@@ -356,6 +360,14 @@
       <trans-unit id="GP3VSbL" resname="New">
         <source>New</source>
         <target>Создать</target>
+      </trans-unit>
+      <trans-unit id="HNKLCWh" resname="In scene">
+        <source>In scene</source>
+        <target>В сцене</target>
+      </trans-unit>
+      <trans-unit id="K3VrFmN" resname="Storyboard">
+        <source>Storyboard</source>
+        <target>Сюжетная линия</target>
       </trans-unit>
     </body>
   </file>

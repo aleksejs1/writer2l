@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'Storyboard'|trans }}{% endblock %}
+{% block pageTitle %}{{ project.title }}: {{ 'Storyboard'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="card card-custom">
+        <div class="card-body">
+            <div class="tab-content">
+                <div class="container export">
+                    <table class="table table-responsive">
+                        <tr>
+                            <th>
+                            </th>
+                            {% for chapter in project.chapters %}
+                                {% if chapter.scenes|length > 0 %}
+                                    <th colspan="{{ chapter.scenes|length }}">
+                                        <div class="hidden-overflow" style="max-width: 100px;" title="{{ chapter.title|default('[no name chapter]') }}">
+                                            {{ chapter.title|default('[no name chapter]') }}
+                                        </div>
+                                    </th>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th>
+
+                            </th>
+                            {% for chapter in project.chapters %}
+                                {% for scene in chapter.scenes %}
+                                    <th>
+                                        <div class="hidden-overflow" style="max-width: 100px;" title="{{ scene.title|default('[no name scene]') }}">
+                                            {{ scene.title|default('[no name scene]') }}
+                                        </div>
+                                    </th>
+                                {% endfor %}
+                            {% endfor %}
+                        </tr>
+                        {% for character in project.characters %}
+                        <tr>
+                            <th>
+                                <div class="hidden-overflow" style="max-width: 200px;" title="{{ character.shortName }}">
+                                    {{ include('character/avatar.html.twig', {'char': character, 'size': 30}) }}
+                                    {{ character.shortName }}
+                                </div>
+                            </th>
+                            {% for chapter in project.characters %}
+                                {% for scene in chapter.scenes %}
+                                        {% if scene.viewpoint and scene.viewpoint.id == character.id %}
+                                            <td class="storyline-viewpoint">
+                                                <a href="{{ path('scene_edit', {'chapter': chapter.id, 'project': project.id, 'scene': scene.id}) }}">{{ 'Viewpoint'|trans }}</a>
+                                            </td>
+                                        {% elseif character.scenes.contains(scene) %}
+                                            <td class="storyline-inscene">
+                                                <a href="{{ path('scene_edit', {'chapter': chapter.id, 'project': project.id, 'scene': scene.id}) }}">{{ 'In scene'|trans }}</a>
+                                            </td>
+                                        {% else %}
+                                            <td></td>
+                                        {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
