@@ -297,6 +297,10 @@
         <source>Sign in</source>
         <target>Войти</target>
       </trans-unit>
+      <trans-unit id="GXZu1sy" resname="Cancel">
+        <source>Cancel</source>
+        <target>Отмена</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
