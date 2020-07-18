@@ -341,6 +341,22 @@
         <source>New Scene</source>
         <target>Новая Сцена</target>
       </trans-unit>
+      <trans-unit id="S87z3nb" resname="character">
+        <source>character</source>
+        <target>персонаж</target>
+      </trans-unit>
+      <trans-unit id="SjPqzV_" resname="item">
+        <source>item</source>
+        <target>предмет</target>
+      </trans-unit>
+      <trans-unit id="5urqGOi" resname="location">
+        <source>location</source>
+        <target>место</target>
+      </trans-unit>
+      <trans-unit id="GP3VSbL" resname="New">
+        <source>New</source>
+        <target>Создать</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

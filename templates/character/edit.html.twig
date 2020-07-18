@@ -5,7 +5,7 @@
     {% set label = 'Update'|trans %}
 {% endif %}
 {% block title %}{{ label }} {{ 'Character'|trans }}{% endblock %}
-{% block pageTitle %}{{ label }} {{ character.shortName ? 'character' }}{% endblock %}
+{% block pageTitle %}{{ label }} {{ character.shortName ? 'character'|trans }}{% endblock %}
 
 {% block body %}
     <div class="card card-custom">
