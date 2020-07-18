@@ -12,7 +12,6 @@
         <div class="card-body">
             <div class="tab-content">
                 {{ include('character/_form.html.twig', {'button_label': label}) }}
-                <a href="{{ path('character_list', {'project': project.id}) }}">{{ 'back to list'|trans }}</a>
                 {{ include('character/_delete_form.html.twig') }}
             </div>
         </div>
