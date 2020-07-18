@@ -1,4 +1,10 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save'|trans) }}</button>
+    <button class="btn btn-primary mr-2">{{ label }}</button>
+    {% if new is defined and new %}
+        <a href="{{ path('character_list', {'project': project.id}) }}" class="btn btn-secondary">{{ 'Cancel'|trans }}</a>
+    {% else %}
+        <a href="{{ path('project_show_chapter', {'project': project.id, 'chapter': chapter.id}) }}" class="btn btn-secondary">{{ 'Cancel'|trans }}</a>
+    {% endif %}
+
 {{ form_end(form) }}
