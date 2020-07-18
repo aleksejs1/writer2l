@@ -12,12 +12,10 @@
             <tr>
                 <th class="sort-buttons"></th>
                 <th></th>
-                <th>{{ 'Viewpoint'|trans }}</th>
-                <th>{{ 'Words'|trans }}</th>
                 <th>{{ 'Scene'|trans }}</th>
+                <th>{{ 'Stats'|trans }}</th>
                 <th>{{ 'Status'|trans }}</th>
-                <th>{{ 'A/R'|trans }}</th>
-                <th>{{ 'Letters'|trans }}</th>
+                <th><span title="{{ 'Action'|trans }}/{{ 'Reaction'|trans }}">{{ 'A/R'|trans }}</span></th>
                 <th>{{ 'Characters'|trans }}</th>
                 <th>{{ 'Locations'|trans }}</th>
                 <th>{{ 'Items'|trans }}</th>
@@ -31,39 +29,43 @@
                         <a class="sort-buttons" href="{{ path('scene_position', {'scene': sceneInList.id, 'newPosition': sceneInList.position - 1, 'project': project.id, 'chapter': sceneInList.chapter.id}) }}"><i class="fas fa-chevron-up"></i></a>
                         <a class="sort-buttons" href="{{ path('scene_position', {'scene': sceneInList.id, 'newPosition': sceneInList.position + 1, 'project': project.id, 'chapter': sceneInList.chapter.id}) }}"><i class="fas fa-chevron-down"></i></a>
                     </td>
-                    <td><a href="{{ path('scene_edit', {'chapter': chapter.id, 'project': project.id, 'scene': sceneInList.id}) }}"><i class="fas fa-edit"></i></a> {{ sceneInList.note ? 'N' : 'Sc' }}</td>
+                    <td><a href="{{ path('scene_edit', {'chapter': chapter.id, 'project': project.id, 'scene': sceneInList.id}) }}" title="{{ 'Edit'|trans }}"><i class="fas fa-edit"></i></a> {% if sceneInList.note %}<span title="{{ 'Notes'|trans }}">{{ 'N'|trans }}</span>{% else %}<span title="{{ 'Scene'|trans }}">{{ 'Sc'|trans }}</span>{% endif %}</td>
                     <td>
-                        <div class="hidden-overflow" style="max-width: 100px;" title="{{ sceneInList.viewpoint ? sceneInList.viewpoint.shortName : 'N/A' }}">
-                            {{ sceneInList.viewpoint ? sceneInList.viewpoint.shortName : 'N/A' }}
+                        <div class="hidden-overflow" style="max-width: 250px;">
+                            <a href="{{ path('scene_show', {'project': sceneInList.chapter.project.id, 'chapter': sceneInList.chapter.id, 'scene': sceneInList.id}) }}" title="{{ sceneInList.title ?: '[No title]' }}">{{ sceneInList.title ?: '[No title]' }}</a>
+                            <br>
+                            {% if sceneInList.viewpoint %}
+                                <span title="{{ 'Viewpoint'|trans }}">
+                                {{ include('character/avatar.html.twig', {'char': sceneInList.viewpoint, 'size': 30}) }}
+                                {{ sceneInList.viewpoint.shortName }}
+                                </span>
+                            {% endif %}
                         </div>
                     </td>
-                    <td>{{ sceneInList.content|striptags()|split(' ')|length }}</td>
                     <td>
-                        <div class="hidden-overflow" style="max-width: 100px;">
-                            <a href="{{ path('scene_show', {'project': sceneInList.chapter.project.id, 'chapter': sceneInList.chapter.id, 'scene': sceneInList.id}) }}" title="{{ sceneInList.title ?: '[No title]' }}">{{ sceneInList.title ?: '[No title]' }}</a>
-                        </div>
+                        <span title="{{ 'Words'|trans }}">{{ 'W'|trans }}: {{ sceneInList.content|striptags()|split(' ')|length }}</span><br>
+                        <span title="{{ 'Letters'|trans }}">{{ 'L'|trans }}: {{ sceneInList.content|striptags()|length }}</span>
                     </td>
                     <td>{{ constant('App\\Entity\\Scene::STATUS_TITLES')[sceneInList.status]|trans }}</td>
-                    <td>{{ constant('App\\Entity\\Scene::GOAL_TITLES')[sceneInList.goalType]|first }}</td>
-                    <td>{{ sceneInList.content|striptags()|length }}</td>
+                    <td><span title="{{ constant('App\\Entity\\Scene::GOAL_TITLES')[sceneInList.goalType]|trans }}">{{ constant('App\\Entity\\Scene::GOAL_TITLES')[sceneInList.goalType]|first|trans }}</span></td>
                     <td>
-                        <div class="hidden-overflow" style="max-width: 100px;">
+                        <div class="hidden-overflow" style="max-width: 150px;">
                             <a href="{{ path('scene_characters', {'project': sceneInList.chapter.project.id, 'chapter': sceneInList.chapter.id, 'scene': sceneInList.id}) }}" title="{% for character in sceneInList.characters %}{{ character.shortname }}{% if not loop.last %}, {% endif %}{% else %}+{% endfor %}">
-                                {% for character in sceneInList.characters %}{{ character.shortname }}{% if not loop.last %}, {% endif %}{% else %}<i class="fas fa-plus-circle"></i>{% endfor %}
+                                {% for character in sceneInList.characters %}{{ character.shortname }}{% if not loop.last %}<br>{% endif %}{% else %}<i class="fas fa-plus"></i>{% endfor %}
                             </a>
                         </div>
                     </td>
                     <td>
-                        <div class="hidden-overflow" style="max-width: 100px;">
+                        <div class="hidden-overflow" style="max-width: 150px;">
                             <a href="{{ path('scene_locations', {'project': sceneInList.chapter.project.id, 'chapter': sceneInList.chapter.id, 'scene': sceneInList.id}) }}" title="{% for location in sceneInList.locations %}{{ location.title }}{% if not loop.last %}, {% endif %}{% else %}+{% endfor %}">
-                                {% for location in sceneInList.locations %}{{ location.title }}{% if not loop.last %}, {% endif %}{% else %}<i class="fas fa-plus-circle"></i>{% endfor %}
+                                {% for location in sceneInList.locations %}{{ location.title }}{% if not loop.last %}<br>{% endif %}{% else %}<i class="fas fa-plus"></i>{% endfor %}
                             </a>
                         </div>
                     </td>
                     <td>
-                        <div class="hidden-overflow" style="max-width: 100px;">
+                        <div class="hidden-overflow" style="max-width: 150px;">
                             <a href="{{ path('scene_items', {'project': sceneInList.chapter.project.id, 'chapter': sceneInList.chapter.id, 'scene': sceneInList.id}) }}" title="{% for item in sceneInList.items %}{{ item.title }}{% if not loop.last %}, {% endif %}{% else %}+{% endfor %}">
-                                {% for item in sceneInList.items %}{{ item.title }}{% if not loop.last %}, {% endif %}{% else %}<i class="fas fa-plus-circle"></i>{% endfor %}
+                                {% for item in sceneInList.items %}{{ item.title }}{% if not loop.last %}<br>{% endif %}{% else %}<i class="fas fa-plus"></i>{% endfor %}
                             </a>
                         </div>
                     </td>
@@ -71,9 +73,12 @@
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="11">no records found</td>
+                    <td colspan="9">no records found</td>
                 </tr>
             {% endfor %}
+                <tr>
+                    <td colspan="9"><a href="{{ path('scene_new', {'project': project.id, 'chapter': chapter.id}) }}"><i class="fas fa-history"></i></a></td>
+                </tr>
             </tbody>
         </table>
     </div>

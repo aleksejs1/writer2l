@@ -369,6 +369,34 @@
         <source>Storyboard</source>
         <target>Сюжетная линия</target>
       </trans-unit>
+      <trans-unit id="tKc2V0D" resname="Stats">
+        <source>Stats</source>
+        <target>Статистика</target>
+      </trans-unit>
+      <trans-unit id=".LX0Dfm" resname="W">
+        <source>W</source>
+        <target>С</target>
+      </trans-unit>
+      <trans-unit id="ct.PsMR" resname="L">
+        <source>L</source>
+        <target>Б</target>
+      </trans-unit>
+      <trans-unit id="VZrq0IJ" resname="A">
+        <source>A</source>
+        <target>А</target>
+      </trans-unit>
+      <trans-unit id="jCV0iSB" resname="R">
+        <source>R</source>
+        <target>Р</target>
+      </trans-unit>
+      <trans-unit id="jOhqauZ" resname="N">
+        <source>N</source>
+        <target>З</target>
+      </trans-unit>
+      <trans-unit id="y_3VKw4" resname="Sc">
+        <source>Sc</source>
+        <target>Сц</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

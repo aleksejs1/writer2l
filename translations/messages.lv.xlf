@@ -369,6 +369,34 @@
         <source>Storyboard</source>
         <target>Sižeta dēlis</target>
       </trans-unit>
+      <trans-unit id="tKc2V0D" resname="Stats">
+        <source>Stats</source>
+        <target>Statistika</target>
+      </trans-unit>
+      <trans-unit id=".LX0Dfm" resname="W">
+        <source>W</source>
+        <target>V</target>
+      </trans-unit>
+      <trans-unit id="ct.PsMR" resname="L">
+        <source>L</source>
+        <target>B</target>
+      </trans-unit>
+      <trans-unit id="VZrq0IJ" resname="A">
+        <source>A</source>
+        <target>A</target>
+      </trans-unit>
+      <trans-unit id="jCV0iSB" resname="R">
+        <source>R</source>
+        <target>R</target>
+      </trans-unit>
+      <trans-unit id="jOhqauZ" resname="N">
+        <source>N</source>
+        <target>P</target>
+      </trans-unit>
+      <trans-unit id="y_3VKw4" resname="Sc">
+        <source>Sc</source>
+        <target>Ai</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
