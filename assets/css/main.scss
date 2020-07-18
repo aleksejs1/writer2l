@@ -176,7 +176,7 @@ td {
 .footer {
   clear: both;
   position: relative;
-  height: 4rem;
+  height: 5rem;
   margin-top: -4rem;
 }
 
@@ -193,4 +193,13 @@ td {
 .custom-editor {
   height: auto;
   min-height: 550px;
+}
+
+.storyline-viewpoint, .storyline-viewpoint a {
+  background-color: #c5c5c5;
+  color: #fbfbfb;
+}
+.storyline-inscene, .storyline-inscene a {
+  background-color: #f6f6f6;
+  color: #888888;
 }
