@@ -58,19 +58,25 @@ function initEditor() {
         $("#custom-editor").on('keyup', function (e) {
             $("#scene_content").val($("#custom-editor").html());
         });
+        $(".scene-save").on('mousedown', function () {
+            $("#scene_content").val($("#custom-editor").html());
+        });
         $('#custom-editor-bold').on('mousedown', function (e) {
             document.execCommand('bold', false, '');
             window.getSelection().getRangeAt(0).startContainer;
+            $("#scene_content").val($("#custom-editor").html());
             e.preventDefault();
         });
         $('#custom-editor-italic').on('mousedown', function (e) {
             document.execCommand('italic', false, '');
             window.getSelection().getRangeAt(0).startContainer;
+            $("#scene_content").val($("#custom-editor").html());
             e.preventDefault();
         });
         $('#custom-editor-underline').on('mousedown', function (e) {
             document.execCommand('underline', false, '');
             window.getSelection().getRangeAt(0).startContainer;
+            $("#scene_content").val($("#custom-editor").html());
             e.preventDefault();
         });
     }
