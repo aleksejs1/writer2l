@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/project/{project}/character")
@@ -20,15 +21,16 @@ class CharacterNewController extends AbstractController
      * @Route("/new", name="character_new", methods={"GET","POST"})
      * @param Request $request
      * @param Project $project
+     * @param TranslatorInterface $translator
      * @return Response
      */
-    public function new(Request $request, Project $project): Response
+    public function new(Request $request, Project $project, TranslatorInterface $translator): Response
     {
         $this->denyAccessUnlessGranted(ProjectVoter::PROJECT_EDIT, $project);
         $character = new Character();
         $character
             ->setProject($project)
-            ->setShortName('New Character')
+            ->setShortName($translator->trans('New Character'))
         ;
         $form = $this->createForm(CharacterType::class, $character);
         $form->handleRequest($request);
