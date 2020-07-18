@@ -14,9 +14,6 @@
                             {% set label = 'Update' %}
                         {% endif %}
                         {{ include('project/_form.html.twig', {'button_label': label}) }}
-
-                        <a href="{{ path('project_index') }}">{{ 'back to list'|trans }}</a>
-
                         {{ include('project/_delete_form.html.twig') }}
                     </div>
                 </div>
