@@ -5,6 +5,62 @@
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
+      <trans-unit id="N3jK31e" resname="Viewpoint">
+        <source>Viewpoint</source>
+        <target>Skatu punkts</target>
+      </trans-unit>
+      <trans-unit id="D08Wlvj" resname="Goal type">
+        <source>Goal type</source>
+        <target>Mērķa tips</target>
+      </trans-unit>
+      <trans-unit id="ZM.xMZ0" resname="Action">
+        <source>Action</source>
+        <target>Darbība</target>
+      </trans-unit>
+      <trans-unit id="2L5yi.0" resname="Reaction">
+        <source>Reaction</source>
+        <target>Reakcija</target>
+      </trans-unit>
+      <trans-unit id="zb9pdei" resname="Goal">
+        <source>Goal</source>
+        <target>Mērķis</target>
+      </trans-unit>
+      <trans-unit id="AUZZq52" resname="Conflict">
+        <source>Conflict</source>
+        <target>Konflikts</target>
+      </trans-unit>
+      <trans-unit id="ToCrtbF" resname="Outcome">
+        <source>Outcome</source>
+        <target>Rezultāts</target>
+      </trans-unit>
+      <trans-unit id="3JN7WYk" resname="None">
+        <source>None</source>
+        <target>Nav</target>
+      </trans-unit>
+      <trans-unit id="kg5BPH1" resname="Status">
+        <source>Status</source>
+        <target>Statuss</target>
+      </trans-unit>
+      <trans-unit id="6rvzq6_" resname="Outline">
+        <source>Outline</source>
+        <target>Kontūra</target>
+      </trans-unit>
+      <trans-unit id="6.Eu9Hz" resname="Draft">
+        <source>Draft</source>
+        <target>Melnraksts</target>
+      </trans-unit>
+      <trans-unit id="pvJrKyw" resname="1st edition">
+        <source>1st edition</source>
+        <target>1. izdevums</target>
+      </trans-unit>
+      <trans-unit id="1xo16qA" resname="2nd edition">
+        <source>2nd edition</source>
+        <target>2. izdevums</target>
+      </trans-unit>
+      <trans-unit id="EaZ2fVZ" resname="Done">
+        <source>Done</source>
+        <target>Gatavs</target>
+      </trans-unit>
       <trans-unit id="0FJ_Sz1" resname="Logout">
         <source>Logout</source>
         <target>Iziet</target>
@@ -133,17 +189,9 @@
         <source>Project</source>
         <target>Projekts</target>
       </trans-unit>
-      <trans-unit id="N3jK31e" resname="Viewpoint">
-        <source>Viewpoint</source>
-        <target>Skatu punkts</target>
-      </trans-unit>
       <trans-unit id="R35a8v1" resname="Scene">
         <source>Scene</source>
         <target>Aina</target>
-      </trans-unit>
-      <trans-unit id="kg5BPH1" resname="Status">
-        <source>Status</source>
-        <target>Statuss</target>
       </trans-unit>
       <trans-unit id="7BUWi39" resname="A/R">
         <source>A/R</source>
@@ -248,6 +296,10 @@
       <trans-unit id="v9QCsvb" resname="Sign in">
         <source>Sign in</source>
         <target>Pieslēgties</target>
+      </trans-unit>
+      <trans-unit id="GXZu1sy" resname="Cancel">
+        <source>Cancel</source>
+        <target>Atcelt</target>
       </trans-unit>
     </body>
   </file>
