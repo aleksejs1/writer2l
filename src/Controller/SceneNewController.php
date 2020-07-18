@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/project/{project}/chapter/{chapter}")
@@ -20,17 +21,22 @@ class SceneNewController extends AbstractController
     /**
      * @Route("/new", name="scene_new", methods={"GET","POST"})
      * @param SceneSaveService $sceneSaveService
+     * @param TranslatorInterface $translator
      * @param Request $request
      * @param Chapter $chapter
      * @return Response
      */
-    public function new(SceneSaveService $sceneSaveService, Request $request, Chapter $chapter): Response
-    {
+    public function new(
+        SceneSaveService $sceneSaveService,
+        TranslatorInterface $translator,
+        Request $request,
+        Chapter $chapter
+    ): Response {
         $this->denyAccessUnlessGranted(ProjectVoter::PROJECT_EDIT, $chapter->getProject());
         $scene = new Scene();
         $scene
             ->setChapter($chapter)
-            ->setTitle('New Scene')
+            ->setTitle($translator->trans('New Scene'))
             ->setPosition($chapter->getScenes()->count())
         ;
 

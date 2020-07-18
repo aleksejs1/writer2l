@@ -61,6 +61,30 @@
         <source>Done</source>
         <target>Gatavs</target>
       </trans-unit>
+      <trans-unit id="T.gDXCR" resname="Short name">
+        <source>Short name</source>
+        <target>Vārds</target>
+      </trans-unit>
+      <trans-unit id="8Tpkui." resname="Full name">
+        <source>Full name</source>
+        <target>Pilnais vārds</target>
+      </trans-unit>
+      <trans-unit id="FHNqLrn" resname="Role">
+        <source>Role</source>
+        <target>Loma</target>
+      </trans-unit>
+      <trans-unit id="ZVimoze" resname="major">
+        <source>major</source>
+        <target>Svarīgs</target>
+      </trans-unit>
+      <trans-unit id="yr14asU" resname="minor">
+        <source>minor</source>
+        <target>Parasts</target>
+      </trans-unit>
+      <trans-unit id="OTOxgCF" resname="Bio">
+        <source>Bio</source>
+        <target>Biogrāfija</target>
+      </trans-unit>
       <trans-unit id="0FJ_Sz1" resname="Logout">
         <source>Logout</source>
         <target>Iziet</target>
@@ -300,6 +324,22 @@
       <trans-unit id="GXZu1sy" resname="Cancel">
         <source>Cancel</source>
         <target>Atcelt</target>
+      </trans-unit>
+      <trans-unit id="UhbKk5s" resname="New Character">
+        <source>New Character</source>
+        <target>Jauns Tēls</target>
+      </trans-unit>
+      <trans-unit id="awlyjTR" resname="New Item">
+        <source>New Item</source>
+        <target>Jauns Priekšmets</target>
+      </trans-unit>
+      <trans-unit id="qaYhJOT" resname="New Location">
+        <source>New Location</source>
+        <target>Jauna Vieta</target>
+      </trans-unit>
+      <trans-unit id="eRmvKFV" resname="New Scene">
+        <source>New Scene</source>
+        <target>Jaunā Aina</target>
       </trans-unit>
     </body>
   </file>
