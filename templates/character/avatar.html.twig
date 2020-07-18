@@ -1,0 +1,10 @@
+{% if size is not defined %}
+    {% set size = 30 %}
+{% endif %}
+{% if char is defined and char is not null and char.avatar and char.avatar|length > 7 %}
+    {% if char.avatar[0:6] == 'female' %}
+        <img src="{{ path('avatar', {'size': size, 'sex': 'female', 'id': char.avatar[7:] }) }}">
+    {% elseif char.avatar[0:4] == 'male' %}
+        <img src="{{ path('avatar', {'size': size, 'sex': 'male', 'id': char.avatar[5:] }) }}">
+    {% endif %}
+{% endif %}

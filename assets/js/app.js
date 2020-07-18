@@ -76,6 +76,51 @@ function initEditor() {
     }
 }
 
+function initAvatarGenerator() {
+    if (!$("#character_avatar").length) {
+        return;
+    }
+    $("<div id='generate-avatar-btn' contentEditable  class='btn btn-light'>Generate</div>").insertAfter("#character_avatar");
+    $("<select id='generate-avatar-sex'><option>male</option><option>female</option></select>").insertAfter("#character_avatar");
+    if ($("#character_avatar").val()) {
+        $(updateAvatar($("#character_avatar").val())).insertAfter("#character_avatar");
+    }
+    $('#generate-avatar-btn').on('mousedown', function (e) {
+        var randStr = $("#generate-avatar-sex").val() + '_' + makeid(15);
+
+        $(".auto-avatar").remove();
+        $(updateAvatar(randStr)).insertAfter("#character_avatar");
+
+
+        $("#character_avatar").val(randStr);
+        // http://192.168.99.100/ru/avatar/200/female/asr123qr1on123or
+    });
+
+    $("#character_avatar").on('keydown', function () {
+        $(".auto-avatar").remove();
+        $(updateAvatar($("#character_avatar").val())).insertAfter("#character_avatar");
+    })
+}
+
+function updateAvatar(avatar , size = 100) {
+    var sex = 'male';
+    console.log(avatar.substr(0,7));
+    if (avatar.substr(0,5) === 'male_') {
+        sex = 'male';
+        avatar = avatar.substr(5, avatar.length);
+    }
+    if (avatar.substr(0,7) === 'female_') {
+        sex = 'female';
+        avatar = avatar.substr(7, avatar.length);
+    }
+
+    var avatarImg = "<img class='auto-avatar' src='" + config.baseUrl + 'en/avatar/' + size + '/' + sex + '/' + avatar + "'>";
+
+    return avatarImg;
+    // $(".auto-avatar").remove();
+    // $("<img class='auto-avatar' src='" + config.baseUrl + 'en/avatar/100/' + sex + '/' + avatar + "'>").insertAfter("#character_avatar");
+}
+
 function initNameGenerator() {
     if (!$("#character_fullName").length) {
         return;
@@ -89,11 +134,21 @@ function initNameGenerator() {
     });
 }
 
+function makeid(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
+
 $(".toggle-sort").on('click', toggleSortButtons);
 $("#scene_description_ajax").on('change', updateSceneDescription);
 $("#scene_note_ajax").on('change', updateSceneNote);
 initEditor();
 initNameGenerator();
-
+initAvatarGenerator();
 
 

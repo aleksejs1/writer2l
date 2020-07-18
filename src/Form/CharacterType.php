@@ -16,6 +16,7 @@ class CharacterType extends AbstractType
             ->add('shortName')
             ->add('fullName')
             ->add('alternates')
+            ->add('avatar')
             ->add('description')
             ->add('role', ChoiceType::class, [
                 'choices' => array_flip(Character::ROLE_LABELS),
