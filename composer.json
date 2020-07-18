@@ -9,6 +9,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-zip": "*",
+        "ext-gd": "*",
         "api-platform/api-pack": "^1.2",
         "henck/rtf-to-html": "^1.1",
         "mpdf/mpdf": "^8.0",

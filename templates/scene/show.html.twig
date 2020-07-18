@@ -67,7 +67,10 @@
                 <div class="tab-pane fade show" id="tab_scene_characters" role="tabpanel" aria-labelledby="tab_scene_characters">
                     <ul>
                     {% for character in scene.characters %}
-                        <li>{{ character.shortname ?: '[No name]' }} {% if character.shortname %}({{ character.shortname }}){% endif %}</li>
+                        <li>
+                            {{ include('character/avatar.html.twig', {'char': character, 'size': 30}) }}
+                            {{ character.shortname ?: '[No name]' }} {% if character.shortname %}({{ character.shortname }}){% endif %}
+                        </li>
                     {% endfor %}
                     </ul>
                 </div>

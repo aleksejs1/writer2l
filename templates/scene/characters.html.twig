@@ -24,13 +24,19 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>{{ 'Short Name'|trans }}</th>
+                                <th>
+                                    {{ 'Short Name'|trans }}
+                                </th>
                             </tr>
                             </thead>
                             <tbody>
                             {% for character in charactersIn %}
                                 <tr>
-                                    <td><a class="btn btn-primary" href="?remove={{ character.id }}">-</a> {{ character.shortName }}</td>
+                                    <td>
+                                        <a class="btn btn-primary" href="?remove={{ character.id }}">-</a>
+                                        {{ include('character/avatar.html.twig', {'char': character, 'size': 30}) }}
+                                        {{ character.shortName }}
+                                    </td>
                                 </tr>
                             {% else %}
                                 <tr>
@@ -50,7 +56,11 @@
                             <tbody>
                             {% for character in charactersOut %}
                                 <tr>
-                                    <td><a class="btn btn-primary" href="?add={{ character.id }}">+</a> {{ character.shortName }}</td>
+                                    <td>
+                                        <a class="btn btn-primary" href="?add={{ character.id }}">+</a>
+                                        {{ include('character/avatar.html.twig', {'char': character, 'size': 30}) }}
+                                        {{ character.shortName }}
+                                    </td>
                                 </tr>
                             {% else %}
                                 <tr>
