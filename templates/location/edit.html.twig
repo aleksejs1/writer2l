@@ -5,7 +5,7 @@
     {% set label = 'Update'|trans %}
 {% endif %}
 {% block title %}{{ label }} Location{% endblock %}
-{% block pageTitle %}{{ label }} {{ location.title ? 'location' }}{% endblock %}
+{% block pageTitle %}{{ label }} {{ location.title ? 'location'|trans }}{% endblock %}
 
 {% block body %}
     <div class="card card-custom">

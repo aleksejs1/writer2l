@@ -84,7 +84,7 @@
                             {% endif %}
                             {% if form is defined and form is not null %}
                                 <span class="text-white label label-dot label-sm opacity-75 mx-3"><i class="fas fa-caret-right"></i></span>
-                                <div class="text-white text-hover-white opacity-75"><i class="fas fa-edit"></i> {% if new is defined and new %}New{% elseif import is defined and import %}{{ 'Import'|trans }}{% else %}{{ 'Edit'|trans }}{% endif %}</div>
+                                <div class="text-white text-hover-white opacity-75"><i class="fas fa-edit"></i> {% if new is defined and new %}{{ 'New'|trans }}{% elseif import is defined and import %}{{ 'Import'|trans }}{% else %}{{ 'Edit'|trans }}{% endif %}</div>
                             {% endif %}
                         </div>
                     </div>
