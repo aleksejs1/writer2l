@@ -1,15 +1,8 @@
-/*
- * Welcome to your app's main JavaScript file!
- *
- * We recommend including the built version of this JavaScript file
- * (and its CSS file) in your base layout (base.html.twig).
- */
-
-// any CSS you import will output into a single css file (app.css in this case)
 import '../css/app.scss';
 import 'bootstrap';
 import bsCustomFileInput from 'bs-custom-file-input';
 import $ from 'jquery';
+import nameGen from './namegen';
 
 const config = {
     'baseUrl': '/'
@@ -83,7 +76,24 @@ function initEditor() {
     }
 }
 
+function initNameGenerator() {
+    if (!$("#character_fullName").length) {
+        return;
+    }
+    $("<div id='generate-name-btn' contentEditable  class='btn btn-light'>Generate</div>").insertAfter("#character_fullName");
+    $("<select id='generate-name-sex'><option>male</option><option>female</option></select>").insertAfter("#character_fullName");
+    $("<select id='generate-name-locale'><option>en</option><option>lv</option><option>ru</option></select>").insertAfter("#character_fullName");
+    $('#generate-name-btn').on('mousedown', function (e) {
+        $("#character_fullName").val(nameGen.generate($("#generate-name-sex").val(),$("#generate-name-locale").val()));
+        e.preventDefault();
+    });
+}
+
 $(".toggle-sort").on('click', toggleSortButtons);
 $("#scene_description_ajax").on('change', updateSceneDescription);
 $("#scene_note_ajax").on('change', updateSceneNote);
 initEditor();
+initNameGenerator();
+
+
+
