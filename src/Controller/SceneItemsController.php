@@ -40,7 +40,7 @@ class SceneItemsController extends AbstractController
             $removeItem = $itemRepository->find($remove);
             if ($scene->getItems()->contains($removeItem)) {
                 $scene->removeItem($removeItem);
-                $sceneRepository->save($scene);
+                $sceneSaveService->save($scene);
             }
         }
 

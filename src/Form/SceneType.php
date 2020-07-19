@@ -3,7 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Character;
+use App\Entity\Project;
 use App\Entity\Scene;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -34,6 +36,13 @@ class SceneType extends AbstractType
                 'required' => false,
                 'class' => Character::class,
                 'choice_label' => 'shortname',
+                'query_builder' => function (EntityRepository $entityRepository) use ($options) {
+                    return $entityRepository
+                        ->createQueryBuilder('c')
+                        ->where('c.project = :project')
+                        ->setParameter('project', $options['project'])
+                        ;
+                },
             ])
             ->add('status', ChoiceType::class, [
                 'choices' => array_flip(Scene::STATUS_TITLES),
@@ -58,5 +67,7 @@ class SceneType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Scene::class,
         ]);
+        $resolver->setRequired('project');
+        $resolver->setAllowedTypes('project', Project::class);
     }
 }

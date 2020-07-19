@@ -40,7 +40,7 @@ class SceneNewController extends AbstractController
             ->setPosition($chapter->getScenes()->count())
         ;
 
-        $form = $this->createForm(SceneType::class, $scene);
+        $form = $this->createForm(SceneType::class, $scene, ['project' => $chapter->getProject()]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
