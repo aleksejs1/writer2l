@@ -9,8 +9,7 @@ class ProjectListControllerTest extends WebTestCase
     public function testProjectListAnon()
     {
         $client = static::createClient();
-        $client->request('GET', '/project/list');
-
-        $this->assertResponseRedirects('/login');
+        $client->request('GET', 'en/project/');
+        self::assertResponseStatusCodeSame(302);
     }
 }
