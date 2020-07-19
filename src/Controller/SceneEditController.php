@@ -26,7 +26,7 @@ class SceneEditController extends AbstractController
     public function edit(SceneSaveService $sceneSaveService, Request $request, Scene $scene): Response
     {
         $this->denyAccessUnlessGranted(ProjectVoter::PROJECT_EDIT, $scene->getChapter()->getProject());
-        $form = $this->createForm(SceneType::class, $scene);
+        $form = $this->createForm(SceneType::class, $scene, ['project' => $scene->getChapter()->getProject()]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
