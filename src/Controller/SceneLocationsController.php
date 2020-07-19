@@ -40,7 +40,7 @@ class SceneLocationsController extends AbstractController
             $removeLocation = $locationRepository->find($remove);
             if ($scene->getLocations()->contains($removeLocation)) {
                 $scene->removeLocation($removeLocation);
-                $sceneRepository->save($scene);
+                $sceneSaveService->save($scene);
             }
         }
 

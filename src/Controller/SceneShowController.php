@@ -3,11 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Scene;
-use App\Form\SceneType;
 use App\Security\Voter\ProjectVoter;
-use App\Service\SceneSaveService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
