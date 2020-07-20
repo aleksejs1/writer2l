@@ -23,5 +23,7 @@ class ProjectListControllerTest extends WebTestCase
         self::assertResponseRedirects();
         $client->followRedirect();
         self::assertSelectorExists('h1:contains("Project index")');
+        self::assertSelectorExists('a:contains("Book1")');
+        self::assertSelectorNotExists('a:contains("Book2")');
     }
 }

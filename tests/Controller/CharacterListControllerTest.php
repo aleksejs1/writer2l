@@ -24,5 +24,7 @@ class CharacterListControllerTest extends WebTestCase
 
         $client->request('GET', $url);
         self::assertResponseIsSuccessful();
+        self::assertSelectorExists('td:contains("John")');
+        self::assertSelectorNotExists('td:contains("Stan")');
     }
 }

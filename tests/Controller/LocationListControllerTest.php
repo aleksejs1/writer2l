@@ -25,5 +25,7 @@ class LocationListControllerTest extends WebTestCase
         $client->request('GET', $url);
         self::assertResponseIsSuccessful();
         self::assertSelectorTextContains('td', 'Home');
+        self::assertSelectorExists('td:contains("Home")');
+        self::assertSelectorNotExists('td:contains("Office")');
     }
 }
