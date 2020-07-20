@@ -26,5 +26,7 @@ class ProjectShowControllerTest extends WebTestCase
         $client->request('GET', $url);
         self::assertResponseIsSuccessful();
         self::assertSelectorTextContains('p', $chapter->getDescription());
+        self::assertSelectorExists('span:contains("Chapter 1")');
+        self::assertSelectorNotExists('span:contains("Chapter one")');
     }
 }
