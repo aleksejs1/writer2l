@@ -25,5 +25,7 @@ class ItemListControllerTest extends WebTestCase
         $client->request('GET', $url);
         self::assertResponseIsSuccessful();
         self::assertSelectorTextContains('td', 'Gun');
+        self::assertSelectorExists('td:contains("Gun")');
+        self::assertSelectorNotExists('td:contains("Flower")');
     }
 }
