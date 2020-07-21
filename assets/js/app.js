@@ -8,6 +8,8 @@ const config = {
     'baseUrl': '/'
 }
 
+var customEditorContent = '';
+
 bsCustomFileInput.init();
 
 function toggleSortButtons() {
@@ -24,7 +26,16 @@ function patchField(field, value, api) {
         contentType: 'application/merge-patch+json',
         url: config.baseUrl + api,
         success: function (data) {
-
+            if ($('#c-saved').length) {
+                var currentdate = new Date();
+                var datetime = "Saved at " + currentdate.getDate() + "/"
+                    + (currentdate.getMonth()+1)  + "/"
+                    + currentdate.getFullYear() + " @ "
+                    + currentdate.getHours() + ":"
+                    + currentdate.getMinutes() + ":"
+                    + currentdate.getSeconds();
+                $('#c-saved').html(datetime);
+            }
         }
     });
 }
@@ -53,6 +64,7 @@ function initEditor() {
         $("<div id='custom-editor-underline' class='btn btn-light'><u>U</u></div>").insertAfter("#scene_content");
         $("<div id='custom-editor-italic' class='btn btn-light'><i>I</i></div>").insertAfter("#scene_content");
         $("<div id='custom-editor-bold' class='btn btn-light'><b>B</b></div>").insertAfter("#scene_content");
+        customEditorContent = $("#scene_content").val();
         $("#custom-editor").html($("#scene_content").val());
         document.execCommand("defaultParagraphSeparator", false, "p");
         $("#custom-editor").on('keyup', function (e) {
@@ -79,7 +91,21 @@ function initEditor() {
             $("#scene_content").val($("#custom-editor").html());
             e.preventDefault();
         });
+
+        saveCustomEditor();
     }
+}
+
+function saveCustomEditor() {
+    if (customEditorContent !== $("#custom-editor").html()) {
+        customEditorContent = $("#custom-editor").html();
+        patchField(
+            'content',
+            customEditorContent,
+            'api/scenes/' + $("#scene_content").data('id')
+        );
+    }
+    setTimeout(saveCustomEditor, 10000);
 }
 
 function initAvatarGenerator() {

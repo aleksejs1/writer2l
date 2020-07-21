@@ -29,7 +29,6 @@ class SceneNewController extends AbstractController
     public function new(
         SceneSaveService $sceneSaveService,
         TranslatorInterface $translator,
-        Request $request,
         Chapter $chapter
     ): Response {
         $this->denyAccessUnlessGranted(ProjectVoter::PROJECT_EDIT, $chapter->getProject());
@@ -38,26 +37,15 @@ class SceneNewController extends AbstractController
             ->setChapter($chapter)
             ->setTitle($translator->trans('New Scene'))
             ->setPosition($chapter->getScenes()->count())
+            ->setStatus(Scene::STATUS_OUTLINE)
+            ->setGoalType(Scene::GOAL_ACTION)
         ;
+        $sceneSaveService->save($scene);
 
-        $form = $this->createForm(SceneType::class, $scene, ['project' => $chapter->getProject()]);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $sceneSaveService->save($scene);
-
-            return $this->redirectToRoute('scene_show', [
-                'project' => $chapter->getProject()->getId(),
-                'chapter' => $chapter->getId(),
-                'scene' => $scene->getId(),
-            ]);
-        }
-
-        return $this->render('scene/new.html.twig', [
-            'scene' => $scene,
-            'project' => $chapter->getProject(),
-            'form' => $form->createView(),
-            'new' => true,
+        return $this->redirectToRoute('scene_edit', [
+            'project' => $chapter->getProject()->getId(),
+            'chapter' => $chapter->getId(),
+            'scene' => $scene->getId(),
         ]);
     }
 }
