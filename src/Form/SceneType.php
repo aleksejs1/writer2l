@@ -19,12 +19,6 @@ class SceneType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('content', TextareaType::class, [
-                'required' => false,
-                'attr' => [
-                    'rows' => 25,
-                ]
-            ])
             ->add('description', TextareaType::class, [
                 'required' => false,
                 'attr' => [
