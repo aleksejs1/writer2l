@@ -27,7 +27,7 @@ class ProjectEditController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('project_index');
+            return $this->redirectToRoute('project_show', ['project' => $project->getId()]);
         }
 
         return $this->render('project/edit.html.twig', [

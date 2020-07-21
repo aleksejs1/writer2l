@@ -31,7 +31,7 @@ class ProjectNewController extends AbstractController
             $entityManager->persist($project);
             $entityManager->flush();
 
-            return $this->redirectToRoute('project_index');
+            return $this->redirectToRoute('project_show', ['project' => $project->getId()]);
         }
 
         return $this->render('project/new.html.twig', [

@@ -46,9 +46,10 @@ class SceneNewController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $sceneSaveService->save($scene);
 
-            return $this->redirectToRoute('project_show_chapter', [
+            return $this->redirectToRoute('scene_show', [
                 'project' => $chapter->getProject()->getId(),
-                'chapter' => $chapter->getId()
+                'chapter' => $chapter->getId(),
+                'scene' => $scene->getId(),
             ]);
         }
 
