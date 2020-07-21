@@ -47,12 +47,6 @@ class SceneType extends AbstractType
             ->add('status', ChoiceType::class, [
                 'choices' => array_flip(Scene::STATUS_TITLES),
             ])
-            ->add('note', TextareaType::class, [
-                'required' => false,
-                'attr' => [
-                    'rows' => 15,
-                ]
-            ])
             ->add('goalType', ChoiceType::class, [
                 'choices' => array_flip(Scene::GOAL_TITLES),
             ])

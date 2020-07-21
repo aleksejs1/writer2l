@@ -5,78 +5,292 @@
 {% block pageTitle %}{{ project.title }} ({{ 'by'|trans }} {{ project.authorsName }}){% endblock %}
 
 {% block body %}
-    <div class="card card-custom">
-        {{ form_start(form) }}
-        <div class="card-header card-header-tabs-line">
-            <div class="card-toolbar">
-
-                <div class="row">
-                    <div class="col-md-12">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card card-custom">
+                {{ form_start(form) }}
+                <div class="card-header card-header-tabs-line">
+                    <div class="card-toolbar">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <ul class="nav nav-tabs nav-bold nav-tabs-line">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-toggle="tab" href="#tab_content">
+                                            <span class="nav-icon"><i class="flaticon2-chat-1"></i></span>
+                                            <span class="nav-text">{{ 'Content'|trans }}</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#tab_details">
+                                            <span class="nav-icon"><i class="flaticon2-drop"></i></span>
+                                            <span class="nav-text">{{ 'Description'|trans }}</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#tab_goal">
+                                            <span class="nav-icon"><i class="flaticon2-drop"></i></span>
+                                            <span class="nav-text">{{ 'Goals'|trans }}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button class="btn btn-primary float-md-right btn-act scene-save">{{ button_label|default('Save'|trans) }}</button>
+                                {% if new is defined and new %}
+                                    <a class="btn btn-light float-md-right btn-act" href="{{ path('project_show_chapter', {"project": scene.chapter.project.id, "chapter": scene.chapter.id}) }}">{{ 'Back'|trans }}</a>
+                                {% else %}
+                                    <a class="btn btn-light float-md-right btn-act" href="{{ path('scene_show', {"project": scene.chapter.project.id, "chapter": scene.chapter.id, 'scene': scene.id}) }}">{{ 'Back'|trans }}</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="tab_content" role="tabpanel" aria-labelledby="tab_content">
+                            {{ form_row(form.title) }}
+                            {{ form_widget(form.content) }}
+                        </div>
+                        <div class="tab-pane fade show" id="tab_goal" role="tabpanel" aria-labelledby="tab_goal">
+                            {{ form_row(form.goalType) }}
+                            {{ form_row(form.goal) }}
+                            {{ form_row(form.conflict) }}
+                            {{ form_row(form.outcome) }}
+                        </div>
+                        <div class="tab-pane fade" id="tab_details" role="tabpanel" aria-labelledby="tab_details">
+                            {{ form_row(form.viewpoint) }}
+                            {{ form_row(form.description) }}
+                            {{ form_row(form.status) }}
+                            {{ form_widget(form) }}
+                            <button class="btn scene-save">{{ button_label|default('Save') }}</button>
+                        </div>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+                {{ include('scene/_delete_form.html.twig') }}
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-custom">
+                <div class="card-header card-header-tabs-line">
+                    <div class="card-title">
+                        <h3 class="card-label">{{ 'Notes'|trans }}</h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <textarea id="scene_note_ajax" name="scene[note]" rows="10" class="form-control" data-scene="1">{{ scene.note }}</textarea>
+                </div>
+            </div>
+            <div class="gutter-b">
+            </div>
+            <div class="card card-custom">
+                <div class="card-header card-header-tabs-line">
+                    <div class="card-toolbar">
                         <ul class="nav nav-tabs nav-bold nav-tabs-line">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#tab_content">
-                                    <span class="nav-icon"><i class="flaticon2-chat-1"></i></span>
-                                    <span class="nav-text">{{ 'Content'|trans }}</span>
+                                <a class="nav-link active" data-toggle="tab" href="#tab_characters" title="{{ 'Characters'|trans }}">
+                                    <span class="nav-icon"><i class="fas fa-users"></i></span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tab_details">
-                                    <span class="nav-icon"><i class="flaticon2-drop"></i></span>
-                                    <span class="nav-text">{{ 'Description'|trans }}</span>
+                                <a class="nav-link" data-toggle="tab" href="#tab_locations" title="{{ 'Locations'|trans }}">
+                                    <span class="nav-icon"><i class="fas fa-map-marker-alt"></i></span>
+                                    <span class="nav-text"></span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tab_notes">
-                                    <span class="nav-icon"><i class="flaticon2-drop"></i></span>
-                                    <span class="nav-text">{{ 'Notes'|trans }}</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tab_goal">
-                                    <span class="nav-icon"><i class="flaticon2-drop"></i></span>
-                                    <span class="nav-text">{{ 'Goals'|trans }}</span>
+                                <a class="nav-link" data-toggle="tab" href="#tab_items" title="{{ 'Items'|trans }}">
+                                    <span class="nav-icon"><i class="fas fa-box"></i></span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <button class="btn btn-primary float-md-right btn-act scene-save">{{ button_label|default('Save'|trans) }}</button>
-                        {% if new is defined and new %}
-                            <a class="btn btn-light float-md-right btn-act" href="{{ path('project_show_chapter', {"project": scene.chapter.project.id, "chapter": scene.chapter.id}) }}">{{ 'Back'|trans }}</a>
-                        {% else %}
-                            <a class="btn btn-light float-md-right btn-act" href="{{ path('scene_show', {"project": scene.chapter.project.id, "chapter": scene.chapter.id, 'scene': scene.id}) }}">{{ 'Back'|trans }}</a>
-                        {% endif %}
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="tab_characters" role="tabpanel" aria-labelledby="tab_characters">
+                                {% if scene.viewpoint %}
+                                    <h5>{{ 'Viewpoint'|trans }}</h5>
+                                    <div class="flex-grow-1 card-spacer-x">
+                                        <div class="d-flex align-items-center justify-content-between mb-10 ll-lit-item">
+                                            <div class="d-flex align-items-center">
+                                                <div>
+                                                    {{ include('character/avatar.html.twig', {'char': scene.viewpoint, 'size': 30}) }}
+                                                    <b>{{ scene.viewpoint.shortName|default('[No name]'|trans) }}</b>
+                                                    <div class="font-size-sm mt-1">
+                                                        {{ scene.viewpoint.description }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                <h5>{{ 'Characters'|trans }} {{ 'in scene'|trans }}</h5>
+                                <div class="flex-grow-1 card-spacer-x">
+                                    {% set count = 0 %}
+                                    {% for character in scene.characters %}
+                                        {% if not scene.viewpoint or character.id != scene.viewpoint.id %}
+                                            {% set count = count + 1 %}
+                                            <div class="d-flex align-items-center justify-content-between mb-10 ll-lit-item">
+                                                <div class="d-flex align-items-center">
+                                                    <div>
+                                                        {{ include('character/avatar.html.twig', {'char': character, 'size': 30}) }}
+                                                        <b>{{ character.shortName|default('[No name]'|trans) }}</b>
+                                                        <div class="font-size-sm mt-1">
+                                                            {{ character.description }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if count == 0 %}
+                                        <div class="d-flex align-items-center justify-content-between mb-10 ll-lit-item">
+                                            <div class="d-flex align-items-center">
+                                                <div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <h5>{{ 'Characters'|trans }} {{ 'in book'|trans }}</h5>
+                                <div class="flex-grow-1 card-spacer-x">
+                                    {% set count = 0 %}
+                                    {% for character in project.characters %}
+                                        {% if not scene.characters.contains(character) and (not scene.viewpoint or character.id != scene.viewpoint.id) %}
+                                            {% set count = count + 1 %}
+                                            <div class="d-flex align-items-center justify-content-between mb-10 ll-lit-item">
+                                                <div class="d-flex align-items-center">
+                                                    <div>
+                                                        {{ include('character/avatar.html.twig', {'char': character, 'size': 30}) }}
+                                                        <b>{{ character.shortName|default('[No name]'|trans) }}</b>
+                                                        <div class="font-size-sm mt-1">
+                                                            {{ character.description }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if count == 0 %}
+                                        <div class="d-flex align-items-center justify-content-between mb-10 ll-lit-item">
+                                            <div class="d-flex align-items-center">
+                                                <div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="tab-pane fade show" id="tab_locations" role="tabpanel" aria-labelledby="tab_locations">
+                                <h5>{{ 'Locations'|trans }} {{ 'in scene'|trans }}</h5>
+                                <div class="flex-grow-1 card-spacer-x">
+                                    {% for location in scene.locations %}
+                                        <div class="d-flex align-items-center justify-content-between mb-10 ll-lit-item">
+                                            <div class="d-flex align-items-center">
+                                                <div>
+                                                    <b>{{ location.title|default('[No title]'|trans) }}</b>
+                                                    <div class="font-size-sm mt-1">
+                                                        {{ location.description }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="d-flex align-items-center justify-content-between mb-10 ll-lit-item">
+                                            <div class="d-flex align-items-center">
+                                                <div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <h5>{{ 'Locations'|trans }} {{ 'in book'|trans }}</h5>
+                                <div class="flex-grow-1 card-spacer-x">
+                                    {% set count = 0 %}
+                                    {% for location in project.locations %}
+                                        {% if not scene.locations.contains(location) %}
+                                            {% set count = count + 1 %}
+                                            <div class="d-flex align-items-center justify-content-between mb-10 ll-lit-item">
+                                                <div class="d-flex align-items-center">
+                                                    <div>
+                                                        <b>{{ location.title|default('[No title]'|trans) }}</b>
+                                                        <div class="font-size-sm mt-1">
+                                                            {{ location.description }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if count == 0 %}
+                                        <div class="d-flex align-items-center justify-content-between mb-10 ll-lit-item">
+                                            <div class="d-flex align-items-center">
+                                                <div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="tab-pane fade show" id="tab_items" role="tabpanel" aria-labelledby="tab_items">
+                                <h5>{{ 'Items'|trans }} {{ 'in scene'|trans }}</h5>
+                                <div class="flex-grow-1 card-spacer-x">
+                                    {% for item in scene.items %}
+                                        <div class="d-flex align-items-center justify-content-between mb-10 ll-lit-item">
+                                            <div class="d-flex align-items-center">
+                                                <div>
+                                                    <b>{{ item.title|default('[No title]'|trans) }}</b>
+                                                    <div class="font-size-sm mt-1">
+                                                        {{ item.description }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="d-flex align-items-center justify-content-between mb-10 ll-lit-item">
+                                            <div class="d-flex align-items-center">
+                                                <div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <h5>{{ 'Items'|trans }} {{ 'in book'|trans }}</h5>
+                                <div class="flex-grow-1 card-spacer-x">
+                                    {% set count = 0 %}
+                                    {% for item in project.items %}
+                                        {% if not scene.items.contains(item) %}
+                                            {% set count = count + 1 %}
+                                            <div class="d-flex align-items-center justify-content-between mb-10 ll-lit-item">
+                                                <div class="d-flex align-items-center">
+                                                    <div>
+                                                        <b>{{ item.title|default('[No title]'|trans) }}</b>
+                                                        <div class="font-size-sm mt-1">
+                                                            {{ item.description }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if count == 0 %}
+                                        <div class="d-flex align-items-center justify-content-between mb-10 ll-lit-item">
+                                            <div class="d-flex align-items-center">
+                                                <div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="card-body">
-            <div class="tab-content">
-                <div class="tab-pane fade show active" id="tab_content" role="tabpanel" aria-labelledby="tab_content">
-                    {{ form_widget(form.content) }}
-                </div>
-                <div class="tab-pane fade show" id="tab_notes" role="tabpanel" aria-labelledby="tab_notes">
-                    {{ form_widget(form.note) }}
-                </div>
-                <div class="tab-pane fade show" id="tab_goal" role="tabpanel" aria-labelledby="tab_goal">
-                    {{ form_row(form.goalType) }}
-                    {{ form_row(form.goal) }}
-                    {{ form_row(form.conflict) }}
-                    {{ form_row(form.outcome) }}
-                </div>
-                <div class="tab-pane fade" id="tab_details" role="tabpanel" aria-labelledby="tab_details">
-                    {{ form_row(form.title) }}
-                    {{ form_row(form.viewpoint) }}
-                    {{ form_row(form.description) }}
-                    {{ form_row(form.status) }}
-                    {{ form_widget(form) }}
-                    <button class="btn scene-save">{{ button_label|default('Save') }}</button>
-                </div>
-            </div>
-        </div>
-        {{ form_end(form) }}
-        {{ include('scene/_delete_form.html.twig') }}
     </div>
 {% endblock %}
