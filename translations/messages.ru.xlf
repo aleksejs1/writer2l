@@ -397,6 +397,22 @@
         <source>Sc</source>
         <target>Сц</target>
       </trans-unit>
+      <trans-unit id="cq8jlvC" resname="[No name]">
+        <source>[No name]</source>
+        <target>[Без имени]</target>
+      </trans-unit>
+      <trans-unit id="G5hWMjy" resname="in scene">
+        <source>in scene</source>
+        <target>в сцене</target>
+      </trans-unit>
+      <trans-unit id="C9Zj6Cq" resname="in book">
+        <source>in book</source>
+        <target>в книге</target>
+      </trans-unit>
+      <trans-unit id="kXzHPo0" resname="[No title]">
+        <source>[No title]</source>
+        <target>[Без названия]</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
