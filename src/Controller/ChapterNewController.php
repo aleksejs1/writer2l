@@ -46,7 +46,10 @@ class ChapterNewController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $chapterRepository->save($chapter);
 
-            return $this->redirectToRoute('project_show', ['project' => $project->getId()]);
+            return $this->redirectToRoute('project_show_chapter', [
+                'project' => $project->getId(),
+                'chapter' => $chapter->getId()
+            ]);
         }
 
         return $this->render('chapter/new.html.twig', [
