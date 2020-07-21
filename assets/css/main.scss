@@ -203,3 +203,14 @@ td {
   background-color: #f6f6f6;
   color: #888888;
 }
+
+.font-size-sm {
+  font-size: 0.8rem;
+}
+
+.ll-lit-item {
+  background-color: #f6f6f6;
+  margin-bottom: 5px;
+  border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) calc(0.25rem - 1px) calc(0.25rem - 1px);
+  padding: 8px;
+}
