@@ -176,6 +176,97 @@ function makeid(length) {
     return result;
 }
 
+function addChar() {
+    var self = $(this);
+    $.ajax({
+        type: 'GET',
+        data: {'add': $(this).data('char')},
+        url: config.baseUrl + 'api/project/scene/'+$(this).data('id')+'/characters',
+        success: function (data) {
+            $("#char-in-list").append(self.parent().parent().parent());
+            self.unbind();
+            self.html('Remove');
+            self.on('click', removeChar);
+        }
+    });
+}
+function removeChar() {
+    var self = $(this);
+    $.ajax({
+        type: 'GET',
+        data: {'remove': $(this).data('char')},
+        url: config.baseUrl + 'api/project/scene/'+$(this).data('id')+'/characters',
+        success: function (data) {
+            $("#char-out-list").append(self.parent().parent().parent());
+            self.unbind();
+            self.html('Add');
+            self.on('click', addChar);
+        }
+    });
+}
+function addLocation() {
+    var self = $(this);
+    $.ajax({
+        type: 'GET',
+        data: {'add': $(this).data('location')},
+        url: config.baseUrl + 'api/project/scene/'+$(this).data('id')+'/locations',
+        success: function (data) {
+            $("#locations-in-list").append(self.parent().parent().parent());
+            self.unbind();
+            self.html('Remove');
+            self.on('click', removeLocation);
+        }
+    });
+}
+function removeLocation() {
+    var self = $(this);
+    $.ajax({
+        type: 'GET',
+        data: {'remove': $(this).data('location')},
+        url: config.baseUrl + 'api/project/scene/'+$(this).data('id')+'/locations',
+        success: function (data) {
+            $("#locations-out-list").append(self.parent().parent().parent());
+            self.unbind();
+            self.html('Add');
+            self.on('click', addLocation);
+        }
+    });
+}
+function addItem() {
+    var self = $(this);
+    $.ajax({
+        type: 'GET',
+        data: {'add': $(this).data('item')},
+        url: config.baseUrl + 'api/project/scene/'+$(this).data('id')+'/items',
+        success: function (data) {
+            $("#items-in-list").append(self.parent().parent().parent());
+            self.unbind();
+            self.html('Remove');
+            self.on('click', removeItem);
+        }
+    });
+}
+function removeItem() {
+    var self = $(this);
+    $.ajax({
+        type: 'GET',
+        data: {'remove': $(this).data('item')},
+        url: config.baseUrl + 'api/project/scene/'+$(this).data('id')+'/items',
+        success: function (data) {
+            $("#items-out-list").append(self.parent().parent().parent());
+            self.unbind();
+            self.html('Add');
+            self.on('click', addItem);
+        }
+    });
+}
+
+$(".character-add").on('click', addChar);
+$(".character-remove").on('click', removeChar);
+$(".location-add").on('click', addLocation);
+$(".location-remove").on('click', removeLocation);
+$(".item-add").on('click', addItem);
+$(".item-remove").on('click', removeItem);
 $(".toggle-sort").on('click', toggleSortButtons);
 $("#scene_description_ajax").on('change', updateSceneDescription);
 $("#scene_note_ajax").on('change', updateSceneNote);
