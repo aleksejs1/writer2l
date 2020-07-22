@@ -32,6 +32,18 @@
                                             <span class="nav-text">{{ 'Goals'|trans }}</span>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#tab_timing">
+                                            <span class="nav-icon"><i class="flaticon2-drop"></i></span>
+                                            <span class="nav-text">{{ 'Time'|trans }}</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#tab_ratings">
+                                            <span class="nav-icon"><i class="flaticon2-drop"></i></span>
+                                            <span class="nav-text">{{ 'Ratings'|trans }}</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -62,12 +74,22 @@
                             {{ form_row(form.conflict) }}
                             {{ form_row(form.outcome) }}
                         </div>
+                        <div class="tab-pane fade show" id="tab_ratings" role="tabpanel" aria-labelledby="tab_ratings">
+                            {{ form_row(form.relevance) }}
+                            {{ form_row(form.tension) }}
+                            {{ form_row(form.humor) }}
+                            {{ form_row(form.quality) }}
+                        </div>
+                        <div class="tab-pane fade show" id="tab_timing" role="tabpanel" aria-labelledby="tab_timing">
+                            {{ form_row(form.startTimestamp) }}
+                            {{ form_row(form.timeLength) }}
+                        </div>
                         <div class="tab-pane fade" id="tab_details" role="tabpanel" aria-labelledby="tab_details">
                             {{ form_row(form.viewpoint) }}
                             {{ form_row(form.description) }}
                             {{ form_row(form.status) }}
                             {{ form_widget(form) }}
-                            <button class="btn scene-save">{{ button_label|default('Save') }}</button>
+                            <button class="btn scene-save">{{ button_label|default('Save'|trans) }}</button>
                         </div>
                     </div>
                 </div>

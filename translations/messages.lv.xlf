@@ -413,6 +413,14 @@
         <source>[No title]</source>
         <target>[Bez nosaukuma]</target>
       </trans-unit>
+      <trans-unit id="M7k0ds9" resname="Time">
+        <source>Time</source>
+        <target>Laiks</target>
+      </trans-unit>
+      <trans-unit id=".4Ymk9q" resname="Ratings">
+        <source>Ratings</source>
+        <target>Vērtējumi</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

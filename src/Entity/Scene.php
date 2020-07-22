@@ -48,6 +48,13 @@ class Scene implements SortableInterface
         self::GOAL_ACTION => 'Action',
         self::GOAL_REACTION => 'Reaction',
     ];
+
+    public const IMPORTANCE_PLOT = 1;
+    public const IMPORTANCE_SUBPLOT = 2;
+    public const IMPORTANCE_TITLES = [
+        self::IMPORTANCE_PLOT => 'Plot',
+        self::IMPORTANCE_SUBPLOT => 'Subplot',
+    ];
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -148,6 +155,51 @@ class Scene implements SortableInterface
      * @ORM\OrderBy({"version" = "desc"})
      */
     private $sceneRevisions;
+
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $importance;
+
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $exporting;
+
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $relevance;
+
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $tension;
+
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $humor;
+
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $quality;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $startTimestamp;
+
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $startString;
+
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $timeLength;
 
     public function __construct()
     {
@@ -417,6 +469,114 @@ class Scene implements SortableInterface
                 $sceneRevision->setScene(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImportance(): ?int
+    {
+        return $this->importance;
+    }
+
+    public function setImportance(?int $importance): self
+    {
+        $this->importance = $importance;
+
+        return $this;
+    }
+
+    public function getExporting(): ?int
+    {
+        return $this->exporting;
+    }
+
+    public function setExporting(?int $exporting): self
+    {
+        $this->exporting = $exporting;
+
+        return $this;
+    }
+
+    public function getRelevance(): ?int
+    {
+        return $this->relevance;
+    }
+
+    public function setRelevance(?int $relevance): self
+    {
+        $this->relevance = $relevance;
+
+        return $this;
+    }
+
+    public function getTension(): ?int
+    {
+        return $this->tension;
+    }
+
+    public function setTension(?int $tension): self
+    {
+        $this->tension = $tension;
+
+        return $this;
+    }
+
+    public function getHumor(): ?int
+    {
+        return $this->humor;
+    }
+
+    public function setHumor(?int $humor): self
+    {
+        $this->humor = $humor;
+
+        return $this;
+    }
+
+    public function getQuality(): ?int
+    {
+        return $this->quality;
+    }
+
+    public function setQuality(?int $quality): self
+    {
+        $this->quality = $quality;
+
+        return $this;
+    }
+
+    public function getStartTimestamp(): ?\DateTimeInterface
+    {
+        return $this->startTimestamp;
+    }
+
+    public function setStartTimestamp(?\DateTimeInterface $startTimestamp): self
+    {
+        $this->startTimestamp = $startTimestamp;
+
+        return $this;
+    }
+
+    public function getStartString(): ?string
+    {
+        return $this->startString;
+    }
+
+    public function setStartString(?string $startString): self
+    {
+        $this->startString = $startString;
+
+        return $this;
+    }
+
+    public function getTimeLength(): ?string
+    {
+        return $this->timeLength;
+    }
+
+    public function setTimeLength(?string $timeLength): self
+    {
+        $this->timeLength = $timeLength;
 
         return $this;
     }
