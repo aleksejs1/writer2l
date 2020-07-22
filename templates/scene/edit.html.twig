@@ -132,7 +132,7 @@
                                     </div>
                                 {% endif %}
                                 <h5>{{ 'Characters'|trans }} {{ 'in scene'|trans }}</h5>
-                                <div class="flex-grow-1 card-spacer-x">
+                                <div class="flex-grow-1 card-spacer-x" id="char-in-list">
                                     {% set count = 0 %}
                                     {% for character in scene.characters %}
                                         {% if not scene.viewpoint or character.id != scene.viewpoint.id %}
@@ -145,6 +145,7 @@
                                                         <div class="font-size-sm mt-1">
                                                             {{ character.description }}
                                                         </div>
+                                                        <div class="character-remove" data-id="{{ scene.id }}" data-char="{{ character.id }}">Remove</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -160,7 +161,7 @@
                                     {% endif %}
                                 </div>
                                 <h5>{{ 'Characters'|trans }} {{ 'in book'|trans }}</h5>
-                                <div class="flex-grow-1 card-spacer-x">
+                                <div class="flex-grow-1 card-spacer-x" id="char-out-list">
                                     {% set count = 0 %}
                                     {% for character in project.characters %}
                                         {% if not scene.characters.contains(character) and (not scene.viewpoint or character.id != scene.viewpoint.id) %}
@@ -173,6 +174,7 @@
                                                         <div class="font-size-sm mt-1">
                                                             {{ character.description }}
                                                         </div>
+                                                        <div class="character-add" data-id="{{ scene.id }}" data-char="{{ character.id }}">Add</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -190,7 +192,7 @@
                             </div>
                             <div class="tab-pane fade show" id="tab_locations" role="tabpanel" aria-labelledby="tab_locations">
                                 <h5>{{ 'Locations'|trans }} {{ 'in scene'|trans }}</h5>
-                                <div class="flex-grow-1 card-spacer-x">
+                                <div class="flex-grow-1 card-spacer-x" id="locations-in-list">
                                     {% for location in scene.locations %}
                                         <div class="d-flex align-items-center justify-content-between mb-10 ll-lit-item">
                                             <div class="d-flex align-items-center">
@@ -199,6 +201,7 @@
                                                     <div class="font-size-sm mt-1">
                                                         {{ location.description }}
                                                     </div>
+                                                    <div class="location-remove" data-id="{{ scene.id }}" data-location="{{ location.id }}">Remove</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -212,7 +215,7 @@
                                     {% endfor %}
                                 </div>
                                 <h5>{{ 'Locations'|trans }} {{ 'in book'|trans }}</h5>
-                                <div class="flex-grow-1 card-spacer-x">
+                                <div class="flex-grow-1 card-spacer-x" id="locations-out-list">
                                     {% set count = 0 %}
                                     {% for location in project.locations %}
                                         {% if not scene.locations.contains(location) %}
@@ -224,6 +227,7 @@
                                                         <div class="font-size-sm mt-1">
                                                             {{ location.description }}
                                                         </div>
+                                                        <div class="location-add" data-id="{{ scene.id }}" data-location="{{ location.id }}">Add</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -241,7 +245,7 @@
                             </div>
                             <div class="tab-pane fade show" id="tab_items" role="tabpanel" aria-labelledby="tab_items">
                                 <h5>{{ 'Items'|trans }} {{ 'in scene'|trans }}</h5>
-                                <div class="flex-grow-1 card-spacer-x">
+                                <div class="flex-grow-1 card-spacer-x" id="items-in-list">
                                     {% for item in scene.items %}
                                         <div class="d-flex align-items-center justify-content-between mb-10 ll-lit-item">
                                             <div class="d-flex align-items-center">
@@ -250,6 +254,7 @@
                                                     <div class="font-size-sm mt-1">
                                                         {{ item.description }}
                                                     </div>
+                                                    <div class="item-remove" data-id="{{ scene.id }}" data-item="{{ item.id }}">Remove</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -263,7 +268,7 @@
                                     {% endfor %}
                                 </div>
                                 <h5>{{ 'Items'|trans }} {{ 'in book'|trans }}</h5>
-                                <div class="flex-grow-1 card-spacer-x">
+                                <div class="flex-grow-1 card-spacer-x" id="items-out-list">
                                     {% set count = 0 %}
                                     {% for item in project.items %}
                                         {% if not scene.items.contains(item) %}
@@ -275,6 +280,7 @@
                                                         <div class="font-size-sm mt-1">
                                                             {{ item.description }}
                                                         </div>
+                                                        <div class="item-add" data-id="{{ scene.id }}" data-item="{{ item.id }}">Add</div>
                                                     </div>
                                                 </div>
                                             </div>
