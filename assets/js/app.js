@@ -61,14 +61,17 @@ function initEditor() {
     if ($("#scene_content").length) {
         $("#scene_content").hide();
         $("<div id='custom-editor' contentEditable  class='form-control custom-editor'></div>").insertAfter("#scene_content");
+        $("<div id='custom-editor-stats' class='btn btn-light float-right disabled'></div>").insertAfter("#scene_content");
         $("<div id='custom-editor-underline' class='btn btn-light'><u>U</u></div>").insertAfter("#scene_content");
         $("<div id='custom-editor-italic' class='btn btn-light'><i>I</i></div>").insertAfter("#scene_content");
         $("<div id='custom-editor-bold' class='btn btn-light'><b>B</b></div>").insertAfter("#scene_content");
         customEditorContent = $("#scene_content").val();
         $("#custom-editor").html($("#scene_content").val());
         document.execCommand("defaultParagraphSeparator", false, "p");
+        $("#custom-editor-stats").html(getStatSting());
         $("#custom-editor").on('keyup', function (e) {
             $("#scene_content").val($("#custom-editor").html());
+            $("#custom-editor-stats").html(getStatSting());
         });
         $(".scene-save").on('mousedown', function () {
             $("#scene_content").val($("#custom-editor").html());
@@ -94,6 +97,32 @@ function initEditor() {
 
         saveCustomEditor();
     }
+}
+
+function getStatSting() {
+    var w = $('#trans-words').html() !== undefined ? $('#trans-words').html() : 'W';
+    var l = $('#trans-letters').html() !== undefined ? $('#trans-letters').html() : 'L';
+    var words = $('#trans-words').attr('title') !== undefined ? $('#trans-words').attr('title') : 'Words';
+    var letters = $('#trans-letters').attr('title') !== undefined ? $('#trans-letters').attr('title') : 'Letters';
+
+    return '<span title="' + words + '">' + w + ':' + wordCount($("#custom-editor").children()) + '</span> <span title="' + letters + '">' + l + ':' + charCount($("#custom-editor").children()) + '</span>';
+}
+
+function wordCount(elements) {
+    var count = 0;
+    for (var i = 0; i < elements.length; i++) {
+        if (elements[i].textContent && elements[i].textContent.trim() !== "") {
+            count += elements[i].textContent.trim().replace(/\s\s+/g, ' ').split(/\s/).length;
+        }
+    }
+    return count;
+}
+function charCount(elements) {
+    var count = 0;
+    for (var i = 0; i < elements.length; i++) {
+        count += elements[i].textContent.length;
+    }
+    return count;
 }
 
 function saveCustomEditor() {
