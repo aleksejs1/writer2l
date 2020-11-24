@@ -30,12 +30,10 @@ function patchField(field, value, api) {
         success: function (data) {
             if ($('#c-saved').length) {
                 var currentdate = new Date();
-                var datetime = "Saved at " + currentdate.getDate() + "/"
-                    + (currentdate.getMonth()+1)  + "/"
-                    + currentdate.getFullYear() + " @ "
-                    + currentdate.getHours() + ":"
-                    + currentdate.getMinutes() + ":"
-                    + currentdate.getSeconds();
+                var datetime = "Saved at "
+                    + currentdate.toLocaleDateString()
+                    + " @ "
+                    + currentdate.toLocaleTimeString();
                 $('#c-saved').html(datetime);
             }
         }
@@ -69,14 +67,15 @@ function initEditor() {
         $("<div id='custom-editor-bold' class='btn btn-light'><b>B</b></div>").insertAfter("#scene_content");
         customEditorContent = $("#scene_content").val();
         $("#custom-editor").html($("#scene_content").val());
-        document.execCommand("defaultParagraphSeparator", false, "p");
         $("#custom-editor-stats").html(editorStats.getStatSting());
         $("#custom-editor").on('keyup', function (e) {
+            fixFirstParagraph();
             $("#scene_content").val($("#custom-editor").html());
             $("#custom-editor-stats").html(editorStats.getStatSting());
         });
         $(".scene-save").on('mousedown', function () {
             $("#scene_content").val($("#custom-editor").html());
+            saveCustomEditor();
         });
         $('#custom-editor-bold').on('mousedown', function (e) {
             document.execCommand('bold', false, '');
@@ -98,6 +97,30 @@ function initEditor() {
         });
 
         saveCustomEditor();
+    }
+}
+
+function fixFirstParagraph() {
+    var div = document.getElementById('custom-editor');
+
+    if (div.firstChild !== null && div.firstChild.tagName === undefined) {
+        var text = div.firstChild.textContent;
+        div.removeChild(div.firstChild);
+        var p = document.createElement('p');
+        p.textContent = text;
+        div.insertBefore(p, div.firstChild);
+
+        var el = div.firstChild;
+        el.focus();
+        if (typeof window.getSelection != "undefined"
+            && typeof document.createRange != "undefined") {
+            var range = document.createRange();
+            range.selectNodeContents(el);
+            range.collapse(false);
+            var sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+        }
     }
 }
 
