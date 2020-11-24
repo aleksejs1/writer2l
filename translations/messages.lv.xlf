@@ -89,6 +89,82 @@
         <source>Aka</source>
         <target>Aka</target>
       </trans-unit>
+      <trans-unit id="4nNhdCD" resname="Relevance">
+        <source>Relevance</source>
+        <target>Atbilstība</target>
+      </trans-unit>
+      <trans-unit id="a4ayc.8" resname="1">
+        <source>1</source>
+        <target>1</target>
+      </trans-unit>
+      <trans-unit id="1HNeOiZ" resname="2">
+        <source>2</source>
+        <target>2</target>
+      </trans-unit>
+      <trans-unit id="TgdAhWK" resname="3">
+        <source>3</source>
+        <target>3</target>
+      </trans-unit>
+      <trans-unit id="SyJ3d9T" resname="4">
+        <source>4</source>
+        <target>4</target>
+      </trans-unit>
+      <trans-unit id="7y0SfeN" resname="5">
+        <source>5</source>
+        <target>5</target>
+      </trans-unit>
+      <trans-unit id="5.bAEXd" resname="6">
+        <source>6</source>
+        <target>6</target>
+      </trans-unit>
+      <trans-unit id="eQJpm_Q" resname="7">
+        <source>7</source>
+        <target>7</target>
+      </trans-unit>
+      <trans-unit id="LGJCMs3" resname="8">
+        <source>8</source>
+        <target>8</target>
+      </trans-unit>
+      <trans-unit id="GVgeJ95" resname="9">
+        <source>9</source>
+        <target>9</target>
+      </trans-unit>
+      <trans-unit id="SkTcFTZ" resname="10">
+        <source>10</source>
+        <target>10</target>
+      </trans-unit>
+      <trans-unit id="tTBpqDg" resname="Tension">
+        <source>Tension</source>
+        <target>Spriedze</target>
+      </trans-unit>
+      <trans-unit id="ilkGEfS" resname="Humor">
+        <source>Humor</source>
+        <target>Humors</target>
+      </trans-unit>
+      <trans-unit id="GywIqHM" resname="Quality">
+        <source>Quality</source>
+        <target>Kvalitāte</target>
+      </trans-unit>
+      <trans-unit id="7NPAmSj" resname="Time of scene">
+        <source>Time of scene</source>
+        <target>Ainas sākums</target>
+      </trans-unit>
+      <trans-unit id="_erXSG3" resname="Scene duration">
+        <source>Scene duration</source>
+        <target>Ainas ilgums</target>
+      </trans-unit>
+      <trans-unit id="P8eLXhK" resname="Importance">
+        <source>Importance</source>
+        <target>Svarīgums</target>
+      </trans-unit>
+      <trans-unit id="oPBTmt5" resname="Plot">
+        <source>Plot</source>
+        <target>Gabals</target>
+      </trans-unit>
+      <trans-unit id="FBMf8PM" resname="Subplot">
+        <source>Subplot</source>
+        <target>Apakšvirsraksts</target>
+      </trans-unit>
       <trans-unit id="0FJ_Sz1" resname="Logout">
         <source>Logout</source>
         <target>Iziet</target>
@@ -420,6 +496,14 @@
       <trans-unit id=".4Ymk9q" resname="Ratings">
         <source>Ratings</source>
         <target>Vērtējumi</target>
+      </trans-unit>
+      <trans-unit id="n4Ry5vi" resname="Words per minute">
+        <source>Words per minute</source>
+        <target>Vārdi minūtē</target>
+      </trans-unit>
+      <trans-unit id="RFT8sDx" resname="wpm">
+        <source>wpm</source>
+        <target>vm</target>
       </trans-unit>
     </body>
   </file>
