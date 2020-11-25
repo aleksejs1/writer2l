@@ -26,6 +26,23 @@ php bin/console w2l:user:create admin qwerty
 yarn install
 yarn run dev
 ```
+### Update
+```
+git pull
+composer install --no-dev --optimize-autoloader
+php bin/console doctrine:migrations:migrate
+php bin/console cache:clear
+```
+In case if migration returns the error, try to update migration versions table in mysql:
+```
+CREATE TABLE `doctrine_migration_versions` (
+ `version` varchar(191) NOT NULL,
+ `executed_at` datetime DEFAULT NULL,
+ `execution_time` int DEFAULT NULL,
+ PRIMARY KEY (`version`)
+);
+INSERT INTO doctrine_migration_versions (version, executed_at, execution_time) SELECT concat("DoctrineMigrations\\Version", version), executed_at, 1 FROM migration_versions;
+```
 ### Docker
 ``` bash
 docker-compose up

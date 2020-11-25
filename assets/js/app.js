@@ -6,7 +6,8 @@ import nameGen from './namegen';
 import EditorStats from "./editorStats";
 
 const config = {
-    'baseUrl': '/'
+    'baseUrl': '/',
+    'autosavePeriod': 5500,
 }
 
 var customEditorContent = '';
@@ -133,7 +134,7 @@ function saveCustomEditor() {
             'api/scenes/' + $("#scene_content").data('id')
         );
     }
-    setTimeout(saveCustomEditor, 10000);
+    setTimeout(saveCustomEditor, config.autosavePeriod);
 }
 
 function initAvatarGenerator() {

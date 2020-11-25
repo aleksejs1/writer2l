@@ -74,12 +74,18 @@ class Project
      */
     private $user;
 
+    /**
+     * @ORM\OneToMany(targetEntity=WorkSession::class, mappedBy="project")
+     */
+    private $workSessions;
+
     public function __construct()
     {
         $this->chapters = new ArrayCollection();
         $this->characters = new ArrayCollection();
         $this->locations = new ArrayCollection();
         $this->items = new ArrayCollection();
+        $this->workSessions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -243,6 +249,36 @@ class Project
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|WorkSession[]
+     */
+    public function getWorkSessions(): Collection
+    {
+        return $this->workSessions;
+    }
+
+    public function addWorkSession(WorkSession $workSession): self
+    {
+        if (!$this->workSessions->contains($workSession)) {
+            $this->workSessions[] = $workSession;
+            $workSession->setProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWorkSession(WorkSession $workSession): self
+    {
+        if ($this->workSessions->removeElement($workSession)) {
+            // set the owning side to null (unless already changed)
+            if ($workSession->getProject() === $this) {
+                $workSession->setProject(null);
+            }
+        }
 
         return $this;
     }
