@@ -501,9 +501,13 @@
         <source>Words per minute</source>
         <target>Слов в минуту</target>
       </trans-unit>
-      <trans-unit id="RFT8sDx" resname="wpm">
+      <trans-unit id="Le2X2I0" resname="wpm">
         <source>wpm</source>
         <target>свм</target>
+      </trans-unit>
+      <trans-unit id="KzwdlDL" resname="Time spent">
+        <source>Time spent</source>
+        <target>Затраченное время</target>
       </trans-unit>
     </body>
   </file>
