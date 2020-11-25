@@ -68,9 +68,15 @@ class Chapter implements SortableInterface
      */
     private $position;
 
+    /**
+     * @ORM\OneToMany(targetEntity=WorkSession::class, mappedBy="chapter")
+     */
+    private $workSessions;
+
     public function __construct()
     {
         $this->scenes = new ArrayCollection();
+        $this->workSessions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -153,6 +159,36 @@ class Chapter implements SortableInterface
     public function setPosition(int $position): self
     {
         $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|WorkSession[]
+     */
+    public function getWorkSessions(): Collection
+    {
+        return $this->workSessions;
+    }
+
+    public function addWorkSession(WorkSession $workSession): self
+    {
+        if (!$this->workSessions->contains($workSession)) {
+            $this->workSessions[] = $workSession;
+            $workSession->setChapter($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWorkSession(WorkSession $workSession): self
+    {
+        if ($this->workSessions->removeElement($workSession)) {
+            // set the owning side to null (unless already changed)
+            if ($workSession->getChapter() === $this) {
+                $workSession->setChapter(null);
+            }
+        }
 
         return $this;
     }

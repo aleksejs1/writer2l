@@ -201,12 +201,18 @@ class Scene implements SortableInterface
      */
     private $timeLength;
 
+    /**
+     * @ORM\OneToMany(targetEntity=WorkSession::class, mappedBy="scene", orphanRemoval=true)
+     */
+    private $workSessions;
+
     public function __construct()
     {
         $this->characters = new ArrayCollection();
         $this->locations = new ArrayCollection();
         $this->items = new ArrayCollection();
         $this->sceneRevisions = new ArrayCollection();
+        $this->workSessions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -577,6 +583,36 @@ class Scene implements SortableInterface
     public function setTimeLength(?string $timeLength): self
     {
         $this->timeLength = $timeLength;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|WorkSession[]
+     */
+    public function getWorkSessions(): Collection
+    {
+        return $this->workSessions;
+    }
+
+    public function addWorkSession(WorkSession $workSession): self
+    {
+        if (!$this->workSessions->contains($workSession)) {
+            $this->workSessions[] = $workSession;
+            $workSession->setScene($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWorkSession(WorkSession $workSession): self
+    {
+        if ($this->workSessions->removeElement($workSession)) {
+            // set the owning side to null (unless already changed)
+            if ($workSession->getScene() === $this) {
+                $workSession->setScene(null);
+            }
+        }
 
         return $this;
     }

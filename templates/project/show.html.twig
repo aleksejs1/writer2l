@@ -29,7 +29,20 @@
                         <a class="sort-buttons" href="{{ path('scene_position', {'scene': sceneInList.id, 'newPosition': sceneInList.position - 1, 'project': project.id, 'chapter': sceneInList.chapter.id}) }}"><i class="fas fa-chevron-up"></i></a>
                         <a class="sort-buttons" href="{{ path('scene_position', {'scene': sceneInList.id, 'newPosition': sceneInList.position + 1, 'project': project.id, 'chapter': sceneInList.chapter.id}) }}"><i class="fas fa-chevron-down"></i></a>
                     </td>
-                    <td><a href="{{ path('scene_edit', {'chapter': chapter.id, 'project': project.id, 'scene': sceneInList.id}) }}" title="{{ 'Edit'|trans }}"><i class="fas fa-edit"></i></a> {% if sceneInList.note %}<span title="{{ 'Notes'|trans }}">{{ 'N'|trans }}</span>{% else %}<span title="{{ 'Scene'|trans }}">{{ 'Sc'|trans }}</span>{% endif %}</td>
+                    <td>
+                        <a href="{{ path('scene_edit', {'chapter': chapter.id, 'project': project.id, 'scene': sceneInList.id}) }}" title="{{ 'Edit'|trans }}"><i class="fas fa-edit"></i></a>
+                        {% if sceneInList.note %}
+                            <span title="{{ 'Notes'|trans }}">{{ 'N'|trans }}</span>
+                        {% else %}
+                            <span title="{{ 'Scene'|trans }}">{{ 'Sc'|trans }}</span>
+                        {% endif %}
+                        <br>
+                        {% set timeSpent = 0 %}
+                        {% for session in sceneInList.worksessions %}
+                            {% set timeSpent = timeSpent + session.seconds %}
+                        {% endfor %}
+                        <span style="font-size: 0.7rem;">{{ timeSpent | date('H:i:s', '+00:00 GMT')  }}</span>
+                    </td>
                     <td>
                         <div class="hidden-overflow" style="max-width: 250px;">
                             <a href="{{ path('scene_show', {'project': sceneInList.chapter.project.id, 'chapter': sceneInList.chapter.id, 'scene': sceneInList.id}) }}" title="{{ sceneInList.title ?: '[No title]' }}">{{ sceneInList.title ?: '[No title]' }}</a>

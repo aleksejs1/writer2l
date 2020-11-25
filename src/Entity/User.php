@@ -41,9 +41,15 @@ class User implements UserInterface
      */
     private $projects;
 
+    /**
+     * @ORM\OneToMany(targetEntity=WorkSession::class, mappedBy="user")
+     */
+    private $workSessions;
+
     public function __construct()
     {
         $this->projects = new ArrayCollection();
+        $this->workSessions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -144,6 +150,36 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($project->getUser() === $this) {
                 $project->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|WorkSession[]
+     */
+    public function getWorkSessions(): Collection
+    {
+        return $this->workSessions;
+    }
+
+    public function addWorkSession(WorkSession $workSession): self
+    {
+        if (!$this->workSessions->contains($workSession)) {
+            $this->workSessions[] = $workSession;
+            $workSession->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWorkSession(WorkSession $workSession): self
+    {
+        if ($this->workSessions->removeElement($workSession)) {
+            // set the owning side to null (unless already changed)
+            if ($workSession->getUser() === $this) {
+                $workSession->setUser(null);
             }
         }
 
