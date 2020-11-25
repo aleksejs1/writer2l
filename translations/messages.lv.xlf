@@ -501,9 +501,13 @@
         <source>Words per minute</source>
         <target>Vārdi minūtē</target>
       </trans-unit>
-      <trans-unit id="RFT8sDx" resname="wpm">
+      <trans-unit id="Le2X2I0" resname="wpm">
         <source>wpm</source>
         <target>vm</target>
+      </trans-unit>
+      <trans-unit id="KzwdlDL" resname="Time spent">
+        <source>Time spent</source>
+        <target>Patērētais laiks</target>
       </trans-unit>
     </body>
   </file>
