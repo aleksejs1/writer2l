@@ -2,7 +2,7 @@
     "name": "symfony/website-skeleton",
     "type": "project",
     "license": "MIT",
-    "description": "A skeleton to start a new Symfony website",
+    "description": "A platform for writing novels",
     "require": {
         "php": "^7.4",
         "ext-apcu": "^5.1",
