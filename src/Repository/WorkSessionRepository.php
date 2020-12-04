@@ -32,7 +32,7 @@ class WorkSessionRepository extends Repository
             ->andWhere('ws.scene = :scene')
             ->setParameter('scene', $scene)
             ->andWhere('ws.end > :datetime')
-            ->setParameter('datetime', $datetime)
+            ->setParameter('datetime', $datetime->format('Y-m-d H:i:s'))
             ->orderBy('ws.end', Criteria::DESC)
             ->setMaxResults(1)
             ->getQuery()
